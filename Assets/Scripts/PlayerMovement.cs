@@ -6,16 +6,21 @@ using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header ("Movement")]
     public float MovementSpeed;
-
+    public float GroundDrag;
     public float JumpHeight;
-    public bool ReadyToJump;
 
-    public Rigidbody PlayerRigidbody;
+    [Header("Ground Check")]
+    public float PlayerHeight;
+    public LayerMask WhatIsGround;
+    bool Grounded;
+
+    Rigidbody PlayerRigidbody;
     public Transform OrientationTransform;
 
     float HorizontalInput;
-    public float VerticalInput;
+    float VerticalInput;
 
     Vector3 MoveDirection;
 
@@ -30,11 +35,39 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Ground Check
+        Grounded = Physics.Raycast(transform.position, Vector3.down, PlayerHeight * 0.5f + 0.2f, WhatIsGround);
+        
+        MyInput();
+        
+        // Handle Drag
+        if (Grounded) 
+        {
+            PlayerRigidbody.drag = GroundDrag;
+        }
+        else 
+        {
+            PlayerRigidbody.drag = 0;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        MovePlayer();
+    }
+
+    private void MyInput()
+    {
         HorizontalInput = Input.GetAxisRaw("Horizontal");
         VerticalInput = Input.GetAxisRaw("Vertical");
 
+    }
+    
+    private void MovePlayer()
+    {
         MoveDirection = OrientationTransform.forward * VerticalInput + OrientationTransform.right * HorizontalInput;
-        PlayerRigidbody.AddForce(MoveDirection.normalized * MovementSpeed, ForceMode.Force);
+        // Replace 10f with acceleration variable
+        PlayerRigidbody.AddForce(MoveDirection.normalized * MovementSpeed * 10f, ForceMode.Force);
 
     }
 }
