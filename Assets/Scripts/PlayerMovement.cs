@@ -7,22 +7,37 @@ using UnityEngine.EventSystems;
 public class PlayerMovement : MonoBehaviour
 {
     [Header ("Movement")]
-    public float MovementSpeed;
+    private float MovementSpeed;
+    public float WalkSpeed;
+    public float SprintSpeed;
     public float GroundDrag;
     //public float JumpHeight;
 
+    [Header("Jumping")]
     public float JumpForce;
     public float JumpCooldown;
     public float AirMultiplier;
     public bool ReadyToJump;
 
+    [Header("Crouching")]
+    public float CrouchSpeed;
+    public float CrouchYScale;
+    private float StartYScale;
+
     [Header("Keybinds")]
     public KeyCode jumpkey = KeyCode.Space;
+    public KeyCode sprintkey = KeyCode.LeftShift;
+    public KeyCode crouchkey = KeyCode.LeftControl;
 
     [Header("Ground Check")]
     public float PlayerHeight;
     public LayerMask WhatIsGround;
     bool Grounded;
+
+    [Header("Slope Handling")]
+    public float MaxSlopeAngle;
+    private RaycastHit SlopeHit;
+    private bool ExitingSlope;
 
     Rigidbody PlayerRigidbody;
     public Transform OrientationTransform;
@@ -32,13 +47,22 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 MoveDirection;
 
+    public MovementState State;
+    public enum MovementState
+    {
+        Walking,
+        Sprinting,
+        Crouching,
+        Air
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         PlayerRigidbody = GetComponent<Rigidbody>();
         PlayerRigidbody.freezeRotation = true;
         ReadyToJump = true;
-
+        StartYScale = transform.localScale.y;
     }
 
     // Update is called once per frame
@@ -49,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
         
         MyInput();
         SpeedControl();
+        StateHandler();
 
         // Handle Drag
         if (Grounded) 
@@ -76,12 +101,66 @@ public class PlayerMovement : MonoBehaviour
             Jump();
             Invoke(nameof(ResetJump), JumpCooldown);
         }
+
+        // Start Crouch
+        if (Input.GetKeyDown(crouchkey))
+        {
+            transform.localScale = new Vector3 (transform.localScale.x, CrouchYScale, transform.localScale.z);
+            PlayerRigidbody.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+        }
+
+        // Stop Crouch
+        if (Input.GetKeyUp(crouchkey))
+        {
+            transform.localScale = new Vector3(transform.localScale.x, StartYScale, transform.localScale.z);
+        }
     }
     
+    private void StateHandler()
+    {
+        // Mode - Crouching
+        if (Input.GetKey(crouchkey))
+        {
+            State = MovementState.Crouching;
+            MovementSpeed = CrouchSpeed;
+        }
+        
+
+        // Mode - Sprinting
+        else if (Grounded && Input.GetKey(sprintkey))
+        {
+            State = MovementState.Sprinting;
+            MovementSpeed = SprintSpeed;
+        }
+
+        // Mode - Walking
+        else if (Grounded)
+        {
+            State = MovementState.Walking;
+            MovementSpeed = WalkSpeed;
+        }
+
+        // Mode - Air
+        else
+        {
+            State = MovementState.Air;
+        }
+    }
+
     private void MovePlayer()
     {
+        // Calculate Movement Direction
         MoveDirection = OrientationTransform.forward * VerticalInput + OrientationTransform.right * HorizontalInput;
         // Replace 10f with acceleration variable
+
+        // On Slope
+        if (OnSlope() && !ExitingSlope)
+        {
+            PlayerRigidbody.AddForce(GetSlopeMoveDirection() * MovementSpeed * 20f, ForceMode.Force);
+
+            if (PlayerRigidbody.velocity.y > 0)
+                PlayerRigidbody.AddForce(Vector3.down * 80f, ForceMode.Force);
+        }
 
         // On Ground
         if (Grounded)
@@ -90,22 +169,38 @@ public class PlayerMovement : MonoBehaviour
         // In Air
         else if(!Grounded)
         PlayerRigidbody.AddForce(MoveDirection.normalized * MovementSpeed * 10f * AirMultiplier, ForceMode.Force);
+
+        // turn gravity off while on slope
+        PlayerRigidbody.useGravity = !OnSlope();
     }
 
     private void SpeedControl()
     {
-        Vector3 flatVel = new Vector3(PlayerRigidbody.velocity.x, 0f, PlayerRigidbody.velocity.z);
-
-        // Limit Velocity if needed
-        if (flatVel.magnitude > MovementSpeed)
+        // Limiting Speed on Slope
+        if (OnSlope() && !ExitingSlope)
         {
-            Vector3 limitedVel = flatVel.normalized * MovementSpeed;
-            PlayerRigidbody.velocity = new Vector3(limitedVel.x, PlayerRigidbody.velocity.y, limitedVel.z);
+            if (PlayerRigidbody.velocity.magnitude > MovementSpeed)
+            PlayerRigidbody.velocity = PlayerRigidbody.velocity.normalized * MovementSpeed;
         }
+
+        // Limiting Speed on Ground
+        else
+        {
+            Vector3 flatVel = new Vector3(PlayerRigidbody.velocity.x, 0f, PlayerRigidbody.velocity.z);
+
+            // Limit Velocity if needed
+            if (flatVel.magnitude > MovementSpeed)
+            {
+                Vector3 limitedVel = flatVel.normalized * MovementSpeed;
+                PlayerRigidbody.velocity = new Vector3(limitedVel.x, PlayerRigidbody.velocity.y, limitedVel.z);
+            }
+        }
+        
     }
 
     private void Jump()
     {
+        ExitingSlope = true;
         // reset y velocity
         PlayerRigidbody.velocity = new Vector3(PlayerRigidbody.velocity.x, 0f, PlayerRigidbody.velocity.z);
 
@@ -115,5 +210,24 @@ public class PlayerMovement : MonoBehaviour
     private void ResetJump()
     {
         ReadyToJump = true;
+
+        ExitingSlope = false;
+    }
+
+    private bool OnSlope()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out SlopeHit, PlayerHeight * 0.5f + 0.3f))
+        {
+            float angle = Vector3.Angle(Vector3.up, SlopeHit.normal);
+            return angle < MaxSlopeAngle && angle != 0;
+        }
+
+        return false;
+
+    }
+
+    private Vector3 GetSlopeMoveDirection()
+    {
+        return Vector3.ProjectOnPlane(MoveDirection, SlopeHit.normal).normalized;
     }
 }
