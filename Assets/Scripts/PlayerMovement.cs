@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // Ground Check
-        Grounded = Physics.Raycast(transform.position, Vector3.down, PlayerHeight * 0.5f + 0.2f, WhatIsGround);
+        Grounded = Physics.Raycast(transform.position, Vector3.down, PlayerHeight * 0.5f + 0.2f, WhatIsGround); // (Bug fix jumping up slopes) + 0.2 should be 0.1 while crouching
         
         MyInput();
         SpeedControl();
@@ -106,13 +106,15 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(crouchkey))
         {
             transform.localScale = new Vector3 (transform.localScale.x, CrouchYScale, transform.localScale.z);
-            PlayerRigidbody.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+         if (Grounded) PlayerRigidbody.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+            PlayerHeight = PlayerHeight * 0.5f;
         }
 
         // Stop Crouch
         if (Input.GetKeyUp(crouchkey))
         {
             transform.localScale = new Vector3(transform.localScale.x, StartYScale, transform.localScale.z);
+            PlayerHeight = PlayerHeight * 2f;
         }
     }
     
@@ -122,10 +124,10 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(crouchkey))
         {
             State = MovementState.Crouching;
-            MovementSpeed = CrouchSpeed;
+         if (Grounded) MovementSpeed = CrouchSpeed;
         }
         
-
+            
         // Mode - Sprinting
         else if (Grounded && Input.GetKey(sprintkey))
         {
