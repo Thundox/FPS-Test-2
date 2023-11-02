@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour
     private float MovementSpeed;
     public float WalkSpeed;
     public float SprintSpeed;
+    public float slideSpeed;
+    private float desiredMoveSpeed;
+    private float lastDesiredMoveSpeed;
     public float GroundDrag;
     //public float JumpHeight;
 
@@ -53,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
         Walking,
         Sprinting,
         Crouching,
+        sliding,
         Air
     }
 
@@ -158,7 +162,7 @@ public class PlayerMovement : MonoBehaviour
         // On Slope
         if (OnSlope() && !ExitingSlope)
         {
-            PlayerRigidbody.AddForce(GetSlopeMoveDirection() * MovementSpeed * 20f, ForceMode.Force);
+            PlayerRigidbody.AddForce(GetSlopeMoveDirection(MoveDirection) * MovementSpeed * 20f, ForceMode.Force);
 
             if (PlayerRigidbody.velocity.y > 0)
                 PlayerRigidbody.AddForce(Vector3.down * 80f, ForceMode.Force);
@@ -216,7 +220,7 @@ public class PlayerMovement : MonoBehaviour
         ExitingSlope = false;
     }
 
-    private bool OnSlope()
+    public bool OnSlope()
     {
         if (Physics.Raycast(transform.position, Vector3.down, out SlopeHit, PlayerHeight * 0.5f + 0.3f))
         {
@@ -228,8 +232,8 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private Vector3 GetSlopeMoveDirection()
+    public Vector3 GetSlopeMoveDirection(Vector3 direction)
     {
-        return Vector3.ProjectOnPlane(MoveDirection, SlopeHit.normal).normalized;
+        return Vector3.ProjectOnPlane(direction, SlopeHit.normal).normalized;
     }
 }

@@ -1026,6 +1026,7 @@ GameObject:
   - component: {fileID: 678083278}
   - component: {fileID: 678083277}
   - component: {fileID: 678083280}
+  - component: {fileID: 678083281}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -1056,7 +1057,7 @@ MonoBehaviour:
   CrouchYScale: 0.5
   jumpkey: 32
   sprintkey: 304
-  crouchkey: 306
+  crouchkey: 99
   PlayerHeight: 2
   WhatIsGround:
     serializedVersion: 2
@@ -1118,6 +1119,24 @@ MonoBehaviour:
   throwKey: 323
   throwForce: 70
   throwUpwardForce: 0
+--- !u!114 &678083281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678083276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 607eed7209925774eabdb9e4b7827686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 653863103}
+  playerObj: {fileID: 99280368}
+  maxSlideTime: 0.75
+  slideForce: 200
+  slideYScale: 0.5
+  slideKey: 306
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
