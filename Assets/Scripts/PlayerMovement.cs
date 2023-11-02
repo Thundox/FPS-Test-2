@@ -13,6 +13,11 @@ public class PlayerMovement : MonoBehaviour
     public float slideSpeed;
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
+
+    // 
+    public float speedIncreaseMultiplier;
+    public float slopeIncreaseMultiplier;
+
     public float GroundDrag;
     //public float JumpHeight;
 
@@ -59,6 +64,10 @@ public class PlayerMovement : MonoBehaviour
         sliding,
         Air
     }
+
+
+    // sliding bool moved from sliding script to PlayerMovement
+    public bool sliding;
 
     // Start is called before the first frame update
     void Start()
@@ -124,11 +133,23 @@ public class PlayerMovement : MonoBehaviour
     
     private void StateHandler()
     {
+        // Mode - Sliding
+        if (sliding)
+        {
+            State = MovementState.sliding;
+
+            if (OnSlope() && PlayerRigidbody.velocity.y < 0.1f)
+                desiredMoveSpeed = slideSpeed;
+
+            else
+                desiredMoveSpeed = SprintSpeed;
+
+        }
         // Mode - Crouching
-        if (Input.GetKey(crouchkey))
+        else if (Input.GetKey(crouchkey))
         {
             State = MovementState.Crouching;
-         if (Grounded) MovementSpeed = CrouchSpeed;
+         if (Grounded) desiredMoveSpeed = CrouchSpeed;
         }
         
             
@@ -136,14 +157,14 @@ public class PlayerMovement : MonoBehaviour
         else if (Grounded && Input.GetKey(sprintkey))
         {
             State = MovementState.Sprinting;
-            MovementSpeed = SprintSpeed;
+            desiredMoveSpeed = SprintSpeed;
         }
 
         // Mode - Walking
         else if (Grounded)
         {
             State = MovementState.Walking;
-            MovementSpeed = WalkSpeed;
+            desiredMoveSpeed = WalkSpeed;
         }
 
         // Mode - Air
@@ -151,6 +172,47 @@ public class PlayerMovement : MonoBehaviour
         {
             State = MovementState.Air;
         }
+
+        // check if desiredMoveSpeed has changed drastically
+        if(Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4f && MovementSpeed != 0)
+        {
+            StopAllCoroutines();
+            StartCoroutine(SmoothlyLerpMoveSpeed());
+        }
+        else
+        {
+            MovementSpeed = desiredMoveSpeed;
+        }
+
+        lastDesiredMoveSpeed = desiredMoveSpeed;
+    }
+
+    private IEnumerator SmoothlyLerpMoveSpeed()
+    {
+        // smoothly lerp movementSpeed (currently MovementSpeed) to desired value
+        float time = 0;
+        float difference = Mathf.Abs(desiredMoveSpeed - MovementSpeed);
+        float startValue = MovementSpeed;
+
+        while (time < difference)
+        {
+            MovementSpeed = Mathf.Lerp(startValue, desiredMoveSpeed, time / difference);
+
+            if (OnSlope())
+            {
+                // [Uppercase camel casing] SlopeHit
+                float slopeAngle = Vector3.Angle(Vector3.up, SlopeHit.normal);
+                float slopeAngleIncrease = 1 + (slopeAngle / 90f);
+
+                time += Time.deltaTime * speedIncreaseMultiplier * slopeIncreaseMultiplier * slopeAngleIncrease;
+            }
+            else
+                time += Time.deltaTime * speedIncreaseMultiplier;
+
+            yield return null;
+        }
+
+        MovementSpeed = desiredMoveSpeed;
     }
 
     private void MovePlayer()
