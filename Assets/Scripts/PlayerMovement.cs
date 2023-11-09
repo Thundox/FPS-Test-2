@@ -226,12 +226,12 @@ public class PlayerMovement : MonoBehaviour
         {
             PlayerRigidbody.AddForce(GetSlopeMoveDirection(MoveDirection) * MovementSpeed * 20f, ForceMode.Force);
 
-            if (PlayerRigidbody.velocity.y > 0)
+            if (PlayerRigidbody.velocity.y > -5)
                 PlayerRigidbody.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
 
         // On Ground
-        if (Grounded)
+        else if (Grounded)
         PlayerRigidbody.AddForce(MoveDirection.normalized * MovementSpeed * 10f, ForceMode.Force);
 
         // In Air
