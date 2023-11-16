@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
     public float slideSpeed;
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
+    //public float wallrunSpeed;
+    public float climbSpeed;
+    //public float airMinSpeed;
 
     // 
     public float speedIncreaseMultiplier;
@@ -40,12 +43,15 @@ public class PlayerMovement : MonoBehaviour
     [Header("Ground Check")]
     public float PlayerHeight;
     public LayerMask WhatIsGround;
-    bool Grounded;
+    public bool grounded;
 
     [Header("Slope Handling")]
     public float MaxSlopeAngle;
     private RaycastHit SlopeHit;
     private bool ExitingSlope;
+
+    [Header("References")]
+    public Climbing climbingScript;
 
     Rigidbody PlayerRigidbody;
     public Transform OrientationTransform;
@@ -60,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Walking,
         Sprinting,
+        climbing,
         Crouching,
         sliding,
         Air
@@ -68,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
 
     // sliding bool moved from sliding script to PlayerMovement
     public bool sliding;
+    public bool climbing;
 
     // Start is called before the first frame update
     void Start()
@@ -82,14 +90,14 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // Ground Check
-        Grounded = Physics.Raycast(transform.position, Vector3.down, PlayerHeight * 0.5f + 0.2f, WhatIsGround); // (Bug fix jumping up slopes) + 0.2 should be 0.1 while crouching
+        grounded = Physics.Raycast(transform.position, Vector3.down, PlayerHeight * 0.5f + 0.2f, WhatIsGround); // (Bug fix jumping up slopes) + 0.2 should be 0.1 while crouching
         
         MyInput();
         SpeedControl();
         StateHandler();
 
         // Handle Drag
-        if (Grounded) 
+        if (grounded) 
         {
             PlayerRigidbody.drag = GroundDrag;
         }
@@ -108,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
     {
         HorizontalInput = Input.GetAxisRaw("Horizontal");
         VerticalInput = Input.GetAxisRaw("Vertical");
-        if (Input.GetKey(jumpkey) && ReadyToJump && Grounded)
+        if (Input.GetKey(jumpkey) && ReadyToJump && grounded)
         {
             ReadyToJump = false;
             Jump();
@@ -119,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(crouchkey))
         {
             transform.localScale = new Vector3 (transform.localScale.x, CrouchYScale, transform.localScale.z);
-         if (Grounded) PlayerRigidbody.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+         if (grounded) PlayerRigidbody.AddForce(Vector3.down * 5f, ForceMode.Impulse);
             PlayerHeight = PlayerHeight * 0.5f;
         }
 
@@ -133,8 +141,14 @@ public class PlayerMovement : MonoBehaviour
     
     private void StateHandler()
     {
+        // Mode - Climbing 
+        if (climbing)
+        {
+            State = MovementState.climbing;
+            desiredMoveSpeed = climbSpeed;
+        }
         // Mode - Sliding
-        if (sliding)
+        else if (sliding)
         {
             State = MovementState.sliding;
 
@@ -149,19 +163,19 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetKey(crouchkey))
         {
             State = MovementState.Crouching;
-         if (Grounded) desiredMoveSpeed = CrouchSpeed;
+         if (grounded) desiredMoveSpeed = CrouchSpeed;
         }
         
             
         // Mode - Sprinting
-        else if (Grounded && Input.GetKey(sprintkey))
+        else if (grounded && Input.GetKey(sprintkey))
         {
             State = MovementState.Sprinting;
             desiredMoveSpeed = SprintSpeed;
         }
 
         // Mode - Walking
-        else if (Grounded)
+        else if (grounded)
         {
             State = MovementState.Walking;
             desiredMoveSpeed = WalkSpeed;
@@ -217,6 +231,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
+        if (climbingScript.exitingWall) return; 
+
         // Calculate Movement Direction
         MoveDirection = OrientationTransform.forward * VerticalInput + OrientationTransform.right * HorizontalInput;
         // Replace 10f with acceleration variable
@@ -231,11 +247,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // On Ground
-        else if (Grounded)
+        else if (grounded)
         PlayerRigidbody.AddForce(MoveDirection.normalized * MovementSpeed * 10f, ForceMode.Force);
 
         // In Air
-        else if(!Grounded)
+        else if(!grounded)
         PlayerRigidbody.AddForce(MoveDirection.normalized * MovementSpeed * 10f * AirMultiplier, ForceMode.Force);
 
         // turn gravity off while on slope
