@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("References")]
     public Climbing climbingScript;
 
-    Rigidbody PlayerRigidbody;
+    Rigidbody rb;
     public Transform OrientationTransform;
 
     float HorizontalInput;
@@ -64,6 +64,8 @@ public class PlayerMovement : MonoBehaviour
     public MovementState State;
     public enum MovementState
     {
+        unlimited,
+        freeze,
         Walking,
         Sprinting,
         climbing,
@@ -72,6 +74,10 @@ public class PlayerMovement : MonoBehaviour
         Air
     }
 
+    // Movement States
+    public bool unlimited;
+    public bool freeze;
+    public bool restricted;
 
     // sliding bool moved from sliding script to PlayerMovement
     public bool sliding;
@@ -80,8 +86,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerRigidbody = GetComponent<Rigidbody>();
-        PlayerRigidbody.freezeRotation = true;
+        rb = GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
         ReadyToJump = true;
         StartYScale = transform.localScale.y;
     }
@@ -99,11 +105,11 @@ public class PlayerMovement : MonoBehaviour
         // Handle Drag
         if (grounded) 
         {
-            PlayerRigidbody.drag = GroundDrag;
+            rb.drag = GroundDrag;
         }
         else 
         {
-            PlayerRigidbody.drag = 0;
+            rb.drag = 0;
         }
     }
 
@@ -127,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(crouchkey))
         {
             transform.localScale = new Vector3 (transform.localScale.x, CrouchYScale, transform.localScale.z);
-         if (grounded) PlayerRigidbody.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+         if (grounded) rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
             PlayerHeight = PlayerHeight * 0.5f;
         }
 
@@ -141,8 +147,21 @@ public class PlayerMovement : MonoBehaviour
     
     private void StateHandler()
     {
+        // Mode - freeze 
+        if (freeze)
+        {
+            State = MovementState.freeze;
+            rb.velocity = Vector3.zero;
+        }
+        // Mode - unlimited 
+        if (unlimited)
+        {
+            State = MovementState.unlimited;
+            MovementSpeed = 999f;
+            return;
+        }
         // Mode - Climbing 
-        if (climbing)
+        else if (climbing)
         {
             State = MovementState.climbing;
             desiredMoveSpeed = climbSpeed;
@@ -152,7 +171,7 @@ public class PlayerMovement : MonoBehaviour
         {
             State = MovementState.sliding;
 
-            if (OnSlope() && PlayerRigidbody.velocity.y < 0.1f)
+            if (OnSlope() && rb.velocity.y < 0.1f)
                 desiredMoveSpeed = slideSpeed;
 
             else
@@ -231,6 +250,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
+        if (restricted) return;
         if (climbingScript.exitingWall) return; 
 
         // Calculate Movement Direction
@@ -240,22 +260,22 @@ public class PlayerMovement : MonoBehaviour
         // On Slope
         if (OnSlope() && !ExitingSlope)
         {
-            PlayerRigidbody.AddForce(GetSlopeMoveDirection(MoveDirection) * MovementSpeed * 20f, ForceMode.Force);
+            rb.AddForce(GetSlopeMoveDirection(MoveDirection) * MovementSpeed * 20f, ForceMode.Force);
 
-            if (PlayerRigidbody.velocity.y > -5)
-                PlayerRigidbody.AddForce(Vector3.down * 80f, ForceMode.Force);
+            if (rb.velocity.y > -5)
+                rb.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
 
         // On Ground
         else if (grounded)
-        PlayerRigidbody.AddForce(MoveDirection.normalized * MovementSpeed * 10f, ForceMode.Force);
+        rb.AddForce(MoveDirection.normalized * MovementSpeed * 10f, ForceMode.Force);
 
         // In Air
         else if(!grounded)
-        PlayerRigidbody.AddForce(MoveDirection.normalized * MovementSpeed * 10f * AirMultiplier, ForceMode.Force);
+        rb.AddForce(MoveDirection.normalized * MovementSpeed * 10f * AirMultiplier, ForceMode.Force);
 
         // turn gravity off while on slope
-        PlayerRigidbody.useGravity = !OnSlope();
+        rb.useGravity = !OnSlope();
     }
 
     private void SpeedControl()
@@ -263,20 +283,20 @@ public class PlayerMovement : MonoBehaviour
         // Limiting Speed on Slope
         if (OnSlope() && !ExitingSlope)
         {
-            if (PlayerRigidbody.velocity.magnitude > MovementSpeed)
-            PlayerRigidbody.velocity = PlayerRigidbody.velocity.normalized * MovementSpeed;
+            if (rb.velocity.magnitude > MovementSpeed)
+            rb.velocity = rb.velocity.normalized * MovementSpeed;
         }
 
         // Limiting Speed on Ground
         else
         {
-            Vector3 flatVel = new Vector3(PlayerRigidbody.velocity.x, 0f, PlayerRigidbody.velocity.z);
+            Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
             // Limit Velocity if needed
             if (flatVel.magnitude > MovementSpeed)
             {
                 Vector3 limitedVel = flatVel.normalized * MovementSpeed;
-                PlayerRigidbody.velocity = new Vector3(limitedVel.x, PlayerRigidbody.velocity.y, limitedVel.z);
+                rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
             }
         }
         
@@ -286,9 +306,9 @@ public class PlayerMovement : MonoBehaviour
     {
         ExitingSlope = true;
         // reset y velocity
-        PlayerRigidbody.velocity = new Vector3(PlayerRigidbody.velocity.x, 0f, PlayerRigidbody.velocity.z);
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-        PlayerRigidbody.AddForce(transform.up * JumpForce, ForceMode.Impulse);
+        rb.AddForce(transform.up * JumpForce, ForceMode.Impulse);
     }
 
     private void ResetJump()

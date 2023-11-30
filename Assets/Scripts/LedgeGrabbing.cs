@@ -70,6 +70,9 @@ public class LedgeGrabbing : MonoBehaviour
     {
         holding = true;
 
+        pm.unlimited = true;
+        pm.restricted = true;
+
         currLedge =ledgeHit.transform;
         LastLedge = ledgeHit.transform;
 
@@ -79,11 +82,49 @@ public class LedgeGrabbing : MonoBehaviour
 
     private void FreezeRigidBodyOnLedge()
     {
+        rb.useGravity = false;
 
+        Vector3 directionToLedge = currLedge.position - transform.position;
+        float distanceToLedge = Vector3.Distance(transform.position, currLedge.position);
+
+        // Move Player towards ledge
+        if(distanceToLedge > 1f)
+        {
+            if(rb.velocity.magnitude < moveToLedgeSpeed)
+            {
+                rb.AddForce(directionToLedge.normalized * moveToLedgeSpeed * 1000f * Time.deltaTime);
+            }
+            
+        }
+
+        // Hold onto ledge
+        else
+        {
+            // Is !pm.freeze neccesary?
+            if (!pm.freeze) pm.freeze = true;
+            if(pm.unlimited) pm.unlimited = false;
+        }
+
+        // exiting if something goes wrong
+        if (distanceToLedge > maxLedgeGrabDistance) ExitLedgeHold();
     }
 
     private void ExitLedgeHold()
     {
+        holding = false;
+        TimeOnledge = 0f;
 
+        pm.restricted = false;
+        pm.freeze = false;
+
+        rb.useGravity = true;
+
+        StopAllCoroutines();
+        Invoke(nameof(ResetLastLedge), 1f);
+    }
+
+    private void ResetLastLedge()
+    {
+        LastLedge = null;
     }
 }
