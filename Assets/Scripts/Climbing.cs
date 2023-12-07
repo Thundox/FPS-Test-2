@@ -47,7 +47,7 @@ public class Climbing : MonoBehaviour
 
     private void Start()
     {
-        lg = GetComponent<LedgeGrabbing>();
+        lg = GetComponent<LedgeGrabbing>(); 
     }
 
     private void Update()
