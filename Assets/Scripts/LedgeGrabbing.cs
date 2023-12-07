@@ -20,6 +20,11 @@ public class LedgeGrabbing : MonoBehaviour
 
     public bool holding;
 
+    [Header("Ledge Jumping")]
+    public KeyCode jumpkey = KeyCode.Space;
+    public float ledgeJumpForwardForce;
+    public float ledgeJumpUpwardForce;
+
     [Header("Ledge Detection")]
     public float ledgeDetectionLength;
     public float ledgeSphereCastRadius;
@@ -29,6 +34,11 @@ public class LedgeGrabbing : MonoBehaviour
     private Transform currLedge;
 
     private RaycastHit ledgeHit;
+
+    [Header("Exiting")]
+    public bool exitingLedge;
+    public float exitLedgeTime;
+    private float exitLedgeTimer;
 
     private void Update()
     {
@@ -50,6 +60,14 @@ public class LedgeGrabbing : MonoBehaviour
             TimeOnledge += Time.deltaTime;
 
             if (TimeOnledge > minTimeOnLedge && anyInputKeyPressed) ExitLedgeHold();
+
+            if (Input.GetKeyDown(jumpkey)) LedgeJump();
+        }
+        // SubState 2 - Exiting Ledge
+        else if (exitingLedge)
+        {
+            if (exitLedgeTimer > 0) exitLedgeTimer -= Time.deltaTime;
+            else exitingLedge = false;
         }
     }
 
@@ -64,6 +82,20 @@ public class LedgeGrabbing : MonoBehaviour
         if (ledgeHit.transform == LastLedge) return;
 
         if (distanceToLedge < maxLedgeGrabDistance && !holding) EnterLedgeHold();
+    }
+
+    private void LedgeJump()
+    {
+        ExitLedgeHold();
+
+        Invoke(nameof(DelayedJumpForce), 0.05f);
+    }
+
+    private void DelayedJumpForce()
+    {
+        Vector3 forceToAdd = cam.forward * ledgeJumpForwardForce + orientation.up * ledgeJumpUpwardForce;
+        rb.velocity = Vector3.zero;
+        rb.AddForce(forceToAdd, ForceMode.Impulse);
     }
 
     private void EnterLedgeHold()

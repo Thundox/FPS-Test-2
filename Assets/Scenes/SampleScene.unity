@@ -494,7 +494,7 @@ GameObject:
   - component: {fileID: 279266953}
   - component: {fileID: 279266952}
   - component: {fileID: 279266951}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Test Ledge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
