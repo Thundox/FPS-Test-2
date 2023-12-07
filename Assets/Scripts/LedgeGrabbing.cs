@@ -49,7 +49,7 @@ public class LedgeGrabbing : MonoBehaviour
     private void SubStateMachine()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("vertical");
+        float verticalInput = Input.GetAxisRaw("Vertical");
         bool anyInputKeyPressed = horizontalInput !=0 || verticalInput !=0;
 
         // SubState 1 - Holding onto ledge
@@ -143,6 +143,9 @@ public class LedgeGrabbing : MonoBehaviour
 
     private void ExitLedgeHold()
     {
+        exitingLedge = true;
+        exitLedgeTimer = exitLedgeTime;
+
         holding = false;
         TimeOnledge = 0f;
 

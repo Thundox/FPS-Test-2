@@ -9,6 +9,7 @@ public class Climbing : MonoBehaviour
     public Transform orientation;
     public Rigidbody rb;
     public PlayerMovement pm;
+    public LedgeGrabbing lg;
     public LayerMask whatIsWall;
 
     [Header("Climbing")]
@@ -43,6 +44,11 @@ public class Climbing : MonoBehaviour
     public bool exitingWall;
     public float exitWallTime;
     private float exitWallTimer;
+
+    private void Start()
+    {
+        lg = GetComponent<LedgeGrabbing>();
+    }
 
     private void Update()
     {
