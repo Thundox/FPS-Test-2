@@ -4,21 +4,40 @@ using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {
+    private enum ZombieState
+    {
+        Walking,
+        Ragdoll
+    }
+
+    [SerializeField] 
+    private Camera _camera;
+
     private Rigidbody[] _ragdollRigidbodies;
+    private ZombieState _currentState = ZombieState.Walking;
+    private Animator _animator;
+    private CharacterController _characterController;
 
     // Start is called before the first frame update
     void Awake()
     {
         _ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
+        _animator = GetComponent<Animator>();
+        _characterController = GetComponent<CharacterController>();
         DisableRagdoll();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) 
+        switch (_currentState)
         {
-            EnableRagdoll();
+            case ZombieState.Walking:
+                WalkingBehaviour();
+                break;
+            case ZombieState.Ragdoll:
+                RagdollBehaviour(); 
+                break;
         }
     }
 
@@ -28,6 +47,9 @@ public class Zombie : MonoBehaviour
         {
             rigidbody.isKinematic = true;
         }
+
+        _animator.enabled = true;
+        _characterController.enabled = true;
     }
 
 
@@ -37,5 +59,28 @@ public class Zombie : MonoBehaviour
         {
             rigidbody.isKinematic = false;
         }
+
+        _animator.enabled = false;
+        _characterController.enabled = false;
+    }
+    private void WalkingBehaviour()
+    {
+        Vector3 direction = _camera.transform.position - transform.position;
+        direction.y = 0;
+        direction.Normalize();
+
+        Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 20 * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            EnableRagdoll();
+            _currentState = ZombieState.Ragdoll;
+        }
+    }
+
+    private void RagdollBehaviour()
+    {
+
     }
 }
