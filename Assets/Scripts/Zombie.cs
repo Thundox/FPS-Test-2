@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Zombie : MonoBehaviour
@@ -41,6 +42,17 @@ public class Zombie : MonoBehaviour
         }
     }
 
+    public void TriggerRagdoll(Vector3 force, Vector3 hitPoint)
+    {
+        EnableRagdoll();
+
+        Rigidbody hitRigidbody = _ragdollRigidbodies.OrderBy(Rigidbody => Vector3.Distance(Rigidbody.position, hitPoint)).First();
+
+        hitRigidbody.AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
+
+        _currentState = ZombieState.Ragdoll;
+    }
+
     private void DisableRagdoll()
     {
         foreach (var rigidbody in _ragdollRigidbodies)
@@ -71,12 +83,6 @@ public class Zombie : MonoBehaviour
 
         Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 20 * Time.deltaTime);
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            EnableRagdoll();
-            _currentState = ZombieState.Ragdoll;
-        }
     }
 
     private void RagdollBehaviour()
