@@ -8,7 +8,7 @@ public class Shoot : MonoBehaviour
     private float _maximumForce;
 
     [SerializeField]
-    private float _maximumForceTime;
+    private float MaxChargeTime;
 
     private float _timeMouseButtonDown;
 
@@ -36,21 +36,35 @@ public class Shoot : MonoBehaviour
 
             if (Physics.Raycast(ray, out RaycastHit hitInfo)) 
             {
-                Zombie zombie = hitInfo.collider.GetComponentInParent<Zombie>();
+                Zombie zombie = hitInfo.collider.transform.root.GetComponent<Zombie>();
 
                 if (zombie != null)
                 {
                     float mouseButtonDownDuration = Time.time - _timeMouseButtonDown;
-                    float forcePercentage = mouseButtonDownDuration / _maximumForce;
-                    float forceMagnitude = _maximumForce; //Mathf.Lerp(1, _maximumForce, forcePercentage);
+                    float forcePercentage;
+                    float forceMagnitude;  //Mathf.Lerp(1, _maximumForce, forcePercentage);
+                    
+                    if (mouseButtonDownDuration > MaxChargeTime)
+                    {
+                        forcePercentage = 1;
+                    }
+                    else
+                    {
+                        forcePercentage = mouseButtonDownDuration / MaxChargeTime;
+                    }
 
-                    Vector3 forceDirection = zombie.transform.position - _camera.transform.position;
+                    forceMagnitude = forcePercentage * _maximumForce;
+
+
+                    /*Vector3 forceDirection = zombie.transform.position - _camera.transform.position;
                     //forceDirection.y = 1;
                     forceDirection.Normalize();
-
-                    Vector3 force = forceMagnitude * forceDirection;
-
+                    */
+                    Vector3 force = Vector3.forward;
+                    
                     zombie.TriggerRagdoll(force, hitInfo.point);
+
+                    hitInfo.transform.GetComponent<Rigidbody>().AddForce(transform.forward * forceMagnitude, ForceMode.Impulse);
                 }
 
 

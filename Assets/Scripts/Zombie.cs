@@ -17,14 +17,14 @@ public class Zombie : MonoBehaviour
     private Rigidbody[] _ragdollRigidbodies;
     private ZombieState _currentState = ZombieState.Walking;
     private Animator _animator;
-    private CharacterController _characterController;
-
+    //private CharacterController _characterController;
+    private float _timeToWakeUp;
     // Start is called before the first frame update
     void Awake()
     {
         _ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
         _animator = GetComponent<Animator>();
-        _characterController = GetComponent<CharacterController>();
+       // _characterController = GetComponent<CharacterController>();
         DisableRagdoll();
     }
 
@@ -46,9 +46,9 @@ public class Zombie : MonoBehaviour
     {
         EnableRagdoll();
 
-        Rigidbody hitRigidbody = _ragdollRigidbodies.OrderBy(Rigidbody => Vector3.Distance(Rigidbody.position, hitPoint)).First();
+        //Rigidbody hitRigidbody = _ragdollRigidbodies.OrderBy(Rigidbody => Vector3.Distance(Rigidbody.position, hitPoint)).First();
 
-        hitRigidbody.AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
+        //hitRigidbody.AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
 
         _currentState = ZombieState.Ragdoll;
     }
@@ -61,7 +61,7 @@ public class Zombie : MonoBehaviour
         }
 
         _animator.enabled = true;
-        _characterController.enabled = true;
+       // _characterController.enabled = true;
     }
 
 
@@ -73,7 +73,7 @@ public class Zombie : MonoBehaviour
         }
 
         _animator.enabled = false;
-        _characterController.enabled = false;
+        //_characterController.enabled = false;
     }
     private void WalkingBehaviour()
     {
