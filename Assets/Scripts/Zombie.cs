@@ -5,26 +5,57 @@ using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {
+
+    private class BoneTransform
+    {
+        public Vector3 position { get; set; }
+
+        public Quaternion Rotation { get; set; }
+    }
+
     private enum ZombieState
     {
         Walking,
-        Ragdoll
+        Ragdoll,
+        StandingUp
     }
 
     [SerializeField] 
     private Camera _camera;
 
+    [SerializeField]
+    private string _standUpStateName;
+
     private Rigidbody[] _ragdollRigidbodies;
     private ZombieState _currentState = ZombieState.Walking;
     private Animator _animator;
-    //private CharacterController _characterController;
+    // Allows slope climbing but messes with gun knockback
+    private CharacterController _characterController;
     private float _timeToWakeUp;
-    // Start is called before the first frame update
+    private Transform _hipsBone;
+
+    private BoneTransform[] _standUpBoneTransforms;
+    private BoneTransform[] _ragdollBoneTransforms;
+    private Transform[] _bones;
+
+
     void Awake()
     {
         _ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
         _animator = GetComponent<Animator>();
-       // _characterController = GetComponent<CharacterController>();
+        _characterController = GetComponent<CharacterController>();
+        _hipsBone = _animator.GetBoneTransform(HumanBodyBones.Hips);
+
+        _bones = _hipsBone.GetComponentsInChildren<Transform>();
+        _standUpBoneTransforms = new BoneTransform[_bones.Length];
+        _ragdollBoneTransforms = new BoneTransform[_bones.Length];
+
+        for (int boneIndex = 0; boneIndex < _bones.Length; boneIndex++)
+        {
+            _standUpBoneTransforms[boneIndex] = new BoneTransform();
+            _ragdollBoneTransforms[boneIndex] = new BoneTransform();
+        }
+
         DisableRagdoll();
     }
 
@@ -39,6 +70,10 @@ public class Zombie : MonoBehaviour
             case ZombieState.Ragdoll:
                 RagdollBehaviour(); 
                 break;
+            case ZombieState.StandingUp:
+                StandingUpBehaviour();
+                break;
+
         }
     }
 
@@ -51,6 +86,7 @@ public class Zombie : MonoBehaviour
         //hitRigidbody.AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
 
         _currentState = ZombieState.Ragdoll;
+        _timeToWakeUp = Random.Range(2, 4);
     }
 
     private void DisableRagdoll()
@@ -87,6 +123,47 @@ public class Zombie : MonoBehaviour
 
     private void RagdollBehaviour()
     {
+        
+        _timeToWakeUp -= Time.deltaTime;
 
+        if (_timeToWakeUp <= 0)
+        {
+            AlignPositionToHips();
+
+            _currentState = ZombieState.StandingUp;
+            DisableRagdoll();
+
+            _animator.Play(_standUpStateName);
+        }
+    }
+
+    private void StandingUpBehaviour()
+    {
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName(_standUpStateName) == false)
+        {
+            _currentState = ZombieState.Walking;
+        }
+    }
+
+    private void AlignPositionToHips()
+    {
+        Vector3 originalHipsPosition = _hipsBone.position;
+        transform.position = _hipsBone.position;
+
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hitInfo))
+        {
+            transform.position = new Vector3(transform.position.x, hitInfo.point.y, transform.position.z);
+        }
+
+        _hipsBone.position = originalHipsPosition;
+    }
+
+    private void PopulateBoneTransforms(BoneTransform[] boneTransforms)
+    {
+        for (int boneIndex = 0; boneIndex < _bones.Length; boneIndex++)
+        {
+            boneTransforms[boneIndex].position = _bones[boneIndex].localPosition;
+
+        }
     }
 }
