@@ -17,7 +17,8 @@ public class Zombie : MonoBehaviour
     {
         Walking,
         Ragdoll,
-        StandingUp
+        StandingUp,
+        ResettingBones
     }
 
     [SerializeField] 
@@ -25,6 +26,12 @@ public class Zombie : MonoBehaviour
 
     [SerializeField]
     private string _standUpStateName;
+
+    [SerializeField]
+    private string _standUpClipName;
+
+    [SerializeField]
+    private float _timeToResetBones;
 
     private Rigidbody[] _ragdollRigidbodies;
     private ZombieState _currentState = ZombieState.Walking;
@@ -37,6 +44,7 @@ public class Zombie : MonoBehaviour
     private BoneTransform[] _standUpBoneTransforms;
     private BoneTransform[] _ragdollBoneTransforms;
     private Transform[] _bones;
+    private float _elapsedResetBonesTime;
 
 
     void Awake()
@@ -56,6 +64,8 @@ public class Zombie : MonoBehaviour
             _ragdollBoneTransforms[boneIndex] = new BoneTransform();
         }
 
+        PopulateAnimationStartBoneTransforms(_standUpClipName, _standUpBoneTransforms);
+
         DisableRagdoll();
     }
 
@@ -73,7 +83,9 @@ public class Zombie : MonoBehaviour
             case ZombieState.StandingUp:
                 StandingUpBehaviour();
                 break;
-
+            case ZombieState.ResettingBones:
+                ResettingBonesBehaviour();
+                break;
         }
     }
 
@@ -128,12 +140,13 @@ public class Zombie : MonoBehaviour
 
         if (_timeToWakeUp <= 0)
         {
+            AlignRotationToHips();
             AlignPositionToHips();
 
-            _currentState = ZombieState.StandingUp;
-            DisableRagdoll();
+            PopulateBoneTransforms(_ragdollBoneTransforms);
 
-            _animator.Play(_standUpStateName);
+            _currentState = ZombieState.ResettingBones;
+            _elapsedResetBonesTime = 0;
         }
     }
 
@@ -145,10 +158,58 @@ public class Zombie : MonoBehaviour
         }
     }
 
+    private void ResettingBonesBehaviour()
+    {
+        _elapsedResetBonesTime += Time.deltaTime;
+        float elapsedPercentage = _elapsedResetBonesTime / _timeToResetBones;
+
+        for (int boneIndex = 0; boneIndex < _bones.Length; boneIndex++)
+        {
+            _bones[boneIndex].localPosition = Vector3.Lerp(
+                _ragdollBoneTransforms[boneIndex].position,
+                _standUpBoneTransforms[boneIndex].position,
+                elapsedPercentage );
+
+            _bones[boneIndex].localRotation = Quaternion.Lerp(
+                _ragdollBoneTransforms[boneIndex].Rotation,
+                _standUpBoneTransforms[boneIndex].Rotation,
+                elapsedPercentage);
+        }
+
+        if (elapsedPercentage >=1)
+        {
+            _currentState = ZombieState.StandingUp;
+            DisableRagdoll();
+
+            _animator.Play(_standUpStateName);
+        }
+    }
+
+    private void AlignRotationToHips()
+    {
+        Vector3 originalHipsPosition = _hipsBone.position;
+        Quaternion originalHipsRotation = _hipsBone.rotation;
+
+        Vector3 desiredDirection = _hipsBone.up * -1;
+        desiredDirection.y = 0;
+        desiredDirection.Normalize();
+
+        Quaternion fromToRotation = Quaternion.FromToRotation(transform.forward, desiredDirection);
+        transform.rotation *= fromToRotation;
+
+        _hipsBone.position = originalHipsPosition;
+        _hipsBone.rotation = originalHipsRotation;
+    }
+
     private void AlignPositionToHips()
     {
         Vector3 originalHipsPosition = _hipsBone.position;
         transform.position = _hipsBone.position;
+
+        Vector3 positionOffset = _standUpBoneTransforms[0].position;
+        positionOffset.y = 0;
+        positionOffset = transform.rotation * positionOffset;
+        transform.position -= positionOffset;
 
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hitInfo))
         {
@@ -163,7 +224,27 @@ public class Zombie : MonoBehaviour
         for (int boneIndex = 0; boneIndex < _bones.Length; boneIndex++)
         {
             boneTransforms[boneIndex].position = _bones[boneIndex].localPosition;
-
+            boneTransforms[boneIndex].Rotation = _bones[boneIndex].localRotation; 
         }
+    }
+
+    private void PopulateAnimationStartBoneTransforms(string clipName, BoneTransform[] boneTransforms)
+    {
+        Vector3 positionBeforeSampling = transform.position;
+        Quaternion rotationBeforeSampling = transform.rotation;
+
+
+        foreach (AnimationClip clip in _animator.runtimeAnimatorController.animationClips)
+        {
+            if (clip.name == clipName)
+            {
+                clip.SampleAnimation(gameObject, 0);
+                PopulateBoneTransforms(_standUpBoneTransforms);
+                break;
+            }
+        }
+
+        transform.position = positionBeforeSampling;
+        transform.rotation = rotationBeforeSampling;
     }
 }
