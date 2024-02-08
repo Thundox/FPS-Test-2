@@ -3649,6 +3649,22 @@ PrefabInstance:
       propertyPath: _timeToResetBones
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5282315805271164185, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
+      propertyPath: _faceUpStandUpClipName
+      value: Stand Up
+      objectReference: {fileID: 0}
+    - target: {fileID: 5282315805271164185, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
+      propertyPath: _faceUpStandUpStateName
+      value: Face Up Stand Up
+      objectReference: {fileID: 0}
+    - target: {fileID: 5282315805271164185, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
+      propertyPath: _faceDownStandUpClipName
+      value: Standing Up
+      objectReference: {fileID: 0}
+    - target: {fileID: 5282315805271164185, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
+      propertyPath: _faceDownstandUpStateName
+      value: Face Down Stand Up
+      objectReference: {fileID: 0}
     - target: {fileID: 5675722187000039607, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
       propertyPath: m_RootOrder
       value: 9

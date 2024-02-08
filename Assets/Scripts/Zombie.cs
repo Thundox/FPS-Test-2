@@ -25,10 +25,16 @@ public class Zombie : MonoBehaviour
     private Camera _camera;
 
     [SerializeField]
-    private string _standUpStateName;
+    private string _faceUpStandUpStateName;
 
     [SerializeField]
-    private string _standUpClipName;
+    private string _faceDownstandUpStateName;
+
+    [SerializeField]
+    private string _faceUpStandUpClipName;
+
+    [SerializeField]
+    private string _faceDownStandUpClipName;
 
     [SerializeField]
     private float _timeToResetBones;
@@ -41,10 +47,12 @@ public class Zombie : MonoBehaviour
     private float _timeToWakeUp;
     private Transform _hipsBone;
 
-    private BoneTransform[] _standUpBoneTransforms;
+    private BoneTransform[] _faceUpStandUpBoneTransforms;
+    private BoneTransform[] _faceDownStandUpBoneTransforms;
     private BoneTransform[] _ragdollBoneTransforms;
     private Transform[] _bones;
     private float _elapsedResetBonesTime;
+    private bool _isFacingUp;
 
 
     void Awake()
@@ -55,16 +63,19 @@ public class Zombie : MonoBehaviour
         _hipsBone = _animator.GetBoneTransform(HumanBodyBones.Hips);
 
         _bones = _hipsBone.GetComponentsInChildren<Transform>();
-        _standUpBoneTransforms = new BoneTransform[_bones.Length];
+        _faceUpStandUpBoneTransforms = new BoneTransform[_bones.Length];
+        _faceDownStandUpBoneTransforms = new BoneTransform[_bones.Length];
         _ragdollBoneTransforms = new BoneTransform[_bones.Length];
 
         for (int boneIndex = 0; boneIndex < _bones.Length; boneIndex++)
         {
-            _standUpBoneTransforms[boneIndex] = new BoneTransform();
+            _faceUpStandUpBoneTransforms[boneIndex] = new BoneTransform();
+            _faceDownStandUpBoneTransforms[boneIndex] = new BoneTransform();
             _ragdollBoneTransforms[boneIndex] = new BoneTransform();
         }
 
-        PopulateAnimationStartBoneTransforms(_standUpClipName, _standUpBoneTransforms);
+        PopulateAnimationStartBoneTransforms(_faceUpStandUpClipName, _faceUpStandUpBoneTransforms);
+        PopulateAnimationStartBoneTransforms(_faceDownStandUpClipName, _faceDownStandUpBoneTransforms);
 
         DisableRagdoll();
     }
@@ -140,6 +151,8 @@ public class Zombie : MonoBehaviour
 
         if (_timeToWakeUp <= 0)
         {
+            _isFacingUp = _hipsBone.forward.y > 0;
+
             AlignRotationToHips();
             AlignPositionToHips();
 
@@ -152,7 +165,7 @@ public class Zombie : MonoBehaviour
 
     private void StandingUpBehaviour()
     {
-        if (_animator.GetCurrentAnimatorStateInfo(0).IsName(_standUpStateName) == false)
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName(GetStandUpStateName()) == false)
         {
             _currentState = ZombieState.Walking;
         }
@@ -163,16 +176,18 @@ public class Zombie : MonoBehaviour
         _elapsedResetBonesTime += Time.deltaTime;
         float elapsedPercentage = _elapsedResetBonesTime / _timeToResetBones;
 
+        BoneTransform[] standUpBoneTransforms = GetStandUpBoneTransforms();
+
         for (int boneIndex = 0; boneIndex < _bones.Length; boneIndex++)
         {
             _bones[boneIndex].localPosition = Vector3.Lerp(
                 _ragdollBoneTransforms[boneIndex].position,
-                _standUpBoneTransforms[boneIndex].position,
+                standUpBoneTransforms[boneIndex].position,
                 elapsedPercentage );
 
             _bones[boneIndex].localRotation = Quaternion.Lerp(
                 _ragdollBoneTransforms[boneIndex].Rotation,
-                _standUpBoneTransforms[boneIndex].Rotation,
+                standUpBoneTransforms[boneIndex].Rotation,
                 elapsedPercentage);
         }
 
@@ -181,7 +196,7 @@ public class Zombie : MonoBehaviour
             _currentState = ZombieState.StandingUp;
             DisableRagdoll();
 
-            _animator.Play(_standUpStateName);
+            _animator.Play(GetStandUpStateName(), 0, 0f);
         }
     }
 
@@ -190,7 +205,13 @@ public class Zombie : MonoBehaviour
         Vector3 originalHipsPosition = _hipsBone.position;
         Quaternion originalHipsRotation = _hipsBone.rotation;
 
-        Vector3 desiredDirection = _hipsBone.up * -1;
+        Vector3 desiredDirection = _hipsBone.up;
+
+        if (_isFacingUp)
+        {
+            desiredDirection *= -1;
+        }
+
         desiredDirection.y = 0;
         desiredDirection.Normalize();
 
@@ -206,7 +227,7 @@ public class Zombie : MonoBehaviour
         Vector3 originalHipsPosition = _hipsBone.position;
         transform.position = _hipsBone.position;
 
-        Vector3 positionOffset = _standUpBoneTransforms[0].position;
+        Vector3 positionOffset = GetStandUpBoneTransforms()[0].position;
         positionOffset.y = 0;
         positionOffset = transform.rotation * positionOffset;
         transform.position -= positionOffset;
@@ -239,7 +260,7 @@ public class Zombie : MonoBehaviour
             if (clip.name == clipName)
             {
                 clip.SampleAnimation(gameObject, 0);
-                PopulateBoneTransforms(_standUpBoneTransforms);
+                PopulateBoneTransforms(boneTransforms);
                 break;
             }
         }
@@ -247,4 +268,31 @@ public class Zombie : MonoBehaviour
         transform.position = positionBeforeSampling;
         transform.rotation = rotationBeforeSampling;
     }
+
+
+    private string GetStandUpStateName()
+    {
+       // return _isFacingUp ? _faceUpStandUpStateName : _faceDownstandUpStateName;
+        if (_isFacingUp == true)
+        {
+            return _faceUpStandUpStateName;
+        }
+        else
+        {
+            return _faceDownstandUpStateName;
+        }
+    }
+
+    private BoneTransform[] GetStandUpBoneTransforms()
+    {
+        if (_isFacingUp == true)
+        {
+            return _faceUpStandUpBoneTransforms;
+        }
+        else
+        {
+            return _faceDownStandUpBoneTransforms;
+        }
+    }
+
 }
