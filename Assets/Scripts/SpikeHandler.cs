@@ -8,15 +8,21 @@ public class SpikeHandler : MonoBehaviour
     private Vector3 _impaledPosition;
     private Quaternion _impaledRotation;
     private bool _isImpaled;
+    private Zombie _zombie;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _zombie = GetComponent<Zombie>();
     }
 
     private void FixedUpdate()
     {
-        
+        if (_isImpaled)
+        {
+            _rigidbody.MovePosition(_impaledPosition);
+            _rigidbody.MoveRotation(_impaledRotation);
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -26,6 +32,7 @@ public class SpikeHandler : MonoBehaviour
             _impaledPosition = _rigidbody.position;
             _impaledRotation = _rigidbody.rotation;
             _isImpaled = true;
+            _zombie.Impale();
         }
     }
 }

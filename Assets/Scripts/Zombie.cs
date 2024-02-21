@@ -18,7 +18,8 @@ public class Zombie : MonoBehaviour
         Walking,
         Ragdoll,
         StandingUp,
-        ResettingBones
+        ResettingBones,
+        Impaled
     }
 
     [SerializeField] 
@@ -102,6 +103,11 @@ public class Zombie : MonoBehaviour
 
     public void TriggerRagdoll(Vector3 force, Vector3 hitPoint)
     {
+        if (_currentState == ZombieState.Impaled)
+        {
+            return;
+        }
+
         EnableRagdoll();
 
         //Rigidbody hitRigidbody = _ragdollRigidbodies.OrderBy(Rigidbody => Vector3.Distance(Rigidbody.position, hitPoint)).First();
@@ -110,6 +116,11 @@ public class Zombie : MonoBehaviour
 
         _currentState = ZombieState.Ragdoll;
         _timeToWakeUp = Random.Range(2, 4);
+    }
+
+    public void Impale()
+    {
+        _currentState = ZombieState.Impaled;
     }
 
     private void DisableRagdoll()
