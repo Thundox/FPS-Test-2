@@ -13,7 +13,7 @@ public class SpikeHandler : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _zombie = GetComponent<Zombie>();
+        _zombie = GetComponentInParent<Zombie>();
     }
 
     private void FixedUpdate()
@@ -28,6 +28,11 @@ public class SpikeHandler : MonoBehaviour
     {
         if (other.GetComponent<Spikes>())
         {
+            if (_zombie.isZombieWalking())
+            {
+                Vector3 force = new Vector3(0, 0, 0);
+                _zombie.TriggerRagdoll(force, transform.position);
+            }
             _rigidbody.isKinematic = true;
             _impaledPosition = _rigidbody.position;
             _impaledRotation = _rigidbody.rotation;
