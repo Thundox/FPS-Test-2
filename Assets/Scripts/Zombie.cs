@@ -19,7 +19,8 @@ public class Zombie : MonoBehaviour
         Ragdoll,
         StandingUp,
         ResettingBones,
-        Impaled
+        Impaled,
+        Attacking
     }
 
     [SerializeField] 
