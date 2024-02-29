@@ -41,7 +41,10 @@ public class Zombie : MonoBehaviour
     private float _timeToResetBones;
 
     private Rigidbody[] _ragdollRigidbodies;
+
+    [SerializeField]
     private ZombieState _currentState = ZombieState.Walking;
+
     private Animator _animator;
     // Allows slope climbing but messes with gun knockback
     private CharacterController _characterController;
@@ -55,6 +58,17 @@ public class Zombie : MonoBehaviour
     private float _elapsedResetBonesTime;
     private bool _isFacingUp;
 
+    public bool isZombieWalking()
+    {
+        if (_currentState == ZombieState.Walking)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     void Awake()
     {
