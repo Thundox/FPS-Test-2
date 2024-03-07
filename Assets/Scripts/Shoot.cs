@@ -19,7 +19,6 @@ public class Shoot : MonoBehaviour
     {
        _camera = GetComponent<Camera>();
 
-
     }
 
     // Update is called once per frame
@@ -33,10 +32,11 @@ public class Shoot : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             Ray ray = new Ray(_camera.transform.position, _camera.transform.forward);
-
-            if (Physics.Raycast(ray, out RaycastHit hitInfo)) 
+            LayerMask zombieLayer = LayerMask.GetMask("Default");
+            if (Physics.Raycast(ray, out RaycastHit hitInfo,9999f, zombieLayer, QueryTriggerInteraction.Ignore)) 
             {
                 Zombie zombie = hitInfo.collider.transform.root.GetComponent<Zombie>();
+                
 
                 if (zombie != null)
                 {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Zombie : MonoBehaviour
@@ -32,11 +33,15 @@ public class Zombie : MonoBehaviour
     [SerializeField]
     private string _faceDownstandUpStateName;
 
+    public string _AttackingStateName;
+
     [SerializeField]
     private string _faceUpStandUpClipName;
 
     [SerializeField]
     private string _faceDownStandUpClipName;
+
+    public string _AttackingClipName;
 
     [SerializeField]
     private float _timeToResetBones;
@@ -113,7 +118,20 @@ public class Zombie : MonoBehaviour
             case ZombieState.ResettingBones:
                 ResettingBonesBehaviour();
                 break;
+            case ZombieState.Attacking:
+                Attacking();
+                break;
         }
+    }
+
+    // temp work in progress from last session (trying to avoid animation replaying from start if already in state)
+    private void Attacking()
+    {
+        if (_currentState == ZombieState.Attacking)
+        {
+
+        }
+        _animator.Play(_AttackingStateName,0,0f);
     }
 
     public void TriggerRagdoll(Vector3 force, Vector3 hitPoint)
@@ -123,6 +141,7 @@ public class Zombie : MonoBehaviour
             return;
         }
 
+        _characterController.enabled = false;
         EnableRagdoll();
 
         //Rigidbody hitRigidbody = _ragdollRigidbodies.OrderBy(Rigidbody => Vector3.Distance(Rigidbody.position, hitPoint)).First();
@@ -146,7 +165,7 @@ public class Zombie : MonoBehaviour
         }
 
         _animator.enabled = true;
-       // _characterController.enabled = true;
+       _characterController.enabled = true;
     }
 
 
