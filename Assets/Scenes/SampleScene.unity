@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 99280369}
   m_Layer: 9
   m_Name: PlayerObject
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1421,7 +1421,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 678083276}
   m_LocalRotation: {x: 0.0583999, y: -0.2264958, z: 0.013606075, w: 0.97216463}
-  m_LocalPosition: {x: 4.44, y: 3.44, z: -12.18}
+  m_LocalPosition: {x: 15.484, y: 1.796, z: -10.138}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4047,6 +4047,10 @@ PrefabInstance:
     - target: {fileID: 5282315805271164185, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
       propertyPath: _timeToResetBones
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5282315805271164185, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
+      propertyPath: _AttackingStateName
+      value: Zombie Punching
       objectReference: {fileID: 0}
     - target: {fileID: 5282315805271164185, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
       propertyPath: _faceUpStandUpClipName

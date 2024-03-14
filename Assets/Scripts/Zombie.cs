@@ -127,11 +127,16 @@ public class Zombie : MonoBehaviour
     // temp work in progress from last session (trying to avoid animation replaying from start if already in state)
     private void Attacking()
     {
-        if (_currentState == ZombieState.Attacking)
+        // != Check if current state is not equal to Attacking
+        if (_currentState != ZombieState.Attacking)
         {
-
+            _animator.Play(_AttackingStateName, 0, 0f);
+            _currentState = ZombieState.Attacking;
         }
-        _animator.Play(_AttackingStateName,0,0f);
+        else
+        {
+            _animator.GetCurrentAnimatorStateInfo(0);
+        }
     }
 
     public void TriggerRagdoll(Vector3 force, Vector3 hitPoint)
@@ -340,4 +345,11 @@ public class Zombie : MonoBehaviour
         }
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            Attacking();
+        }
+    }
 }
