@@ -2840,6 +2840,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fd0529f3d58b9c40b9ccda94c7944ed, type: 3}
+--- !u!1 &1374864163 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5881046965004866941, guid: 3fd0529f3d58b9c40b9ccda94c7944ed, type: 3}
+  m_PrefabInstance: {fileID: 1369591482}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1374864167
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374864163}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 0.3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1405910270
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4053,8 +4071,16 @@ PrefabInstance:
       value: Zombie Punching
       objectReference: {fileID: 0}
     - target: {fileID: 5282315805271164185, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
+      propertyPath: walkingRotationSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5282315805271164185, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
       propertyPath: _faceUpStandUpClipName
       value: Stand Up
+      objectReference: {fileID: 0}
+    - target: {fileID: 5282315805271164185, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
+      propertyPath: attackingRotationSpeed
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5282315805271164185, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
       propertyPath: _faceUpStandUpStateName

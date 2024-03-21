@@ -63,6 +63,10 @@ public class Zombie : MonoBehaviour
     private Transform[] _bones;
     private float _elapsedResetBonesTime;
     private bool _isFacingUp;
+    public Collider ZombieAttackTriggerCollider;
+
+    public float attackingRotationSpeed;
+    public float walkingRotationSpeed;
 
     public bool isZombieWalking()
     {
@@ -78,6 +82,7 @@ public class Zombie : MonoBehaviour
 
     void Awake()
     {
+        ZombieAttackTriggerCollider = GetComponent<BoxCollider>();
         _ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
         _animator = GetComponent<Animator>();
         _characterController = GetComponent<CharacterController>();
@@ -130,13 +135,22 @@ public class Zombie : MonoBehaviour
         // != Check if current state is not equal to Attacking
         if (_currentState != ZombieState.Attacking)
         {
+            ZombieAttackTriggerCollider.enabled = false;
             _animator.Play(_AttackingStateName, 0, 0f);
             _currentState = ZombieState.Attacking;
         }
-        else
+        else if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Zombie Punching"))
         {
-            _animator.GetCurrentAnimatorStateInfo(0);
+            _currentState = ZombieState.Walking;
+            ZombieAttackTriggerCollider.enabled = true;
         }
+        // These 5 lines rotate the zombie towards the player
+        Vector3 direction = _camera.transform.position - transform.position;
+        direction.y = 0;
+        direction.Normalize();
+
+        Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, attackingRotationSpeed * Time.deltaTime);
     }
 
     public void TriggerRagdoll(Vector3 force, Vector3 hitPoint)
@@ -182,6 +196,7 @@ public class Zombie : MonoBehaviour
         }
 
         _animator.enabled = false;
+        ZombieAttackTriggerCollider.enabled = false;
         //_characterController.enabled = false;
     }
     private void WalkingBehaviour()
@@ -191,7 +206,7 @@ public class Zombie : MonoBehaviour
         direction.Normalize();
 
         Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 20 * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, walkingRotationSpeed * Time.deltaTime);
     }
 
     private void RagdollBehaviour()
@@ -218,6 +233,7 @@ public class Zombie : MonoBehaviour
         if (_animator.GetCurrentAnimatorStateInfo(0).IsName(GetStandUpStateName()) == false)
         {
             _currentState = ZombieState.Walking;
+            ZombieAttackTriggerCollider.enabled = true;
         }
     }
 
