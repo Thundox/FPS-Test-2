@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 99280369}
   m_Layer: 9
   m_Name: PlayerObject
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4233,6 +4233,14 @@ PrefabInstance:
     - target: {fileID: 4576924663658817528, guid: afd8e144b33fc03498903e133e5d5d60, type: 3}
       propertyPath: _AttackingStateName
       value: Zombie Punching
+      objectReference: {fileID: 0}
+    - target: {fileID: 4576924663658817528, guid: afd8e144b33fc03498903e133e5d5d60, type: 3}
+      propertyPath: walkingRotationSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4576924663658817528, guid: afd8e144b33fc03498903e133e5d5d60, type: 3}
+      propertyPath: attackingRotationSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4701026796031813959, guid: afd8e144b33fc03498903e133e5d5d60, type: 3}
       propertyPath: m_LocalPosition.x

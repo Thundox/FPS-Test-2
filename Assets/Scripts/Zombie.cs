@@ -68,6 +68,7 @@ public class Zombie : MonoBehaviour
     public float attackingRotationSpeed;
     public float walkingRotationSpeed;
 
+    private bool moveTowardsPlayer = false;
     public bool isZombieWalking()
     {
         if (_currentState == ZombieState.Walking)
@@ -112,6 +113,7 @@ public class Zombie : MonoBehaviour
         switch (_currentState)
         {
             case ZombieState.Walking:
+                _animator.applyRootMotion = true;
                 WalkingBehaviour();
                 break;
             case ZombieState.Ragdoll:
@@ -124,6 +126,7 @@ public class Zombie : MonoBehaviour
                 ResettingBonesBehaviour();
                 break;
             case ZombieState.Attacking:
+                _animator.applyRootMotion = false;
                 Attacking();
                 break;
         }
@@ -132,25 +135,44 @@ public class Zombie : MonoBehaviour
     // temp work in progress from last session (trying to avoid animation replaying from start if already in state)
     private void Attacking()
     {
-        // != Check if current state is not equal to Attacking
+        // Check if current state is not equal to Attacking
         if (_currentState != ZombieState.Attacking)
         {
             ZombieAttackTriggerCollider.enabled = false;
             _animator.Play(_AttackingStateName, 0, 0f);
             _currentState = ZombieState.Attacking;
         }
-        else if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Zombie Punching"))
+        else if (!_animator.GetCurrentAnimatorStateInfo(0).IsName(_AttackingStateName))
         {
             _currentState = ZombieState.Walking;
             ZombieAttackTriggerCollider.enabled = true;
         }
-        // These 5 lines rotate the zombie towards the player
+
+        // Move towards the player during the attack
         Vector3 direction = _camera.transform.position - transform.position;
-        direction.y = 0;
+        direction.y = 0; // Keep the movement horizontal
         direction.Normalize();
 
+        // You can adjust the speed of the zombie's movement towards the player during the attack
+        float attackMoveSpeed = 2.0f; // Example speed, adjust as needed
+        if (moveTowardsPlayer == true)
+        {
+            transform.position += transform.forward * attackMoveSpeed * Time.deltaTime;
+        }
+
+        // Rotate the zombie to face the player during the attack
         Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, attackingRotationSpeed * Time.deltaTime);
+    }
+
+    public void StartMoving()
+    {
+        moveTowardsPlayer = true;
+    }
+
+    public void StopMovingTowardsPlayer()
+    {
+        moveTowardsPlayer = false;
     }
 
     public void TriggerRagdoll(Vector3 force, Vector3 hitPoint)
@@ -211,7 +233,7 @@ public class Zombie : MonoBehaviour
 
     private void RagdollBehaviour()
     {
-        
+        moveTowardsPlayer = false;
         _timeToWakeUp -= Time.deltaTime;
 
         if (_timeToWakeUp <= 0)
