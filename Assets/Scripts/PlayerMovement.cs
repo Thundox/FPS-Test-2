@@ -59,6 +59,9 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 MoveDirection;
 
+    [Header("UI")]
+    public UIHandler myUIHandler;
+
     public MovementState State;
     public enum MovementState
     {
@@ -88,6 +91,11 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
         ReadyToJump = true;
         StartYScale = transform.localScale.y;
+    }
+
+    public void playerDeath()
+    {
+        myUIHandler.startFade();
     }
 
     // Update is called once per frame
