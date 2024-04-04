@@ -66,9 +66,12 @@ public class Zombie : MonoBehaviour
     public Collider ZombieAttackTriggerCollider;
 
     public float attackingRotationSpeed;
+    public float attackMoveSpeed;
     public float walkingRotationSpeed;
 
     private bool moveTowardsPlayer = false;
+
+    public AttackCollider myDamageCollider;
     public bool isZombieWalking()
     {
         if (_currentState == ZombieState.Walking)
@@ -83,6 +86,7 @@ public class Zombie : MonoBehaviour
 
     void Awake()
     {
+        myDamageCollider = GetComponentInChildren<AttackCollider>();
         ZombieAttackTriggerCollider = GetComponent<BoxCollider>();
         _ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
         _animator = GetComponent<Animator>();
@@ -154,7 +158,6 @@ public class Zombie : MonoBehaviour
         direction.Normalize();
 
         // You can adjust the speed of the zombie's movement towards the player during the attack
-        float attackMoveSpeed = 2.0f; // Example speed, adjust as needed
         if (moveTowardsPlayer == true)
         {
             transform.position += transform.forward * attackMoveSpeed * Time.deltaTime;
@@ -389,5 +392,14 @@ public class Zombie : MonoBehaviour
         {
             Attacking();
         }
+    }
+
+    public void EnableDamage()
+    {
+        myDamageCollider.canDamagePlayer = true;
+    }
+    public void DisableDamage()
+    {
+        myDamageCollider.canDamagePlayer = false;
     }
 }

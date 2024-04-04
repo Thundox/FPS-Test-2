@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public int health = 100;
     [Header ("Movement")]
     private float MovementSpeed;
     public float WalkSpeed;
