@@ -15,8 +15,9 @@ public class AttackCollider : MonoBehaviour
             PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
             player.health -= damage;
             canDamagePlayer = false;
-            if(player.health < 0)
+            if(player.health <= 0)
             {
+                player.playerDeath();
                 // END GAME
             }
             
