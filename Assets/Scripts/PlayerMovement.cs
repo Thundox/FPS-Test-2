@@ -87,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        myUIHandler = FindObjectOfType<UIHandler>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         ReadyToJump = true;

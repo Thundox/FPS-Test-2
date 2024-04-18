@@ -1577,6 +1577,7 @@ MonoBehaviour:
   MaxSlopeAngle: 40
   climbingScript: {fileID: 678083282}
   OrientationTransform: {fileID: 653863103}
+  myUIHandler: {fileID: 0}
   State: 0
   unlimited: 0
   freeze: 0
@@ -2987,7 +2988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8901940f0cb3dc24f83ebc85edfce7df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeImage: {fileID: 202439551}
+  deathImage: {fileID: 0}
   fadeDuration: 2
 --- !u!114 &1309714052
 MonoBehaviour:
