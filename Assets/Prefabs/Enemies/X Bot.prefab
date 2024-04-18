@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d4322c4d9b3a8004c95bdff00840809c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.72
+      value: 6.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d4322c4d9b3a8004c95bdff00840809c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.09
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d4322c4d9b3a8004c95bdff00840809c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 22.12
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d4322c4d9b3a8004c95bdff00840809c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -168,6 +168,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -290750445479886849, guid: d4322c4d9b3a8004c95bdff00840809c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 575934281401045852}
+    - targetCorrespondingSourceObject: {fileID: -290750445479886849, guid: d4322c4d9b3a8004c95bdff00840809c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3142969194920903415}
   m_SourcePrefab: {fileID: 100100000, guid: d4322c4d9b3a8004c95bdff00840809c, type: 3}
 --- !u!1 &389840138904839140 stripped
 GameObject:
@@ -672,6 +675,20 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &3142969194920903415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4413760220678762835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70d8b3643c91b854faaecb8014f941bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canDamagePlayer: 0
+  damage: 10
 --- !u!1 &4947483398424071402 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -9070493210130169274, guid: d4322c4d9b3a8004c95bdff00840809c, type: 3}
@@ -893,12 +910,17 @@ MonoBehaviour:
   _camera: {fileID: 0}
   _faceUpStandUpStateName: Face Up Stand Up
   _faceDownstandUpStateName: Face Down Stand Up
-  _AttackingStateName: 
+  _AttackingStateName: Zombie Punching
   _faceUpStandUpClipName: Stand Up
   _faceDownStandUpClipName: Standing Up
   _AttackingClipName: 
   _timeToResetBones: 0.5
   _currentState: 0
+  ZombieAttackTriggerCollider: {fileID: 0}
+  attackingRotationSpeed: 100
+  attackMoveSpeed: 4
+  walkingRotationSpeed: 30
+  myDamageCollider: {fileID: 0}
 --- !u!65 &4250979551753330277
 BoxCollider:
   m_ObjectHideFlags: 0

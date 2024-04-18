@@ -86,6 +86,7 @@ public class Zombie : MonoBehaviour
 
     void Awake()
     {
+        _camera = Camera.main;
         myDamageCollider = GetComponentInChildren<AttackCollider>();
         ZombieAttackTriggerCollider = GetComponent<BoxCollider>();
         _ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
