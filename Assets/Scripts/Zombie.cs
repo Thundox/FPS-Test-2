@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Zombie : MonoBehaviour
 {
@@ -72,6 +73,9 @@ public class Zombie : MonoBehaviour
     private bool moveTowardsPlayer = false;
 
     public AttackCollider myDamageCollider;
+
+    Animator animator;
+    NavMeshAgent myAgent = null;
     public bool isZombieWalking()
     {
         if (_currentState == ZombieState.Walking)
@@ -86,6 +90,8 @@ public class Zombie : MonoBehaviour
 
     void Awake()
     {
+        animator = GetComponent<Animator>();
+        myAgent = GetComponent<NavMeshAgent>();
         _camera = Camera.main;
         myDamageCollider = GetComponentInChildren<AttackCollider>();
         ZombieAttackTriggerCollider = GetComponent<BoxCollider>();
@@ -227,12 +233,14 @@ public class Zombie : MonoBehaviour
     }
     private void WalkingBehaviour()
     {
-        Vector3 direction = _camera.transform.position - transform.position;
-        direction.y = 0;
-        direction.Normalize();
-
-        Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, walkingRotationSpeed * Time.deltaTime);
+        if (_currentState == ZombieState.Walking)
+        {
+            if (myAgent != null)
+            {
+                animator.speed = myAgent.velocity.magnitude;
+                myAgent.destination = _camera.transform.position; // or any target position
+            }
+        }
     }
 
     private void RagdollBehaviour()
