@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d4322c4d9b3a8004c95bdff00840809c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d4322c4d9b3a8004c95bdff00840809c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.09
+      value: 0.00000011920929
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d4322c4d9b3a8004c95bdff00840809c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 22.12
+      value: -11.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d4322c4d9b3a8004c95bdff00840809c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -78,6 +78,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1082271958561512970, guid: d4322c4d9b3a8004c95bdff00840809c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6602973036985800330}
+    - targetCorrespondingSourceObject: {fileID: 1082271958561512970, guid: d4322c4d9b3a8004c95bdff00840809c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1239736910057209975}
     - targetCorrespondingSourceObject: {fileID: 3135921509060577837, guid: d4322c4d9b3a8004c95bdff00840809c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8907663049067137077}
@@ -843,6 +846,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1239736910057209975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5310552200630505638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7a0909142c88a042945a1de3e35b45d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5365676505259176957 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d4322c4d9b3a8004c95bdff00840809c, type: 3}

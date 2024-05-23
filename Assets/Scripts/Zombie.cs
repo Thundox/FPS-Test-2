@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Zombie : MonoBehaviour
 {
@@ -51,6 +52,9 @@ public class Zombie : MonoBehaviour
     [SerializeField]
     private ZombieState _currentState = ZombieState.Walking;
 
+    [SerializeField]
+    private float AnimatorSpeedTracker;
+
     private Animator _animator;
     // Allows slope climbing but messes with gun knockback
     private CharacterController _characterController;
@@ -66,12 +70,17 @@ public class Zombie : MonoBehaviour
     public Collider ZombieAttackTriggerCollider;
 
     public float attackingRotationSpeed;
+    public float attackAnimationSpeed = 1;
     public float attackMoveSpeed;
+    public float StandUpAnimationSpeed = 1;
     public float walkingRotationSpeed;
 
     private bool moveTowardsPlayer = false;
 
     public AttackCollider myDamageCollider;
+
+    Animator animator;
+    NavMeshAgent myAgent = null;
     public bool isZombieWalking()
     {
         if (_currentState == ZombieState.Walking)
@@ -86,6 +95,8 @@ public class Zombie : MonoBehaviour
 
     void Awake()
     {
+        animator = GetComponent<Animator>();
+        myAgent = GetComponent<NavMeshAgent>();
         _camera = Camera.main;
         myDamageCollider = GetComponentInChildren<AttackCollider>();
         ZombieAttackTriggerCollider = GetComponent<BoxCollider>();
@@ -115,6 +126,7 @@ public class Zombie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        AnimatorSpeedTracker = _animator.speed;
         switch (_currentState)
         {
             case ZombieState.Walking:
@@ -140,11 +152,15 @@ public class Zombie : MonoBehaviour
     // temp work in progress from last session (trying to avoid animation replaying from start if already in state)
     private void Attacking()
     {
+        
         // Check if current state is not equal to Attacking
         if (_currentState != ZombieState.Attacking)
         {
             ZombieAttackTriggerCollider.enabled = false;
             _animator.Play(_AttackingStateName, 0, 0f);
+            _animator.speed = attackAnimationSpeed;
+            AnimatorSpeedTracker = _animator.speed;
+
             _currentState = ZombieState.Attacking;
         }
         else if (!_animator.GetCurrentAnimatorStateInfo(0).IsName(_AttackingStateName))
@@ -171,11 +187,14 @@ public class Zombie : MonoBehaviour
 
     public void StartMoving()
     {
+        myAgent.enabled = false;
         moveTowardsPlayer = true;
     }
 
     public void StopMovingTowardsPlayer()
     {
+        myAgent.enabled = true;
+        myAgent.Warp(transform.position);
         moveTowardsPlayer = false;
     }
 
@@ -199,6 +218,7 @@ public class Zombie : MonoBehaviour
 
     public void Impale()
     {
+        myAgent.enabled = false;
         _currentState = ZombieState.Impaled;
     }
 
@@ -220,23 +240,28 @@ public class Zombie : MonoBehaviour
         {
             rigidbody.isKinematic = false;
         }
-
+        myAgent.enabled = false;
         _animator.enabled = false;
         ZombieAttackTriggerCollider.enabled = false;
         //_characterController.enabled = false;
     }
     private void WalkingBehaviour()
     {
-        Vector3 direction = _camera.transform.position - transform.position;
-        direction.y = 0;
-        direction.Normalize();
-
-        Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, walkingRotationSpeed * Time.deltaTime);
+        myAgent.enabled = true;
+        if (_currentState == ZombieState.Walking)
+        {
+            if (myAgent != null)
+            {
+                animator.speed = myAgent.speed;
+                AnimatorSpeedTracker = animator.speed;
+                myAgent.destination = _camera.transform.position; // or any target position
+            }
+        }
     }
 
     private void RagdollBehaviour()
     {
+        _animator.speed = StandUpAnimationSpeed;
         moveTowardsPlayer = false;
         _timeToWakeUp -= Time.deltaTime;
 
