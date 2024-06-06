@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Key : MonoBehaviour
+public class Door : MonoBehaviour
 {
-    public int keyNumber;
+    public int lockNumber;
+    public Animator myAnimator;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,13 +20,14 @@ public class Key : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player") 
         {
-            // update key if Player touches key
-           other.GetComponent<KeysPlayer>().setKey(keyNumber);
-            this.gameObject.SetActive(false); 
+           bool hasKey = other.GetComponent<KeysPlayer>().getKey(lockNumber);
+            if (hasKey)
+            {
+                myAnimator.SetTrigger("openDoor");
+            }
         }
-
-
+        
     }
 }
