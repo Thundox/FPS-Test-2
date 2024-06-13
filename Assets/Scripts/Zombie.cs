@@ -22,7 +22,8 @@ public class Zombie : MonoBehaviour
         StandingUp,
         ResettingBones,
         Impaled,
-        Attacking
+        Attacking,
+        PlayingDead
     }
 
     [SerializeField] 
@@ -146,6 +147,28 @@ public class Zombie : MonoBehaviour
                 _animator.applyRootMotion = false;
                 Attacking();
                 break;
+            case ZombieState.PlayingDead:
+                PlayingDeadBehaviour();
+                break;  
+        }
+    }
+
+    private void PlayingDeadBehaviour()
+    {
+        // Keep the zombie in ragdoll state
+        EnableRagdoll();
+        //_timeToWakeUp = 0;
+        CheckPlayerDistance();
+    }
+
+    private void CheckPlayerDistance()
+    {
+        float distanceToPlayer = Vector3.Distance(transform.position, _camera.transform.position);
+        if (distanceToPlayer < 5.0f) // Adjust the distance threshold as needed
+        {
+            SetHips();
+            _currentState = ZombieState.ResettingBones; // Change state to wake up
+            _timeToWakeUp = 1; // Force wake up
         }
     }
 
@@ -267,16 +290,21 @@ public class Zombie : MonoBehaviour
 
         if (_timeToWakeUp <= 0)
         {
-            _isFacingUp = _hipsBone.forward.y > 0;
-
-            AlignRotationToHips();
-            AlignPositionToHips();
-
-            PopulateBoneTransforms(_ragdollBoneTransforms);
-
-            _currentState = ZombieState.ResettingBones;
-            _elapsedResetBonesTime = 0;
+            SetHips();
         }
+    }
+
+    private void SetHips()
+    {
+        _isFacingUp = _hipsBone.forward.y > 0;
+
+        AlignRotationToHips();
+        AlignPositionToHips();
+
+        PopulateBoneTransforms(_ragdollBoneTransforms);
+
+        _currentState = ZombieState.ResettingBones;
+        _elapsedResetBonesTime = 0;
     }
 
     private void StandingUpBehaviour()
