@@ -9,6 +9,7 @@ public class Door : MonoBehaviour
     public int lockNumber;
     public Animator myAnimator;
     public AudioSource audioDoorOpen;
+    public bool isDoorOpened;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,10 +26,11 @@ public class Door : MonoBehaviour
         if (other.tag == "Player") 
         {
            bool hasKey = other.GetComponent<KeysPlayer>().getKey(lockNumber);
-            if (hasKey)
+            if (hasKey && isDoorOpened == false)
             {
                 myAnimator.SetTrigger("openDoor");
                 audioDoorOpen.Play();
+                isDoorOpened = true;
             }
         }
         

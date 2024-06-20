@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class KeysPlayer : MonoBehaviour
 {
+    public AudioSource keyPickedUp;
     public bool Key1;
     public bool Key2;
     public bool Key3;

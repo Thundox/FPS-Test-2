@@ -22,7 +22,9 @@ public class Key : MonoBehaviour
         if (other.tag == "Player")
         {
             // update key if Player touches key
-           other.GetComponent<KeysPlayer>().setKey(keyNumber);
+            KeysPlayer myKeyplayer = other.GetComponent<KeysPlayer>();
+            myKeyplayer.setKey(keyNumber);
+           myKeyplayer.keyPickedUp.Play();
             this.gameObject.SetActive(false); 
         }
 
