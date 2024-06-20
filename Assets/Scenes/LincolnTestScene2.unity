@@ -6748,17 +6748,9 @@ MonoBehaviour:
   m_Mesh: {fileID: 579760160}
   m_VersionIndex: 108
   m_IsSelectable: 1
-  m_SelectedFaces: 07000000
-  m_SelectedEdges:
-  - a: 32
-    b: 33
-  - a: 34
-    b: 32
-  - a: 33
-    b: 35
-  - a: 35
-    b: 34
-  m_SelectedVertices: 20000000210000002200000023000000
+  m_SelectedFaces: 
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!4 &1115419271
 Transform:
   m_ObjectHideFlags: 0
@@ -11136,33 +11128,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &1763395595 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5365676505259176957, guid: afd8e144b33fc03498903e133e5d5d60, type: 3}
-  m_PrefabInstance: {fileID: 1579903225926393288}
-  m_PrefabAsset: {fileID: 0}
---- !u!195 &1763395596
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1763395595}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &1804576361
 GameObject:
   m_ObjectHideFlags: 0
@@ -12608,10 +12573,6 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4576924663658817528, guid: afd8e144b33fc03498903e133e5d5d60, type: 3}
-      propertyPath: attackAnimationSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4576924663658817528, guid: afd8e144b33fc03498903e133e5d5d60, type: 3}
       propertyPath: StandUpAnimationSpeed
       value: 4
       objectReference: {fileID: 0}
@@ -12662,10 +12623,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5365676505259176957, guid: afd8e144b33fc03498903e133e5d5d60, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1763395596}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afd8e144b33fc03498903e133e5d5d60, type: 3}
 --- !u!1001 &5135912763183189248
 PrefabInstance:

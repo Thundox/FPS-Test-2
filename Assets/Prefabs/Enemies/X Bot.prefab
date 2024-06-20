@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d4322c4d9b3a8004c95bdff00840809c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: -24
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d4322c4d9b3a8004c95bdff00840809c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00000011920929
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d4322c4d9b3a8004c95bdff00840809c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.5
+      value: -186
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d4322c4d9b3a8004c95bdff00840809c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -72,6 +72,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d4322c4d9b3a8004c95bdff00840809c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4250979551753330277}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d4322c4d9b3a8004c95bdff00840809c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9090456104303556218}
     - targetCorrespondingSourceObject: {fileID: 1082271958561512970, guid: d4322c4d9b3a8004c95bdff00840809c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 835000076054829393}
@@ -930,10 +933,13 @@ MonoBehaviour:
   _faceDownStandUpClipName: Standing Up
   _AttackingClipName: 
   _timeToResetBones: 0.5
-  _currentState: 0
+  _currentState: 6
+  AnimatorSpeedTracker: 0
   ZombieAttackTriggerCollider: {fileID: 0}
   attackingRotationSpeed: 100
+  attackAnimationSpeed: 1
   attackMoveSpeed: 4
+  StandUpAnimationSpeed: 4
   walkingRotationSpeed: 30
   myDamageCollider: {fileID: 0}
 --- !u!65 &4250979551753330277
@@ -957,6 +963,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5, y: 5, z: 5}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!195 &9090456104303556218
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5365676505259176957}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &5984914904232763927 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7657966619581158213, guid: d4322c4d9b3a8004c95bdff00840809c, type: 3}
