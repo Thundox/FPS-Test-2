@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public int health = 100;
+    public bool playerAlive;
     [Header ("Movement")]
     private float MovementSpeed;
     public float WalkSpeed;
@@ -87,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerAlive = true;
         myUIHandler = FindObjectOfType<UIHandler>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
@@ -96,12 +98,21 @@ public class PlayerMovement : MonoBehaviour
 
     public void playerDeath()
     {
-        myUIHandler.startFade();
+        if (playerAlive == true)
+        {
+            myUIHandler.startFade();
+            playerAlive = false;
+        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (playerAlive == false)
+        {
+            return;
+        }
         // Ground Check
         grounded = Physics.Raycast(transform.position, Vector3.down, PlayerHeight * 0.5f + 0.2f, WhatIsGround); // (Bug fix jumping up slopes) + 0.2 should be 0.1 while crouching
         
