@@ -14,6 +14,8 @@ public class Shoot : MonoBehaviour
 
     private Camera _camera;
 
+    public int playerAmmo;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -29,8 +31,9 @@ public class Shoot : MonoBehaviour
             _timeMouseButtonDown = Time.time;
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && playerAmmo > 0)
         {
+            playerAmmo = playerAmmo - 1;
             Ray ray = new Ray(_camera.transform.position, _camera.transform.forward);
             LayerMask zombieLayer = LayerMask.GetMask("Default");
             if (Physics.Raycast(ray, out RaycastHit hitInfo,9999f, zombieLayer, QueryTriggerInteraction.Ignore)) 

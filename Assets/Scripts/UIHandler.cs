@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIHandler : MonoBehaviour
@@ -21,6 +22,7 @@ public class UIHandler : MonoBehaviour
             yield return null; // Wait for next frame
         }
         deathImage.color = targetColor;
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void startFade()
