@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Shoot : MonoBehaviour
@@ -14,12 +15,14 @@ public class Shoot : MonoBehaviour
 
     private Camera _camera;
 
-    public int playerAmmo;
+    public int playerAmmoInGun;
+    public int playerMagazineCapacity;
+    public int playerSpareAmmo;
 
     // Start is called before the first frame update
     void Awake()
     {
-       _camera = GetComponent<Camera>();
+        _camera = GetComponent<Camera>();
 
     }
 
@@ -31,22 +34,22 @@ public class Shoot : MonoBehaviour
             _timeMouseButtonDown = Time.time;
         }
 
-        if (Input.GetMouseButtonUp(0) && playerAmmo > 0)
+        if (Input.GetMouseButtonUp(0) && playerAmmoInGun > 0)
         {
-            playerAmmo = playerAmmo - 1;
+            playerAmmoInGun = playerAmmoInGun - 1;
             Ray ray = new Ray(_camera.transform.position, _camera.transform.forward);
             LayerMask zombieLayer = LayerMask.GetMask("Default");
-            if (Physics.Raycast(ray, out RaycastHit hitInfo,9999f, zombieLayer, QueryTriggerInteraction.Ignore)) 
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, 9999f, zombieLayer, QueryTriggerInteraction.Ignore))
             {
                 Zombie zombie = hitInfo.collider.transform.root.GetComponent<Zombie>();
-                
+
 
                 if (zombie != null)
                 {
                     float mouseButtonDownDuration = Time.time - _timeMouseButtonDown;
                     float forcePercentage;
                     float forceMagnitude;  //Mathf.Lerp(1, _maximumForce, forcePercentage);
-                    
+
                     if (mouseButtonDownDuration > MaxChargeTime)
                     {
                         forcePercentage = 1;
@@ -64,7 +67,7 @@ public class Shoot : MonoBehaviour
                     forceDirection.Normalize();
                     */
                     Vector3 force = Vector3.forward;
-                    
+
                     zombie.TriggerRagdoll(force, hitInfo.point);
 
                     hitInfo.transform.GetComponent<Rigidbody>().AddForce(transform.forward * forceMagnitude, ForceMode.Impulse);
@@ -73,6 +76,24 @@ public class Shoot : MonoBehaviour
 
             }
 
+        }
+    }
+    public void ReloadGun()
+    {
+        if (playerAmmoInGun == playerMagazineCapacity) // If ammo full return
+        {
+            return;
+        }
+        int ammoToRemove = playerMagazineCapacity - playerAmmoInGun;
+        if (ammoToRemove <= playerSpareAmmo)
+        {
+            playerSpareAmmo = playerSpareAmmo - ammoToRemove;
+            playerAmmoInGun = playerMagazineCapacity;
+        }
+        else
+        {
+            playerAmmoInGun = playerAmmoInGun + playerSpareAmmo;
+            playerSpareAmmo = 0;
         }
     }
 }
