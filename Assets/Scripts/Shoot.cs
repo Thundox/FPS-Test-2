@@ -18,6 +18,10 @@ public class Shoot : MonoBehaviour
     public int playerAmmoInGun;
     public int playerMagazineCapacity;
     public int playerSpareAmmo;
+    public bool isReloading;
+    public float reloadTime;
+    public float shootDelay;
+    public bool isShooting;
 
     // Start is called before the first frame update
     void Awake()
@@ -29,6 +33,18 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R) && isReloading == false && playerSpareAmmo > 0)
+        {
+            isReloading = true;
+            Invoke("ReloadGun", reloadTime);
+        }
+
+        // If reloading can't shoot
+        if (isReloading == true || isShooting == true)
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             _timeMouseButtonDown = Time.time;
@@ -95,5 +111,6 @@ public class Shoot : MonoBehaviour
             playerAmmoInGun = playerAmmoInGun + playerSpareAmmo;
             playerSpareAmmo = 0;
         }
+        isReloading = false;
     }
 }
