@@ -53,7 +53,7 @@ public class Shoot : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && playerAmmoInGun > 0)
         {
             isShooting = true;
-            Invoke ("setIsShootingToFalse", shootDelay);
+            Invoke ("SetIsShootingToFalse", shootDelay);
             playerAmmoInGun = playerAmmoInGun - 1;
             Ray ray = new Ray(_camera.transform.position, _camera.transform.forward);
             LayerMask zombieLayer = LayerMask.GetMask("Default");
@@ -97,7 +97,7 @@ public class Shoot : MonoBehaviour
         }
     }
 
-    public void setIsShootingToFalse()
+    public void SetIsShootingToFalse()
     {
         isShooting = false;
     }
