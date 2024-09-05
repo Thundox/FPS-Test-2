@@ -52,6 +52,8 @@ public class Shoot : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && playerAmmoInGun > 0)
         {
+            isShooting = true;
+            Invoke ("setIsShootingToFalse", shootDelay);
             playerAmmoInGun = playerAmmoInGun - 1;
             Ray ray = new Ray(_camera.transform.position, _camera.transform.forward);
             LayerMask zombieLayer = LayerMask.GetMask("Default");
@@ -94,6 +96,12 @@ public class Shoot : MonoBehaviour
 
         }
     }
+
+    public void setIsShootingToFalse()
+    {
+        isShooting = false;
+    }
+
     public void ReloadGun()
     {
         if (playerAmmoInGun == playerMagazineCapacity) // If ammo full return
