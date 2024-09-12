@@ -23,7 +23,8 @@ public class Zombie : MonoBehaviour
         ResettingBones,
         Impaled,
         Attacking,
-        PlayingDead
+        PlayingDead,
+        HitWall,
     }
 
     [SerializeField] 
@@ -36,6 +37,8 @@ public class Zombie : MonoBehaviour
     private string _faceDownstandUpStateName;
 
     public string _AttackingStateName;
+    
+    public string _HitWallStateName;
 
     [SerializeField]
     private string _faceUpStandUpClipName;
@@ -54,9 +57,9 @@ public class Zombie : MonoBehaviour
     private ZombieState _currentState = ZombieState.Walking;
 
     [SerializeField]
-    private float AnimatorSpeedTracker;
+    private float AnimatorSpeedTracker; 
 
-    private Animator _animator;
+    public Animator _animator;
     // Allows slope climbing but messes with gun knockback
     private CharacterController _characterController;
     private float _timeToWakeUp;
@@ -445,6 +448,22 @@ public class Zombie : MonoBehaviour
         if (other.tag == "Player")
         {
             Attacking();
+        }
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (_currentState == ZombieState.Attacking)
+        {
+
+
+            if (collision.gameObject.tag == "Wall")
+            {
+                Debug.Log("Trigger");
+                _animator.Play(_HitWallStateName, 0, 0f);
+                _animator.Play(_AttackingStateName, 0, 0f);
+            }
         }
     }
 

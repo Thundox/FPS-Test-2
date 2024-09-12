@@ -6,8 +6,15 @@ public class AttackCollider : MonoBehaviour
 {
     public bool canDamagePlayer = false;
     public int damage = 10;
+    public Zombie myZombie;
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.transform.tag == "Wall")
+        {
+            Debug.Log("HIT WALL");
+            myZombie._animator.Play(myZombie._HitWallStateName, 0, 0f);
+
+        }
         if (canDamagePlayer == false)
             return;
         if(collision.transform.tag == "Player")
@@ -18,10 +25,12 @@ public class AttackCollider : MonoBehaviour
             if(player.health <= 0)
             {
                 player.playerDeath();
+                Debug.Log("Hit Player");
                 // END GAME
             }
             
         }
+  
     }
 
 }
