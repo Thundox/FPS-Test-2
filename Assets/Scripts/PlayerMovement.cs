@@ -100,6 +100,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playerAlive == true)
         {
+            // WIP Disable camera script
+            MovementSpeed = 0;
             myUIHandler.startFade();
             playerAlive = false;
         }
