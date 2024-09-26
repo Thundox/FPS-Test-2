@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.021077348, g: 0.02430336, b: 0.031683758, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12676,6 +12675,7 @@ MonoBehaviour:
   grounded: 0
   MaxSlopeAngle: 40
   climbingScript: {fileID: 678083282}
+  PlayerCamScript: {fileID: 963194229}
   OrientationTransform: {fileID: 653863103}
   myUIHandler: {fileID: 549823033}
   State: 0
@@ -17299,6 +17299,7 @@ MonoBehaviour:
   SensitivityX: 4
   SensitivityY: 4
   Orientation: {fileID: 653863103}
+  AllowPlayerCamMovement: 0
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0

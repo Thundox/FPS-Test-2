@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("References")]
     public Climbing climbingScript;
+    public PlayerCam PlayerCamScript;
 
     Rigidbody rb;
     public Transform OrientationTransform;
@@ -88,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerCamScript.AllowPlayerCamMovement = true;
         playerAlive = true;
         myUIHandler = FindObjectOfType<UIHandler>();
         rb = GetComponent<Rigidbody>();
@@ -100,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playerAlive == true)
         {
-            // WIP Disable camera script
+            PlayerCamScript.AllowPlayerCamMovement = false;
             MovementSpeed = 0;
             myUIHandler.startFade();
             playerAlive = false;
