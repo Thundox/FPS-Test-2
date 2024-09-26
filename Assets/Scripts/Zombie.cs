@@ -85,6 +85,9 @@ public class Zombie : MonoBehaviour
 
     Animator animator;
     NavMeshAgent myAgent = null;
+    public float AgentTurnSpeed;
+
+    public bool canAttack = false;
     public bool isZombieWalking()
     {
         if (_currentState == ZombieState.Walking)
@@ -101,6 +104,8 @@ public class Zombie : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         myAgent = GetComponent<NavMeshAgent>();
+        AgentTurnSpeed = myAgent.angularSpeed;
+
         _camera = Camera.main;
         myDamageCollider = GetComponentInChildren<AttackCollider>();
         ZombieAttackTriggerCollider = GetComponent<BoxCollider>();
@@ -153,6 +158,9 @@ public class Zombie : MonoBehaviour
             case ZombieState.PlayingDead:
                 PlayingDeadBehaviour();
                 break;  
+            case ZombieState.HitWall:
+                HitWallBehaviour();
+                break;
         }
     }
 
@@ -178,7 +186,9 @@ public class Zombie : MonoBehaviour
     // temp work in progress from last session (trying to avoid animation replaying from start if already in state)
     private void Attacking()
     {
-        
+        Debug.Log("attacking");
+        if (_currentState == ZombieState.HitWall || canAttack == false)
+            return;
         // Check if current state is not equal to Attacking
         if (_currentState != ZombieState.Attacking)
         {
@@ -445,28 +455,61 @@ public class Zombie : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (_currentState == ZombieState.HitWall)
         {
-            Attacking();
+            return;
+        }
+        if (_currentState == ZombieState.Walking)
+        {
+
+
+            if (other.tag == "Player")
+            {
+                Attacking();
+            }
         }
 
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (_currentState == ZombieState.Attacking)
+        if (_currentState == ZombieState.HitWall)
         {
-
-
-            if (collision.gameObject.tag == "Wall")
-            {
-                Debug.Log("Trigger");
-                _animator.Play(_HitWallStateName, 0, 0f);
-                _animator.Play(_AttackingStateName, 0, 0f);
-            }
+            return;
+        }
+        if (collision.transform.tag == "Wall" && _currentState == ZombieState.Attacking)
+        {
+            Debug.Log("HIT WALL");
+            SetStateToHitWall();
+            DisableDamage();
+            StopAttacking();
         }
     }
 
+    private void HitWallBehaviour()
+    {
+        
+
+    }
+
+    private void ExitWallStun()
+    {
+        _currentState = ZombieState.Walking;
+        myAgent.angularSpeed = AgentTurnSpeed;
+        ZombieAttackTriggerCollider.enabled = true;
+    }
+    private void StopAttacking()
+    {
+        // Add any necessary logic to stop the attack behavior
+        moveTowardsPlayer = false;
+        canAttack = false;
+        Invoke("enableAttack", 1f);
+        // Disable any attack-related components or behaviors
+    }
+    public void enableAttack()
+    {
+        canAttack = true;
+    }
     public void EnableDamage()
     {
         myDamageCollider.canDamagePlayer = true;
@@ -474,5 +517,14 @@ public class Zombie : MonoBehaviour
     public void DisableDamage()
     {
         myDamageCollider.canDamagePlayer = false;
+    }
+
+    public void SetStateToHitWall()
+    {
+       // myAgent.speed = 0;
+        myAgent.angularSpeed = 0;
+        _currentState = ZombieState.HitWall;
+        _animator.speed = 1f;
+        _animator.Play(_HitWallStateName, 0, 0f);
     }
 }
