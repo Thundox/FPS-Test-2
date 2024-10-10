@@ -1216,7 +1216,7 @@ GameObject:
   - component: {fileID: 100442164}
   - component: {fileID: 100442168}
   - component: {fileID: 100442169}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Interior (4)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3418,7 +3418,7 @@ GameObject:
   - component: {fileID: 222354977}
   - component: {fileID: 222354981}
   - component: {fileID: 222354982}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Interior (2)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3815,7 +3815,7 @@ GameObject:
   - component: {fileID: 223592365}
   - component: {fileID: 223592369}
   - component: {fileID: 223592370}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Interior (9)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -5315,7 +5315,7 @@ GameObject:
   - component: {fileID: 280279177}
   - component: {fileID: 280279181}
   - component: {fileID: 280279182}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Interior (8)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -6487,7 +6487,7 @@ GameObject:
   - component: {fileID: 313720354}
   - component: {fileID: 313720350}
   - component: {fileID: 313720355}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HalfWall Interior
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -6868,7 +6868,7 @@ GameObject:
   - component: {fileID: 323987039}
   - component: {fileID: 323987043}
   - component: {fileID: 323987044}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Exterior East
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -10165,7 +10165,7 @@ GameObject:
   - component: {fileID: 446201910}
   - component: {fileID: 446201914}
   - component: {fileID: 446201915}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Exterior South
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -11801,7 +11801,7 @@ GameObject:
   - component: {fileID: 535857175}
   - component: {fileID: 535857179}
   - component: {fileID: 535857180}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Interior (6)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -12559,7 +12559,7 @@ GameObject:
   - component: {fileID: 566198803}
   - component: {fileID: 566198802}
   - component: {fileID: 566198801}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Interior (5)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -14296,7 +14296,7 @@ Transform:
   m_GameObject: {fileID: 678083276}
   serializedVersion: 2
   m_LocalRotation: {x: 0.059959665, y: 0, z: 0, w: 0.99820083}
-  m_LocalPosition: {x: 133.50267, y: 3.50007, z: -85.50171}
+  m_LocalPosition: {x: 121.002426, y: 3.50007, z: -75.50151}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14778,7 +14778,7 @@ GameObject:
   - component: {fileID: 770565857}
   - component: {fileID: 770565852}
   - component: {fileID: 770565856}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Exterior South
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -15338,7 +15338,7 @@ GameObject:
   - component: {fileID: 823780631}
   - component: {fileID: 823780626}
   - component: {fileID: 823780630}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Exterior East 2 (1)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -16042,7 +16042,7 @@ GameObject:
   - component: {fileID: 850547236}
   - component: {fileID: 850547231}
   - component: {fileID: 850547235}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HalfWall Interior (3)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -17833,7 +17833,7 @@ GameObject:
   - component: {fileID: 900138498}
   - component: {fileID: 900138493}
   - component: {fileID: 900138497}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Exterior End level (2)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -19054,7 +19054,7 @@ GameObject:
   - component: {fileID: 956197829}
   - component: {fileID: 956197828}
   - component: {fileID: 956197827}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Interior (3)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -19808,7 +19808,7 @@ GameObject:
   - component: {fileID: 985700617}
   - component: {fileID: 985700612}
   - component: {fileID: 985700616}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Exterior North
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -20519,7 +20519,7 @@ GameObject:
   - component: {fileID: 1009595063}
   - component: {fileID: 1009595067}
   - component: {fileID: 1009595068}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Exterior West
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -21526,7 +21526,7 @@ GameObject:
   - component: {fileID: 1075707536}
   - component: {fileID: 1075707531}
   - component: {fileID: 1075707535}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Exterior End level
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -21906,7 +21906,7 @@ GameObject:
   - component: {fileID: 1076121039}
   - component: {fileID: 1076121034}
   - component: {fileID: 1076121038}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Exterior West 2
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -23409,7 +23409,7 @@ GameObject:
   - component: {fileID: 1238918589}
   - component: {fileID: 1238918593}
   - component: {fileID: 1238918594}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Exterior North
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -24624,7 +24624,7 @@ GameObject:
   - component: {fileID: 1290087752}
   - component: {fileID: 1290087747}
   - component: {fileID: 1290087751}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HalfWall Interior (2)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -25004,7 +25004,7 @@ GameObject:
   - component: {fileID: 1301854748}
   - component: {fileID: 1301854743}
   - component: {fileID: 1301854747}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Exterior End level (1)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -27378,6 +27378,10 @@ PrefabInstance:
       propertyPath: _HitWallStateName
       value: Zombie wall hit reaction
       objectReference: {fileID: 0}
+    - target: {fileID: 5282315805271164185, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
+      propertyPath: obstacleLayerMask.m_Bits
+      value: 3200
+      objectReference: {fileID: 0}
     - target: {fileID: 5675722187000039607, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
       propertyPath: m_LocalPosition.x
       value: 125.50251
@@ -27388,7 +27392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5675722187000039607, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -85.50171
+      value: -79.50157
       objectReference: {fileID: 0}
     - target: {fileID: 5675722187000039607, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
       propertyPath: m_LocalRotation.w
@@ -27505,7 +27509,7 @@ GameObject:
   - component: {fileID: 1461462472}
   - component: {fileID: 1461462478}
   - component: {fileID: 1461462477}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Interior (2)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -28112,7 +28116,7 @@ GameObject:
   - component: {fileID: 1494301474}
   - component: {fileID: 1494301478}
   - component: {fileID: 1494301479}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Interior (5)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -28508,7 +28512,7 @@ GameObject:
   - component: {fileID: 1564253947}
   - component: {fileID: 1564253942}
   - component: {fileID: 1564253946}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Exterior West 1
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -28926,7 +28930,7 @@ GameObject:
   - component: {fileID: 1586331858}
   - component: {fileID: 1586331862}
   - component: {fileID: 1586331863}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Interior (3)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -29841,7 +29845,7 @@ GameObject:
   - component: {fileID: 1613068733}
   - component: {fileID: 1613068737}
   - component: {fileID: 1613068738}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Interior (7)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -31306,7 +31310,7 @@ GameObject:
   - component: {fileID: 1737983466}
   - component: {fileID: 1737983461}
   - component: {fileID: 1737983465}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HalfWall Interior (1)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -31852,7 +31856,7 @@ GameObject:
   - component: {fileID: 1757702731}
   - component: {fileID: 1757702730}
   - component: {fileID: 1757702729}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Interior (4)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -32914,7 +32918,7 @@ GameObject:
   - component: {fileID: 1798152160}
   - component: {fileID: 1798152164}
   - component: {fileID: 1798152165}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Exterior East 2
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -34428,7 +34432,7 @@ GameObject:
   - component: {fileID: 1932959063}
   - component: {fileID: 1932959067}
   - component: {fileID: 1932959068}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Interior
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -34824,7 +34828,7 @@ GameObject:
   - component: {fileID: 1955989382}
   - component: {fileID: 1955989377}
   - component: {fileID: 1955989381}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Exterior East (1)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -36452,7 +36456,7 @@ GameObject:
   - component: {fileID: 2084748881}
   - component: {fileID: 2084748885}
   - component: {fileID: 2084748886}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Interior (1)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -37125,7 +37129,7 @@ GameObject:
   - component: {fileID: 2146898185}
   - component: {fileID: 2146898191}
   - component: {fileID: 2146898190}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Interior (1)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -37538,6 +37542,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1306171033}
+    - target: {fileID: 6537112906381626083, guid: 6ee8866b1a2855940b52a9b4ba93a4a1, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6537112906381626083, guid: 6ee8866b1a2855940b52a9b4ba93a4a1, type: 3}
       propertyPath: m_IsActive
       value: 1

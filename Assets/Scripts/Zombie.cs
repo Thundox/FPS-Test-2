@@ -76,6 +76,7 @@ public class Zombie : MonoBehaviour
     public float attackingRotationSpeed;
     public float attackAnimationSpeed = 1;
     public float attackMoveSpeed;
+    public LayerMask obstacleLayerMask;
     public float StandUpAnimationSpeed = 1;
     public float walkingRotationSpeed;
 
@@ -465,10 +466,30 @@ public class Zombie : MonoBehaviour
 
             if (other.tag == "Player")
             {
+                if (HasClearPathToPlayer())
+                {
+
+                }
                 Attacking();
             }
         }
 
+    }
+
+    private bool HasClearPathToPlayer()
+    {
+        Vector3 directionToPlayer = _camera.transform.position - transform.position;
+        float distanceToPlayer = directionToPlayer.magnitude;
+
+        if (Physics.Raycast(transform.position, directionToPlayer, distanceToPlayer, obstacleLayerMask))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+        
     }
 
     private void OnCollisionEnter(Collision collision)
