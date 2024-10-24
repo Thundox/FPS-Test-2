@@ -89,6 +89,7 @@ public class Zombie : MonoBehaviour
     public float AgentTurnSpeed;
 
     public bool canAttack = false;
+    public bool isPlayerInTrigger = false;
     public bool isZombieWalking()
     {
         if (_currentState == ZombieState.Walking)
@@ -466,22 +467,30 @@ public class Zombie : MonoBehaviour
 
             if (other.tag == "Player")
             {
-                if (HasClearPathToPlayer())
-                {
-                    Attacking();
-                }
-                
+                isPlayerInTrigger = true;
+                InvokeRepeating("CheckPathToPlayer",0f,1f);
             }
+        }
+
+    }
+    private void CheckPathToPlayer()
+    {
+        if (isPlayerInTrigger == false)
+        {
+            // Stop checking
+
         }
 
     }
 
     private bool HasClearPathToPlayer()
     {
-        Vector3 directionToPlayer = _camera.transform.position - transform.position;
+        Vector3 RayStartPosition = transform.position + Vector3.up;
+        Vector3 directionToPlayer = _camera.transform.position - RayStartPosition;
         float distanceToPlayer = directionToPlayer.magnitude;
 
-        if (Physics.Raycast(transform.position, directionToPlayer, distanceToPlayer, obstacleLayerMask))
+        Debug.DrawRay(RayStartPosition, directionToPlayer, Color.green,2f);
+        if (Physics.Raycast(RayStartPosition, directionToPlayer, distanceToPlayer, obstacleLayerMask))
         {
             return false;
         }
@@ -506,6 +515,8 @@ public class Zombie : MonoBehaviour
             StopAttacking();
         }
     }
+
+    
 
     private void HitWallBehaviour()
     {
