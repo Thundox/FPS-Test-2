@@ -468,9 +468,9 @@ public class Zombie : MonoBehaviour
             {
                 if (HasClearPathToPlayer())
                 {
-
+                    Attacking();
                 }
-                Attacking();
+                
             }
         }
 
