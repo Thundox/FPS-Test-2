@@ -473,12 +473,28 @@ public class Zombie : MonoBehaviour
         }
 
     }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            isPlayerInTrigger = false;
+            CancelInvoke("CheckPathToPlayer");
+        }
+    }
+
     private void CheckPathToPlayer()
     {
         if (isPlayerInTrigger == false)
         {
             // Stop checking
-
+            CancelInvoke("CheckPathToPlayer");
+            return;
+        }
+        if (HasClearPathToPlayer())
+        {
+            Attacking();
+            CancelInvoke();
         }
 
     }
