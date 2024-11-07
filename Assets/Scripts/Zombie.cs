@@ -188,7 +188,7 @@ public class Zombie : MonoBehaviour
     // temp work in progress from last session (trying to avoid animation replaying from start if already in state)
     private void Attacking()
     {
-        Debug.Log("attacking");
+        //Debug.Log("attacking");
         if (_currentState == ZombieState.HitWall || canAttack == false)
             return;
         // Check if current state is not equal to Attacking
