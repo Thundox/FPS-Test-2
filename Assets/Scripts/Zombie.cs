@@ -90,6 +90,8 @@ public class Zombie : MonoBehaviour
 
     public bool canAttack = false;
     public bool isPlayerInTrigger = false;
+    public bool isCollidingWithPlayer = false;
+    public Vector3 positionWhenTouchingPlayer;
     public bool isZombieWalking()
     {
         if (_currentState == ZombieState.Walking)
@@ -101,6 +103,8 @@ public class Zombie : MonoBehaviour
             return false;
         }
     }
+
+
 
     void Awake()
     {
@@ -191,33 +195,37 @@ public class Zombie : MonoBehaviour
         //Debug.Log("attacking");
         if (_currentState == ZombieState.HitWall || canAttack == false)
             return;
-        // Check if current state is not equal to Attacking
+
         if (_currentState != ZombieState.Attacking)
         {
             ZombieAttackTriggerCollider.enabled = false;
             _animator.Play(_AttackingStateName, 0, 0f);
             _animator.speed = attackAnimationSpeed;
             AnimatorSpeedTracker = _animator.speed;
-
+            isCollidingWithPlayer = false;
             _currentState = ZombieState.Attacking;
         }
         else if (!_animator.GetCurrentAnimatorStateInfo(0).IsName(_AttackingStateName))
         {
             _currentState = ZombieState.Walking;
             ZombieAttackTriggerCollider.enabled = true;
+            isCollidingWithPlayer = false;
+            return;
         }
 
         // Move towards the player during the attack
         Vector3 direction = _camera.transform.position - transform.position;
-        direction.y = 0; // Keep the movement horizontal
+        direction.y = 0;
         direction.Normalize();
 
-        // You can adjust the speed of the zombie's movement towards the player during the attack
-        if (moveTowardsPlayer == true)
+        if (moveTowardsPlayer && !isCollidingWithPlayer)
         {
             transform.position += transform.forward * attackMoveSpeed * Time.deltaTime;
         }
-
+        else if(isCollidingWithPlayer)
+        {
+            transform.position = positionWhenTouchingPlayer;
+        }
         // Rotate the zombie to face the player during the attack
         Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, attackingRotationSpeed * Time.deltaTime);
@@ -530,9 +538,21 @@ public class Zombie : MonoBehaviour
             DisableDamage();
             StopAttacking();
         }
+
+        if (collision.gameObject.CompareTag("Player") && _currentState == ZombieState.Attacking)
+        {
+            isCollidingWithPlayer = true;
+            positionWhenTouchingPlayer = transform.position;
+        }
     }
 
-    
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            //isCollidingWithPlayer = false;
+        }
+    }
 
     private void HitWallBehaviour()
     {
