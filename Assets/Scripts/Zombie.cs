@@ -27,6 +27,9 @@ public class Zombie : MonoBehaviour
         HitWall,
     }
 
+    //Zombie Stats
+    public int zombieHealth;
+
     [SerializeField] 
     private Camera _camera;
 
@@ -251,6 +254,7 @@ public class Zombie : MonoBehaviour
             return;
         }
 
+        
         _characterController.enabled = false;
         EnableRagdoll();
 
@@ -311,7 +315,7 @@ public class Zombie : MonoBehaviour
         moveTowardsPlayer = false;
         _timeToWakeUp -= Time.deltaTime;
 
-        if (_timeToWakeUp <= 0)
+        if (_timeToWakeUp <= 0 && zombieHealth > 0)
         {
             SetHips();
         }
