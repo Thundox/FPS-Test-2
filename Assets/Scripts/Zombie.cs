@@ -223,7 +223,19 @@ public class Zombie : MonoBehaviour
 
         if (moveTowardsPlayer && !isCollidingWithPlayer)
         {
-            transform.position += transform.forward * attackMoveSpeed * Time.deltaTime;
+            // Add wall check before moving
+            Vector3 nextPosition = transform.position + transform.forward * attackMoveSpeed * Time.deltaTime;
+            if (!Physics.Raycast(transform.position, transform.forward, 0.5f, obstacleLayerMask))
+            {
+                transform.position += transform.forward * attackMoveSpeed * Time.deltaTime;
+            }
+            else
+            {
+                // Hit wall during attack
+                SetStateToHitWall();
+                DisableDamage();
+                StopAttacking();
+            }
         }
         else if(isCollidingWithPlayer)
         {
@@ -302,9 +314,18 @@ public class Zombie : MonoBehaviour
         {
             if (myAgent != null)
             {
-                animator.speed = myAgent.speed;
-                AnimatorSpeedTracker = animator.speed;
-                myAgent.destination = _camera.transform.position; // or any target position
+                // Add position check before setting destination
+                if (!Physics.Raycast(transform.position, transform.forward, 0.5f, obstacleLayerMask))
+                {
+                    animator.speed = myAgent.speed;
+                    AnimatorSpeedTracker = animator.speed;
+                    myAgent.destination = _camera.transform.position;
+                }
+                else
+                {
+                    // Stop movement if there's a wall ahead
+                    myAgent.destination = transform.position;
+                }
             }
         }
     }
