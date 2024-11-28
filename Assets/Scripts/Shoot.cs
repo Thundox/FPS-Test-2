@@ -15,6 +15,7 @@ public class Shoot : MonoBehaviour
 
     private Camera _camera;
 
+    public int playerWeaponDamage;
     public int playerAmmoInGun;
     public int playerMagazineCapacity;
     public int playerSpareAmmo;
@@ -87,6 +88,7 @@ public class Shoot : MonoBehaviour
                     Vector3 force = Vector3.forward;
 
                     zombie.TriggerRagdoll(force, hitInfo.point);
+                    zombie.zombieHealth = zombie.zombieHealth - playerWeaponDamage;
 
                     hitInfo.transform.GetComponent<Rigidbody>().AddForce(transform.forward * forceMagnitude, ForceMode.Impulse);
                 }
