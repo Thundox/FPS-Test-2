@@ -25,6 +25,7 @@ public class Key : MonoBehaviour
             KeysPlayer myKeyplayer = other.GetComponent<KeysPlayer>();
             myKeyplayer.setKey(keyNumber);
            myKeyplayer.keyPickedUp.Play();
+            FindObjectOfType<ScoreTracker>().keyScore +=1;
             this.gameObject.SetActive(false); 
         }
 

@@ -88,8 +88,18 @@ public class Shoot : MonoBehaviour
                     Vector3 force = Vector3.forward;
 
                     zombie.TriggerRagdoll(force, hitInfo.point);
+                    ScoreTracker myScoreTracker = FindObjectOfType<ScoreTracker>();
+                    if (zombie.zombieHealth > playerWeaponDamage)
+                    {
+                        myScoreTracker.damageScore += playerWeaponDamage;
+                    }
+                    else if (zombie.zombieHealth > 0)
+                    {
+                        myScoreTracker.damageScore += zombie.zombieHealth;
+                    }
+                    
                     zombie.zombieHealth = zombie.zombieHealth - playerWeaponDamage;
-
+                    
                     hitInfo.transform.GetComponent<Rigidbody>().AddForce(transform.forward * forceMagnitude, ForceMode.Impulse);
                 }
 
