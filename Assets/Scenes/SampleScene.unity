@@ -14629,7 +14629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f421f4bf0ee5a6f418587431932b6a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 9999
+  health: 1
   playerAlive: 0
   WalkSpeed: 7
   SprintSpeed: 10

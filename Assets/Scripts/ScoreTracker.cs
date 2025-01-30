@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ScoreTracker : MonoBehaviour
 {
+    public static ScoreTracker instance;
     public int playerScore = 0;
     public int keyScore = 0;
     public int damageScore = 0;
@@ -11,14 +12,32 @@ public class ScoreTracker : MonoBehaviour
     public int deathScore = 0;
     public int timeScore = 0;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        instance.ResetScore();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+    public void ResetScore ()
+    {
+        playerScore = 0;
+        keyScore = 0;
+        damageScore = 0;
+        killScore = 0;
+        timeScore = 0;
+    }
+        
 }

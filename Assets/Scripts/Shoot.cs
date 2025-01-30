@@ -96,10 +96,8 @@ public class Shoot : MonoBehaviour
                     else if (zombie.zombieHealth > 0)
                     {
                         myScoreTracker.damageScore += zombie.zombieHealth;
-                        if (zombie.zombieHealth <= 0)
-                        {
-                            myScoreTracker.killScore += 1;
-                        }
+                        myScoreTracker.killScore += 1;
+                        
                     }
                     
                     zombie.zombieHealth = zombie.zombieHealth - playerWeaponDamage;

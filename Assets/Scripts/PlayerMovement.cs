@@ -106,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
             MovementSpeed = 0;
             myUIHandler.startFade();
             playerAlive = false;
+            FindFirstObjectByType<ScoreTracker>().deathScore += 1;
         }
         
     }
