@@ -248,6 +248,7 @@ MonoBehaviour:
   deathScoreText: {fileID: 860298278}
   timeScoreText: {fileID: 855790994}
   scoreTracker: {fileID: 0}
+  animationDuration: 3
 --- !u!1 &605930467
 GameObject:
   m_ObjectHideFlags: 0
