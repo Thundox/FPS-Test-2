@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreDisplay : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class ScoreDisplay : MonoBehaviour
     public TextMeshProUGUI timeScoreText;
     public ScoreTracker scoreTracker;
     public float animationDuration;
+    public Image damageScoreBar;    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +43,7 @@ public class ScoreDisplay : MonoBehaviour
             float progress = elapsedTime / animationDuration;
 
             currentScore = Mathf.FloorToInt(Mathf.Lerp(0, scoreTracker.damageScore, progress));
+            damageScoreBar.fillAmount = Mathf.Lerp(0,  1, progress);
             damageScoreText.text = currentScore.ToString();
             yield return null;
         }
