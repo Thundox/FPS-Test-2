@@ -26,6 +26,7 @@ public class ScoreDisplay : MonoBehaviour
         deathScoreText.text = "Deaths: " + scoreTracker.deathScore;
         timeScoreText.text = "time elapsed: " + scoreTracker.timeScore;
         StartCoroutine(AnimateScore(scoreTracker.killScore,7,killScoreText, killScoreBar));
+        StartCoroutine(AnimateScore(scoreTracker.damageScore, 1400, damageScoreText, damageScoreBar));
     }
 
     // Update is called once per frame
