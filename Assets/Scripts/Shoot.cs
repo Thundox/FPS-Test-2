@@ -23,6 +23,7 @@ public class Shoot : MonoBehaviour
     public float reloadTime;
     public float shootDelay;
     public bool isShooting;
+    public Animator handgunAnimator;
 
     // Start is called before the first frame update
     void Awake()
@@ -37,6 +38,7 @@ public class Shoot : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && isReloading == false && playerSpareAmmo > 0)
         {
             isReloading = true;
+            handgunAnimator.SetTrigger("Reload");
             Invoke("ReloadGun", reloadTime);
         }
 
@@ -54,6 +56,7 @@ public class Shoot : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && playerAmmoInGun > 0)
         {
             isShooting = true;
+            handgunAnimator.SetTrigger("Shoot");
             Invoke ("SetIsShootingToFalse", shootDelay);
             playerAmmoInGun = playerAmmoInGun - 1;
             Ray ray = new Ray(_camera.transform.position, _camera.transform.forward);
