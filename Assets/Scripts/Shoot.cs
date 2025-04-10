@@ -24,6 +24,7 @@ public class Shoot : MonoBehaviour
     public float shootDelay;
     public bool isShooting;
     public Animator handgunAnimator;
+    public AudioSource handgunShot;
 
     // Start is called before the first frame update
     void Awake()
@@ -59,6 +60,7 @@ public class Shoot : MonoBehaviour
             handgunAnimator.SetTrigger("Shoot");
             Invoke ("SetIsShootingToFalse", shootDelay);
             playerAmmoInGun = playerAmmoInGun - 1;
+            handgunShot.Play();
             Ray ray = new Ray(_camera.transform.position, _camera.transform.forward);
             LayerMask zombieLayer = LayerMask.GetMask("Default");
             if (Physics.Raycast(ray, out RaycastHit hitInfo, 9999f, zombieLayer, QueryTriggerInteraction.Ignore))
