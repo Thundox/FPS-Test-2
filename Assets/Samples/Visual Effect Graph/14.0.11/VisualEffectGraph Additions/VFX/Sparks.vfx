@@ -229,8 +229,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: -827
     y: -335
-    width: 1939
-    height: 2303
+    width: 1971
+    height: 2304
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1709,7 +1709,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":1.0,"y":1.0,"z":1.0}'
+      m_SerializableObject: '{"x":0.0,"y":1.0,"z":1.0}'
     m_Space: 2147483647
   m_Property:
     name: MaxOutput
@@ -3866,7 +3866,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -650, y: 62}
+  m_UIPosition: {x: -675, y: 71}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -6238,7 +6238,7 @@ MonoBehaviour:
       inputSlot: {fileID: 8926484042661614552}
     position: {x: 472, y: 666}
     expandedSlots: []
-    expanded: 0
+    expanded: 1
 --- !u!114 &8926484042661614979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7135,7 +7135,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661615004}
       inputSlot: {fileID: 8926484042661614651}
-    position: {x: -804, y: 451}
+    position: {x: -721, y: 463}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661615004
@@ -8546,7 +8546,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: True
+      m_SerializableObject: False
     m_Space: 2147483647
   m_Property:
     name: _vfx_enabled
