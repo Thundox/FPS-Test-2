@@ -26,6 +26,7 @@ public class Shoot : MonoBehaviour
     public Animator handgunAnimator;
     public AudioSource handgunShot;
     public ParticleSystem muzzleParticleSystem;
+    public Light muzzleLight;
 
     // Start is called before the first frame update
     void Awake()
@@ -63,6 +64,8 @@ public class Shoot : MonoBehaviour
             playerAmmoInGun = playerAmmoInGun - 1;
             handgunShot.Play();
             muzzleParticleSystem.Play();
+            muzzleLight.enabled = true;
+            StartCoroutine(DisableLightAfterDelay(0.1f));
             Ray ray = new Ray(_camera.transform.position, _camera.transform.forward);
             LayerMask zombieLayer = LayerMask.GetMask("Default");
             if (Physics.Raycast(ray, out RaycastHit hitInfo, 9999f, zombieLayer, QueryTriggerInteraction.Ignore))
@@ -118,6 +121,11 @@ public class Shoot : MonoBehaviour
         }
     }
 
+    public IEnumerator DisableLightAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        muzzleLight.enabled = false;
+    }
     public void SetIsShootingToFalse()
     {
         isShooting = false;
