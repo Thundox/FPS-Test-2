@@ -24,6 +24,14 @@ public class PlayerCam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //[DELETE] USED FOR UNITY EDITOR DELETE BEFORE BUILD
+        if (Input.GetKeyDown(KeyCode.L))
+        { 
+            AllowPlayerCamMovement = !AllowPlayerCamMovement;
+        
+        }
+
+
         if (AllowPlayerCamMovement == true)  
         {
             // Get mouse input
