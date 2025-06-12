@@ -29705,8 +29705,8 @@ MonoBehaviour:
   isShooting: 0
   handgunAnimator: {fileID: 1601225950419963927}
   handgunShot: {fileID: 6947253476261775021}
-  muzzleFlash: {fileID: 920607072}
-  flashLight: {fileID: 425404080}
+  muzzleParticleSystem: {fileID: 920607072}
+  muzzleLight: {fileID: 425404080}
 --- !u!114 &963194231
 MonoBehaviour:
   m_ObjectHideFlags: 0
