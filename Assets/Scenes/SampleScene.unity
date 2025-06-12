@@ -258,7 +258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &38254546
 Transform:
   m_ObjectHideFlags: 0
@@ -3462,7 +3462,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &218775501
 Transform:
   m_ObjectHideFlags: 0
@@ -14232,7 +14232,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &489045223
 Transform:
   m_ObjectHideFlags: 0
@@ -14585,15 +14585,26 @@ Transform:
   - {fileID: 1566862487}
   - {fileID: 489045223}
   - {fileID: 1339166829}
+  - {fileID: 38254546}
+  - {fileID: 573171925}
+  - {fileID: 2065690551}
+  - {fileID: 1451561828}
   - {fileID: 882323794}
   - {fileID: 1997281410}
   - {fileID: 1936341766}
   - {fileID: 218775501}
   - {fileID: 1931878367}
-  - {fileID: 2065690551}
-  - {fileID: 1451561828}
-  - {fileID: 38254546}
-  - {fileID: 573171925}
+  - {fileID: 1244861300}
+  - {fileID: 1137584326}
+  - {fileID: 1140318665}
+  - {fileID: 1110454044}
+  - {fileID: 1184535623}
+  - {fileID: 1049279378}
+  - {fileID: 2075685616}
+  - {fileID: 1757820574}
+  - {fileID: 1559499551}
+  - {fileID: 846416092}
+  - {fileID: 1572157878}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &516599357
@@ -16207,7 +16218,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &573171925
 Transform:
   m_ObjectHideFlags: 0
@@ -17871,6 +17882,63 @@ MonoBehaviour:
     m_Bits: 2048
   exitingLedge: 0
   exitLedgeTime: 0.2
+--- !u!1001 &693611935
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 513390066}
+    m_Modifications:
+    - target: {fileID: 1411481576139765596, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_Name
+      value: fluorescent tube light (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.552
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.4300003
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -21141,6 +21209,11 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!4 &846416092 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+  m_PrefabInstance: {fileID: 1926739697}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &850547228
 GameObject:
   m_ObjectHideFlags: 0
@@ -22784,7 +22857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &882323794
 Transform:
   m_ObjectHideFlags: 0
@@ -27132,6 +27205,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1039971881}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1049279378 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+  m_PrefabInstance: {fileID: 693611935}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1051774098
 Mesh:
   m_ObjectHideFlags: 0
@@ -28732,6 +28810,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100767343}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1110454044 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+  m_PrefabInstance: {fileID: 1371764146}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1137584326 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+  m_PrefabInstance: {fileID: 1690897620}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1140318665 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+  m_PrefabInstance: {fileID: 1894153218}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1160206229
 Mesh:
   m_ObjectHideFlags: 0
@@ -28897,6 +28990,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &1184535623 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+  m_PrefabInstance: {fileID: 2129767254}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1192678308
 Mesh:
   m_ObjectHideFlags: 0
@@ -30069,6 +30167,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!4 &1244861300 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+  m_PrefabInstance: {fileID: 7597417338355778421}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1246544413
 Mesh:
   m_ObjectHideFlags: 0
@@ -32914,7 +33017,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1339166829
 Transform:
   m_ObjectHideFlags: 0
@@ -35084,6 +35187,63 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1374864167}
   m_SourcePrefab: {fileID: 100100000, guid: 3fd0529f3d58b9c40b9ccda94c7944ed, type: 3}
+--- !u!1001 &1371764146
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 513390066}
+    m_Modifications:
+    - target: {fileID: 1411481576139765596, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_Name
+      value: fluorescent tube light (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.080002
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.552
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.7200012
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
 --- !u!1 &1374864163 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5881046965004866941, guid: 3fd0529f3d58b9c40b9ccda94c7944ed, type: 3}
@@ -37508,7 +37668,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1451561828
 Transform:
   m_ObjectHideFlags: 0
@@ -38315,6 +38475,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1467587733}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1487006209
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 513390066}
+    m_Modifications:
+    - target: {fileID: 1411481576139765596, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_Name
+      value: fluorescent tube light (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 21.699997
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.552
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 21.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
 --- !u!1 &1494301471
 GameObject:
   m_ObjectHideFlags: 0
@@ -38717,6 +38934,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8969685380737385517, guid: fa89aac50be315d4eb1dcc46e9643cfe, type: 3}
   m_PrefabInstance: {fileID: 3386277589788384094}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1559499551 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+  m_PrefabInstance: {fileID: 1487006209}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1564253939
 GameObject:
   m_ObjectHideFlags: 0
@@ -39101,6 +39323,11 @@ Rigidbody:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7331615849728766298, guid: 4721f76dc395a0343ade79ce856e60fc, type: 3}
   m_PrefabInstance: {fileID: 6609875808739437868}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1572157878 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+  m_PrefabInstance: {fileID: 1671409782}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1576477424
 GameObject:
@@ -41002,6 +41229,63 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &1671409782
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 513390066}
+    m_Modifications:
+    - target: {fileID: 1411481576139765596, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_Name
+      value: fluorescent tube light (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.699997
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.552
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -18.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
 --- !u!1 &1687291350
 GameObject:
   m_ObjectHideFlags: 0
@@ -41355,6 +41639,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 795184692}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1690897620
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 513390066}
+    m_Modifications:
+    - target: {fileID: 1411481576139765596, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_Name
+      value: fluorescent tube light (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.4039993
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.552
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.4300003
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
 --- !u!43 &1703686789
 Mesh:
   m_ObjectHideFlags: 0
@@ -41520,6 +41861,63 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &1719201695
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 513390066}
+    m_Modifications:
+    - target: {fileID: 1411481576139765596, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_Name
+      value: fluorescent tube light (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.552
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 21.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
 --- !u!1 &1737983458
 GameObject:
   m_ObjectHideFlags: 0
@@ -42462,6 +42860,11 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!4 &1757820574 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+  m_PrefabInstance: {fileID: 2021321958}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1758246280
 Mesh:
   m_ObjectHideFlags: 0
@@ -43920,7 +44323,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1828610136}
   m_Enabled: 1
-  m_CastShadows: 3
+  m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -49996,6 +50399,63 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &1894153218
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 513390066}
+    m_Modifications:
+    - target: {fileID: 1411481576139765596, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_Name
+      value: fluorescent tube light (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.080002
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.552
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.8099976
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
 --- !u!1 &1920406997
 GameObject:
   m_ObjectHideFlags: 0
@@ -50045,6 +50505,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1926739697
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 513390066}
+    m_Modifications:
+    - target: {fileID: 1411481576139765596, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_Name
+      value: fluorescent tube light (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 22.239998
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.552
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -18.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
 --- !u!1 &1931091841
 GameObject:
   m_ObjectHideFlags: 0
@@ -50167,7 +50684,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1931878367
 Transform:
   m_ObjectHideFlags: 0
@@ -50781,7 +51298,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1936341766
 Transform:
   m_ObjectHideFlags: 0
@@ -51643,7 +52160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1997281410
 Transform:
   m_ObjectHideFlags: 0
@@ -53499,6 +54016,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36f79d72cd5b244a86bee24f5f40780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &2021321958
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 513390066}
+    m_Modifications:
+    - target: {fileID: 1411481576139765596, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_Name
+      value: fluorescent tube light (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -17.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.552
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -18.129997
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
 --- !u!1 &2034820721
 GameObject:
   m_ObjectHideFlags: 0
@@ -56564,7 +57138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2065690551
 Transform:
   m_ObjectHideFlags: 0
@@ -56764,6 +57338,11 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 2.5
   m_ShadowAngle: 0
+--- !u!4 &2075685616 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+  m_PrefabInstance: {fileID: 1719201695}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2084748878
 GameObject:
   m_ObjectHideFlags: 0
@@ -57332,6 +57911,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5135912763312007909, guid: 7a8caccd5b783fd4fb5e4585f630d6c7, type: 3}
   m_PrefabInstance: {fileID: 2108784746}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2129767254
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 513390066}
+    m_Modifications:
+    - target: {fileID: 1411481576139765596, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_Name
+      value: fluorescent tube light (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.552
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.8099976
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
 --- !u!1 &2142596307
 GameObject:
   m_ObjectHideFlags: 0
@@ -58306,6 +58942,63 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 6947253476346100626, guid: fa89aac50be315d4eb1dcc46e9643cfe, type: 3}
   m_PrefabInstance: {fileID: 3386277589788384094}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7597417338355778421
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 513390066}
+    m_Modifications:
+    - target: {fileID: 1411481576139765596, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_Name
+      value: fluorescent tube light
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.4039993
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.552
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.8099976
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791667045761412582, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 58c1e17361adc624cbb6828e0e8ada39, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
