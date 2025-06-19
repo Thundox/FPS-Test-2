@@ -97,6 +97,7 @@ public class Zombie : MonoBehaviour
     public Vector3 positionWhenTouchingPlayer;
 
     public bool zombiePathReaches;
+    public int zombiePathState;
     public bool isZombieWalking()
     {
         if (_currentState == ZombieState.Walking)
@@ -320,10 +321,10 @@ public class Zombie : MonoBehaviour
                 NavMeshHit hit;
                 Vector3 targetPosition = _camera.transform.position;
                 NavMeshPath path = new NavMeshPath();
-                if (NavMesh.SamplePosition(targetPosition, out hit, 2.0f, NavMesh.AllAreas))
+                if (NavMesh.SamplePosition(targetPosition, out hit, 5.0f, NavMesh.AllAreas))
                 {
                     myAgent.CalculatePath(hit.position, path);
-                }     
+                }   
 
                 bool pathAvailable = (path.status == NavMeshPathStatus.PathComplete);
                 if (pathAvailable == false)
@@ -332,6 +333,7 @@ public class Zombie : MonoBehaviour
                     animator.speed = 0;
                     myAgent.destination = transform.position;
                     myAgent.speed = 0;
+                    
                 }
                 else
                 {
@@ -341,6 +343,7 @@ public class Zombie : MonoBehaviour
                     AnimatorSpeedTracker = animator.speed;
                     myAgent.destination = _camera.transform.position;
                 }
+                zombiePathState = ((int)path.status);
                 // Add position check before setting destination
                 if (!Physics.Raycast(transform.position, transform.forward, 0.5f, obstacleLayerMask))
                 {
