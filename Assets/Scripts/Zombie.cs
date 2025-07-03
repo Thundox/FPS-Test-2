@@ -25,6 +25,7 @@ public class Zombie : MonoBehaviour
         Attacking,
         PlayingDead,
         HitWall,
+        Idle,
     }
 
     //Zombie Stats
@@ -173,6 +174,47 @@ public class Zombie : MonoBehaviour
             case ZombieState.HitWall:
                 HitWallBehaviour();
                 break;
+            case ZombieState.Idle:
+                IdleBehaviour();
+                break;
+
+        }
+    }
+
+    private void IdleBehaviour()
+    {
+        animator.speed = 0;
+        AnimatorSpeedTracker = animator.speed;
+        myAgent.enabled = true;
+        if (_currentState == ZombieState.Idle)
+        {
+            if (myAgent != null)
+            {
+                //New Agent idle
+                NavMeshHit hit;
+                Vector3 targetPosition = _camera.transform.position;
+                NavMeshPath path = new NavMeshPath();
+                if (NavMesh.SamplePosition(targetPosition, out hit, 5.0f, NavMesh.AllAreas))
+                {
+                    myAgent.CalculatePath(hit.position, path);
+                }
+
+                bool pathAvailable = (path.status == NavMeshPathStatus.PathComplete);
+                //1. If has valid travel path, check if raycast can hit player
+                if (pathAvailable == true)
+                {
+                    //2. Raycast checks if wall is between player.
+                    if (HasClearPathToPlayer()) // Does a raycast every frame change this.
+                    {
+                        zombiePathReaches = true;
+                        myAgent.speed = 3;
+                        animator.speed = myAgent.speed;
+                        AnimatorSpeedTracker = animator.speed;
+                        myAgent.destination = _camera.transform.position;
+                        _currentState = ZombieState.Walking;
+                    }
+                }
+            }
         }
     }
 
