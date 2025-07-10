@@ -15,7 +15,7 @@ public class Zombie : MonoBehaviour
         public Quaternion Rotation { get; set; }
     }
 
-    private enum ZombieState
+    public enum ZombieState
     {
         Walking,
         Ragdoll,
@@ -58,7 +58,7 @@ public class Zombie : MonoBehaviour
     private Rigidbody[] _ragdollRigidbodies;
 
     [SerializeField]
-    private ZombieState _currentState = ZombieState.Walking;
+    public ZombieState _currentState;
 
     [SerializeField]
     private float AnimatorSpeedTracker; 
@@ -110,7 +110,6 @@ public class Zombie : MonoBehaviour
             return false;
         }
     }
-
 
 
     void Awake()
@@ -325,10 +324,13 @@ public class Zombie : MonoBehaviour
 
     public void Impale()
     {
-        myAgent.enabled = false;
-        _currentState = ZombieState.Impaled;
+        if (_currentState == ZombieState.Ragdoll)
+        {
+            myAgent.enabled = false;
+            _currentState = ZombieState.Impaled;
+        }
+        
     }
-
     private void DisableRagdoll()
     {
         foreach (var rigidbody in _ragdollRigidbodies)

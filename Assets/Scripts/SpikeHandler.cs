@@ -26,7 +26,7 @@ public class SpikeHandler : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Spikes>())
+        if (other.GetComponent<Spikes>() && _zombie._currentState==Zombie.ZombieState.Ragdoll)
         {
             if (_zombie.isZombieWalking())
             {
