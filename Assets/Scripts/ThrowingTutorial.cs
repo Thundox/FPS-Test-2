@@ -14,7 +14,7 @@ public class ThrowingTutorial : MonoBehaviour
     public float throwCooldown;
 
     [Header("throwing")]
-    public KeyCode throwKey = KeyCode.Mouse0;
+    public KeyCode throwKey = KeyCode.G;
     public float throwForce;
     public float throwUpwardForce;
 
