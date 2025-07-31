@@ -60,5 +60,9 @@ public class Grenade : MonoBehaviour
                 Debug.Log("Grenade hit Player");
             }
         }
+        if (other.tag == "Zombie")
+        {
+
+        }
     }
 }

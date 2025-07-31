@@ -28,6 +28,8 @@ public class Shoot : MonoBehaviour
     public ParticleSystem muzzleParticleSystem;
     public Light muzzleLight;
 
+    public LayerMask shootableLayers;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -67,8 +69,7 @@ public class Shoot : MonoBehaviour
             muzzleLight.enabled = true;
             StartCoroutine(DisableLightAfterDelay(0.1f));
             Ray ray = new Ray(_camera.transform.position, _camera.transform.forward);
-            LayerMask zombieLayer = LayerMask.GetMask("Default");
-            if (Physics.Raycast(ray, out RaycastHit hitInfo, 9999f, zombieLayer, QueryTriggerInteraction.Ignore))
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, 9999f, shootableLayers, QueryTriggerInteraction.Ignore))
             {
                 Zombie zombie = hitInfo.collider.transform.root.GetComponent<Zombie>();
 

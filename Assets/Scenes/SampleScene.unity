@@ -28745,6 +28745,9 @@ MonoBehaviour:
   handgunShot: {fileID: 6947253476261775021}
   muzzleParticleSystem: {fileID: 1875861742}
   muzzleLight: {fileID: 1772051246}
+  shootableLayers:
+    serializedVersion: 2
+    m_Bits: 16385
 --- !u!114 &963194231
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2005,6 +2005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36f79d72cd5b244a86bee24f5f40780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zombieHealth: 200
   _camera: {fileID: 0}
   _faceUpStandUpStateName: Face Up Stand Up
   _faceDownstandUpStateName: Face Down Stand Up
@@ -2021,11 +2022,19 @@ MonoBehaviour:
   attackingRotationSpeed: 100
   attackAnimationSpeed: 1
   attackMoveSpeed: 4
+  obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
   StandUpAnimationSpeed: 1
   walkingRotationSpeed: 20
   myDamageCollider: {fileID: 0}
   AgentTurnSpeed: 0
   canAttack: 1
+  isPlayerInTrigger: 0
+  isCollidingWithPlayer: 0
+  positionWhenTouchingPlayer: {x: 0, y: 0, z: 0}
+  zombiePathReaches: 0
+  zombiePathState: 0
 --- !u!65 &1858737341
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3202,9 +3211,9 @@ GameObject:
   - component: {fileID: 5282315803591881814}
   - component: {fileID: 5282315803591881817}
   - component: {fileID: 865074453}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: mixamorig5:Spine1
-  m_TagString: Untagged
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
