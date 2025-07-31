@@ -19520,7 +19520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f421f4bf0ee5a6f418587431932b6a61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 200
   playerAlive: 0
   WalkSpeed: 7
   SprintSpeed: 10
@@ -41040,7 +41040,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5282315805271164185, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
       propertyPath: zombieHealth
-      value: 200
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 5282315805271164185, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
       propertyPath: _currentState

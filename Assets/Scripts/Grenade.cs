@@ -9,6 +9,7 @@ public class Grenade : MonoBehaviour
     public SphereCollider grenadeExplosioncollider;
     public float grenadeExplosionRadius;
     public int grenadeDamage;
+    public Vector3 grenadeKnockback;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,14 +55,25 @@ public class Grenade : MonoBehaviour
         {
             PlayerMovement player = other.transform.parent.gameObject.GetComponent<PlayerMovement>();
             player.health -= grenadeDamage;
+            Debug.Log("Grenade hit Player");
             if (player.health <= 0)
             {
                 player.playerDeath();
-                Debug.Log("Grenade hit Player");
+                Debug.Log("Grenade killed Player");
             }
         }
         if (other.tag == "Zombie")
         {
+            Zombie zombie = other.transform.root.gameObject.GetComponent<Zombie>();
+            zombie.zombieHealth -= grenadeDamage;
+            Debug.Log("Grenade hit Zombie");
+            zombie.TriggerRagdoll(grenadeKnockback, Vector3.back);
+            if (zombie.zombieHealth <= 0)
+            {
+                Debug.Log("Grenade killed Zombie");
+            }
+            //Zombie zombieHitPoint = 
+            //zombie.TriggerRagdoll(grenadeKnockback, Vector3.zero);
 
         }
     }

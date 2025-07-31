@@ -112,7 +112,7 @@ public class Shoot : MonoBehaviour
                     }
                     
                     zombie.zombieHealth = zombie.zombieHealth - playerWeaponDamage;
-                    
+                    Debug.Log("Zombie hit by weapon");
                     hitInfo.transform.GetComponent<Rigidbody>().AddForce(transform.forward * forceMagnitude, ForceMode.Impulse);
                 }
 
