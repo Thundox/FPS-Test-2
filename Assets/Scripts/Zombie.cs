@@ -99,6 +99,39 @@ public class Zombie : MonoBehaviour
 
     public bool zombiePathReaches;
     public int zombiePathState;
+
+    // Raycast optimization fields
+    [SerializeField]
+    private float _raycastInterval = 1.0f; // Configurable raycast interval
+    
+    // Property with validation for runtime changes
+    public float raycastInterval
+    {
+        get { return _raycastInterval; }
+        set 
+        { 
+            // Validate and default to 1.0f for invalid values (0 or negative)
+            float validatedValue = (value > 0) ? value : 1.0f;
+            
+            // Only update if the value actually changed
+            if (_raycastInterval != validatedValue)
+            {
+                _raycastInterval = validatedValue;
+                
+                // If raycast updates are currently running, restart them with new interval
+                if (raycastCoroutine != null)
+                {
+                    StopRaycastUpdates();
+                    StartRaycastUpdates();
+                }
+            }
+        }
+    }
+    
+    private bool hasPlayerLineOfSight = false; // Cached raycast result for player detection
+    private bool hasObstacleAhead = false; // Cached raycast result for obstacle detection
+    private Coroutine raycastCoroutine; // Reference to active raycast coroutine
+
     public bool isZombieWalking()
     {
         if (_currentState == ZombieState.Walking)
@@ -142,6 +175,9 @@ public class Zombie : MonoBehaviour
         PopulateAnimationStartBoneTransforms(_faceDownStandUpClipName, _faceDownStandUpBoneTransforms);
 
         DisableRagdoll();
+        
+        // Start raycast updates for initial Walking state
+        StartRaycastUpdates();
     }
 
     // Update is called once per frame
@@ -185,6 +221,13 @@ public class Zombie : MonoBehaviour
         animator.speed = 0;
         AnimatorSpeedTracker = animator.speed;
         myAgent.enabled = true;
+        
+        // Ensure raycast updates are running when in Idle state
+        if (raycastCoroutine == null)
+        {
+            StartRaycastUpdates();
+        }
+        
         if (_currentState == ZombieState.Idle)
         {
             if (myAgent != null)
@@ -202,8 +245,8 @@ public class Zombie : MonoBehaviour
                 //1. If has valid travel path, check if raycast can hit player
                 if (pathAvailable == true)
                 {
-                    //2. Raycast checks if wall is between player.
-                    if (HasClearPathToPlayer()) // Does a raycast every frame change this.
+                    //2. Use cached raycast result instead of direct raycast call
+                    if (hasPlayerLineOfSight) // Uses cached result from raycast optimization
                     {
                         zombiePathReaches = true;
                         myAgent.speed = 3;
@@ -211,6 +254,12 @@ public class Zombie : MonoBehaviour
                         AnimatorSpeedTracker = animator.speed;
                         myAgent.destination = _camera.transform.position;
                         _currentState = ZombieState.Walking;
+                        
+                        // Ensure raycast updates are running when transitioning from Idle to Walking
+                        if (raycastCoroutine == null)
+                        {
+                            StartRaycastUpdates();
+                        }
                     }
                 }
             }
@@ -222,6 +271,10 @@ public class Zombie : MonoBehaviour
         // Keep the zombie in ragdoll state
         EnableRagdoll();
         //_timeToWakeUp = 0;
+        
+        // Stop raycast updates when in PlayingDead state
+        StopRaycastUpdates();
+        
         CheckPlayerDistance();
     }
 
@@ -233,6 +286,9 @@ public class Zombie : MonoBehaviour
             SetHips();
             _currentState = ZombieState.ResettingBones; // Change state to wake up
             _timeToWakeUp = 1; // Force wake up
+            
+            // Stop raycast updates when transitioning from PlayingDead to ResettingBones
+            StopRaycastUpdates();
         }
     }
 
@@ -257,6 +313,9 @@ public class Zombie : MonoBehaviour
             _currentState = ZombieState.Walking;
             ZombieAttackTriggerCollider.enabled = true;
             isCollidingWithPlayer = false;
+            
+            // Restart raycast updates when returning to Walking state from Attacking
+            StartRaycastUpdates();
             return;
         }
 
@@ -320,17 +379,20 @@ public class Zombie : MonoBehaviour
 
         _currentState = ZombieState.Ragdoll;
         _timeToWakeUp = Random.Range(2, 4);
+        
+        // Stop raycast updates when entering ragdoll state
+        StopRaycastUpdates();
     }
 
     public void Impale()
     {
-        if (_currentState == ZombieState.Ragdoll)
-        {
-            myAgent.enabled = false;
-            _currentState = ZombieState.Impaled;
-        }
+        myAgent.enabled = false;
+        _currentState = ZombieState.Impaled;
         
+        // Stop raycast updates when entering impaled state
+        StopRaycastUpdates();
     }
+
     private void DisableRagdoll()
     {
         foreach (var rigidbody in _ragdollRigidbodies)
@@ -388,8 +450,8 @@ public class Zombie : MonoBehaviour
                     myAgent.destination = _camera.transform.position;
                 }
                 zombiePathState = ((int)path.status);
-                // Add position check before setting destination
-                if (!Physics.Raycast(transform.position, transform.forward, 0.5f, obstacleLayerMask))
+                // Use cached obstacle detection result instead of direct raycast
+                if (!hasObstacleAhead) // Uses cached result from raycast optimization
                 {
                     animator.speed = myAgent.speed;
                     AnimatorSpeedTracker = animator.speed;
@@ -435,6 +497,9 @@ public class Zombie : MonoBehaviour
         {
             _currentState = ZombieState.Walking;
             ZombieAttackTriggerCollider.enabled = true;
+            
+            // Restart raycast updates when returning to active Walking state
+            StartRaycastUpdates();
         }
     }
 
@@ -575,7 +640,8 @@ public class Zombie : MonoBehaviour
             if (other.tag == "Player")
             {
                 isPlayerInTrigger = true;
-                InvokeRepeating("CheckPathToPlayer",0f,1f);
+                // Use configurable raycast interval (property handles validation)
+                InvokeRepeating("CheckPathToPlayer", 0f, raycastInterval);
             }
         }
 
@@ -664,6 +730,9 @@ public class Zombie : MonoBehaviour
         _currentState = ZombieState.Walking;
         myAgent.angularSpeed = AgentTurnSpeed;
         ZombieAttackTriggerCollider.enabled = true;
+        
+        // Restart raycast updates when returning to Walking state from HitWall
+        StartRaycastUpdates();
     }
     private void StopAttacking()
     {
@@ -693,5 +762,66 @@ public class Zombie : MonoBehaviour
         _currentState = ZombieState.HitWall;
         _animator.speed = 1f;
         _animator.Play(_HitWallStateName, 0, 0f);
+        
+        // Stop raycast updates when entering HitWall state
+        StopRaycastUpdates();
+    }
+
+    // Raycast optimization methods
+    private IEnumerator RaycastUpdateCoroutine()
+    {
+        while (true)
+        {
+            // Update cached raycast results
+            UpdateRaycastResults();
+            
+            // Wait for the specified interval (property handles validation)
+            yield return new WaitForSeconds(raycastInterval);
+        }
+    }
+
+    private void UpdateRaycastResults()
+    {
+        // Update player line of sight detection
+        hasPlayerLineOfSight = HasClearPathToPlayer();
+        
+        // Update obstacle ahead detection for walking behavior
+        Vector3 forwardDirection = transform.forward;
+        Vector3 rayStartPosition = transform.position + Vector3.up * 0.5f;
+        
+        // Check for obstacles ahead (used in walking behavior)
+        hasObstacleAhead = Physics.Raycast(rayStartPosition, forwardDirection, 0.5f, obstacleLayerMask);
+        
+        // Maintain debug visualization with proper timing
+        Debug.DrawRay(rayStartPosition, forwardDirection * 0.5f, hasObstacleAhead ? Color.red : Color.blue, raycastInterval);
+    }
+
+    // Coroutine lifecycle management methods
+    private void StartRaycastUpdates()
+    {
+        // Stop any existing raycast coroutine before starting a new one
+        StopRaycastUpdates();
+        
+        // Start the raycast update coroutine
+        raycastCoroutine = StartCoroutine(RaycastUpdateCoroutine());
+    }
+
+    private void StopRaycastUpdates()
+    {
+        // Safely stop the raycast coroutine with null checking
+        if (raycastCoroutine != null)
+        {
+            StopCoroutine(raycastCoroutine);
+            raycastCoroutine = null;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        // Ensure proper cleanup when zombie is destroyed
+        StopRaycastUpdates();
+        
+        // Cancel any pending invokes to prevent memory leaks
+        CancelInvoke();
     }
 }
