@@ -14,7 +14,7 @@ public class ThrowingTutorial : MonoBehaviour
     public float throwCooldown;
 
     [Header("throwing")]
-    public KeyCode throwKey = KeyCode.Mouse0;
+    public KeyCode throwKey = KeyCode.Mouse1;
     public float throwForce;
     public float throwUpwardForce;
 
@@ -27,7 +27,7 @@ public class ThrowingTutorial : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(throwKey) && readyToThrow && totalThrows > 0)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && readyToThrow && totalThrows > 0)
         {
             Throw();
         }
