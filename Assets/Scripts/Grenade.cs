@@ -10,6 +10,7 @@ public class Grenade : MonoBehaviour
     public float grenadeExplosionRadius;
     public int grenadeDamage;
     public Vector3 grenadeKnockback;
+    public HashSet<Zombie> hashsetZombiesHit = new HashSet<Zombie>();
     // Start is called before the first frame update
     void Start()
     {
@@ -65,13 +66,17 @@ public class Grenade : MonoBehaviour
         if (other.tag == "Zombie")
         {
             Zombie zombie = other.transform.root.gameObject.GetComponent<Zombie>();
-            zombie.zombieHealth -= grenadeDamage;
-            Debug.Log("Grenade hit Zombie");
-            zombie.TriggerRagdoll(grenadeKnockback, Vector3.back);
-            if (zombie.zombieHealth <= 0)
+            if (zombie != null && hashsetZombiesHit.Add(zombie))
             {
-                Debug.Log("Grenade killed Zombie");
+                zombie.zombieHealth -= grenadeDamage;
+                Debug.Log("Grenade hit Zombie: " + other.gameObject);
+                zombie.TriggerRagdoll(grenadeKnockback, Vector3.back);
+                if (zombie.zombieHealth <= 0)
+                {
+                    Debug.Log("Grenade killed Zombie");
+                }
             }
+            
             //Zombie zombieHitPoint = 
             //zombie.TriggerRagdoll(grenadeKnockback, Vector3.zero);
 
