@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Grenade : MonoBehaviour
@@ -47,6 +48,8 @@ public class Grenade : MonoBehaviour
         grenadeExplosioncollider.enabled = true;
         grenadeExplosioncollider.radius = grenadeExplosionRadius;
         
+
+
         Destroy(this.gameObject, 0.5f);
     }
 
@@ -68,7 +71,10 @@ public class Grenade : MonoBehaviour
             Zombie zombie = other.transform.root.gameObject.GetComponent<Zombie>();
             if (zombie != null && hashsetZombiesHit.Add(zombie))
             {
-                zombie.zombieHealth -= grenadeDamage;
+                float grenadeExplosionDistance = Vector3.Distance(transform.position, zombie.transform.position);
+                float calculatedDamage = grenadeDamage * (1 - (grenadeExplosionDistance / grenadeExplosionRadius));
+                zombie.zombieHealth -= (int)calculatedDamage;
+                Debug.Log("Distance is " + grenadeExplosionDistance + "Radius is " + grenadeExplosionRadius);
                 Debug.Log("Grenade hit Zombie: " + other.gameObject);
                 zombie.TriggerRagdoll(grenadeKnockback, Vector3.back);
                 if (zombie.zombieHealth <= 0)
