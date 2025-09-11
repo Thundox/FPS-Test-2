@@ -12,6 +12,7 @@ public class Grenade : MonoBehaviour
     public int grenadeDamage;
     public Vector3 grenadeKnockback;
     public HashSet<Zombie> hashsetZombiesHit = new HashSet<Zombie>();
+    public int limbOrder;
     // Start is called before the first frame update
     void Start()
     {
@@ -71,7 +72,7 @@ public class Grenade : MonoBehaviour
             Zombie zombie = other.transform.root.gameObject.GetComponent<Zombie>();
             if (zombie != null && hashsetZombiesHit.Add(zombie))
             {
-                float grenadeExplosionDistance = Vector3.Distance(transform.position, zombie.transform.position);
+                float grenadeExplosionDistance = Vector3.Distance(transform.position, other.transform.position);
                 float calculatedDamage = grenadeDamage * (1 - (grenadeExplosionDistance / grenadeExplosionRadius));
                 zombie.zombieHealth -= (int)calculatedDamage;
                 Debug.Log("Distance is " + grenadeExplosionDistance + "Radius is " + grenadeExplosionRadius);
@@ -82,6 +83,7 @@ public class Grenade : MonoBehaviour
                     Debug.Log("Grenade killed Zombie");
                 }
             }
+            Debug.LogWarning(other.name + " hit number " + limbOrder);
             
             //Zombie zombieHitPoint = 
             //zombie.TriggerRagdoll(grenadeKnockback, Vector3.zero);

@@ -7,6 +7,7 @@ public class ProjectileAddon : MonoBehaviour
     public int damage;
     private Rigidbody rb;
     private bool targetHit;
+    public bool isSticky;
 
     // Start is called before the first frame update
     void Start()
@@ -32,11 +33,18 @@ public class ProjectileAddon : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // make sure projectile sticks to surface
-        rb.isKinematic = true;
+        if (isSticky == true)
+        {
+            ContactPoint contact = collision.contacts[0];
+            transform.position = contact.point;
 
-        // make sure projectile moves with target
-        transform.SetParent(collision.transform);
+            // make sure projectile sticks to surface
+            rb.isKinematic = true;
+
+            // make sure projectile moves with target
+            transform.SetParent(collision.transform);
+        }
+       
     }
     // Update is called once per frame
     void Update()

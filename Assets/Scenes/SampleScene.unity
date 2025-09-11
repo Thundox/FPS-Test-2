@@ -19618,7 +19618,7 @@ MonoBehaviour:
   totalThrows: 100
   throwCooldown: 0.1
   throwKey: 103
-  throwForce: 70
+  throwForce: 10
   throwUpwardForce: 0
 --- !u!114 &678083281
 MonoBehaviour:
