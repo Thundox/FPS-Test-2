@@ -53,6 +53,20 @@ public class Grenade : MonoBehaviour
 
         Destroy(this.gameObject, 0.5f);
     }
+    public void grenadeDealDamage()
+    {
+        foreach (var zombie  in hashsetZombiesHit)
+        {
+            zombie.zombieHealth -= zombie.temporaryGrenadeDamage;
+            //Debug.Log("Distance is " + grenadeExplosionDistance + "Radius is " + grenadeExplosionRadius);
+            //Debug.Log("Grenade hit Zombie: " + other.gameObject);
+            zombie.TriggerRagdoll(grenadeKnockback, Vector3.back);
+            if (zombie.zombieHealth <= 0)
+            {
+                Debug.Log("Grenade killed Zombie");
+            }
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -70,18 +84,12 @@ public class Grenade : MonoBehaviour
         if (other.tag == "Zombie")
         {
             Zombie zombie = other.transform.root.gameObject.GetComponent<Zombie>();
-            if (zombie != null && hashsetZombiesHit.Add(zombie))
+            hashsetZombiesHit.Add(zombie);
+            if (zombie != null )
             {
                 float grenadeExplosionDistance = Vector3.Distance(transform.position, other.transform.position);
                 float calculatedDamage = grenadeDamage * (1 - (grenadeExplosionDistance / grenadeExplosionRadius));
-                zombie.zombieHealth -= (int)calculatedDamage;
-                Debug.Log("Distance is " + grenadeExplosionDistance + "Radius is " + grenadeExplosionRadius);
-                Debug.Log("Grenade hit Zombie: " + other.gameObject);
-                zombie.TriggerRagdoll(grenadeKnockback, Vector3.back);
-                if (zombie.zombieHealth <= 0)
-                {
-                    Debug.Log("Grenade killed Zombie");
-                }
+                
             }
             Debug.LogWarning(other.name + " hit number " + limbOrder);
             

@@ -31,6 +31,7 @@ public class Zombie : MonoBehaviour
     //Zombie Stats
     public int zombieHealth;
 
+    public int temporaryGrenadeDamage;
     [SerializeField] 
     private Camera _camera;
 
