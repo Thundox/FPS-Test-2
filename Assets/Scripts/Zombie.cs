@@ -30,6 +30,10 @@ public class Zombie : MonoBehaviour
 
     //Zombie Stats
     public int zombieHealth;
+    
+    // Temporary field for grenade damage tracking
+    [System.NonSerialized]
+    public float tempGrenadeDamage;
 
     public int temporaryGrenadeDamage;
     [SerializeField] 
