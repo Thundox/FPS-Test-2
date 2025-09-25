@@ -33,21 +33,11 @@ public class ProjectileAddon : MonoBehaviour
             Destroy(gameObject);
         }
 
-<<<<<<< Updated upstream
+
         if (isSticky == true)
         {
             ContactPoint contact = collision.contacts[0];
             transform.position = contact.point;
-=======
-        ContactPoint contact = collision.contacts[0];
-        transform.position = contact.point;
-
-        // make sure projectile sticks to surface
-        rb.isKinematic = true;
->>>>>>> Stashed changes
-
-            // make sure projectile sticks to surface
-            rb.isKinematic = true;
 
             // make sure projectile moves with target
             transform.SetParent(collision.transform);
