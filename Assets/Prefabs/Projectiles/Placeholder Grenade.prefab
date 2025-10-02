@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
-  isSticky: 1
+  isSticky: 0
 --- !u!114 &3556709709254588905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,9 +221,12 @@ MonoBehaviour:
   grenadeTimer: 3
   grenadeGameObject: {fileID: 0}
   grenadeExplosioncollider: {fileID: 4185197456534217912}
-  grenadeExplosionRadius: 1
+  grenadeExplosionRadius: 3
   grenadeDamage: 100
   grenadeKnockback: {x: 0, y: 0, z: 0}
+  disabled: 0
+  smallExplosionPrefab: {fileID: 5059757038756171172, guid: afd18860d227930498156252e0a21b84, type: 3}
+  largeExplosionPrefab: {fileID: 3152007691116017333, guid: 1b726e86b5f5afa44a89e1cca866f5c8, type: 3}
 --- !u!135 &4185197456534217912
 SphereCollider:
   m_ObjectHideFlags: 0

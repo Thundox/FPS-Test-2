@@ -115,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       // Debug.Log(Input.GetAxis("Vertical"));
         if (playerAlive == false)
         {
             return;
@@ -358,4 +359,5 @@ public class PlayerMovement : MonoBehaviour
     {
         return Vector3.ProjectOnPlane(direction, SlopeHit.normal).normalized;
     }
+    
 }

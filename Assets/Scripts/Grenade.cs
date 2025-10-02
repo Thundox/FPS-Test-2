@@ -13,6 +13,10 @@ public class Grenade : MonoBehaviour
     public Vector3 grenadeKnockback;
     public HashSet<Zombie> hashsetZombiesHit = new HashSet<Zombie>();
     private bool hasExploded = false;
+    public bool disabled = false;
+
+    public GameObject smallExplosionPrefab;
+    public GameObject largeExplosionPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,107 +35,121 @@ public class Grenade : MonoBehaviour
         {
             grenadeTimer -= Time.deltaTime;
         }
-        else
+        else if(disabled == false)
         {
-            explode();
+            ExplosionV2();
+            //explode();
         }
     }
 
-    public void explode()
+    public void ExplosionV2()
     {
-        // If explosion collider is missing create one
-        if (grenadeExplosioncollider == null)
-        {
-            grenadeExplosioncollider = gameObject.AddComponent<SphereCollider>();
-            grenadeExplosioncollider.center = Vector3.zero;
-            grenadeExplosioncollider.isTrigger = true;
-        }
-        grenadeExplosioncollider.enabled = true;
-        grenadeExplosioncollider.radius = grenadeExplosionRadius;
+        // Creates a copy of the prefab,  at this location,    with this rotation. (Quaternion.Identity = no rotation.
+        Instantiate(smallExplosionPrefab, transform.position, Quaternion.identity);
+        Instantiate(largeExplosionPrefab, transform.position, Quaternion.identity);
+
+        disabled = true;
+        Destroy(gameObject, 1f);
         
-        hasExploded = true;
-
-        Destroy(this.gameObject, 0.5f);
     }
-    public void grenadeDealDamage()
-    {
-        foreach (var zombie  in hashsetZombiesHit)
-        {
-            zombie.zombieHealth -= zombie.temporaryGrenadeDamage;
-            //Debug.Log("Distance is " + grenadeExplosionDistance + "Radius is " + grenadeExplosionRadius);
-            //Debug.Log("Grenade hit Zombie: " + other.gameObject);
-            zombie.TriggerRagdoll(grenadeKnockback, Vector3.back);
-            if (zombie.zombieHealth <= 0)
-            {
-                Debug.Log("Grenade killed Zombie");
-            }
-        }
-    }
+    //public void explode()
+    //{
+    //    // If explosion collider is missing create one
+    //    if (grenadeExplosioncollider == null)
+    //    {
+    //        grenadeExplosioncollider = gameObject.AddComponent<SphereCollider>();
+    //        grenadeExplosioncollider.center = Vector3.zero;
+    //        grenadeExplosioncollider.isTrigger = true;
+    //    }
+    //    grenadeExplosioncollider.enabled = true;
+    //    grenadeExplosioncollider.radius = grenadeExplosionRadius;
+        
+    //    hasExploded = true;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            PlayerMovement player = other.transform.parent.gameObject.GetComponent<PlayerMovement>();
-            player.health -= grenadeDamage;
-            Debug.Log("Grenade hit Player");
-            if (player.health <= 0)
-            {
-                player.playerDeath();
-                Debug.Log("Grenade killed Player");
-            }
-        }
-        if (other.tag == "Zombie")
-        {
-            Zombie zombie = other.transform.root.gameObject.GetComponent<Zombie>();
-            hashsetZombiesHit.Add(zombie);
-            if (zombie != null )
-            {
-                // Initialize damage tracking for this zombie
-                zombie.tempGrenadeDamage = 0f;
-            }
+    //    Destroy(this.gameObject, 0.5f);
+    //}
+    //public void grenadeDealDamage()
+    //{
+    //    foreach (var zombie  in hashsetZombiesHit)
+    //    {
+    //        zombie.zombieHealth -= zombie.temporaryGrenadeDamage;
+    //        //Debug.Log("Distance is " + grenadeExplosionDistance + "Radius is " + grenadeExplosionRadius);
+    //        //Debug.Log("Grenade hit Zombie: " + other.gameObject);
+    //        zombie.TriggerRagdoll(grenadeKnockback, Vector3.back);
+    //        if (zombie.zombieHealth <= 0)
+    //        {
+    //            Debug.Log("Grenade killed Zombie");
+    //        }
+    //    }
+    //}
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.tag == "Player")
+    //    {
+    //        PlayerMovement player = other.transform.parent.gameObject.GetComponent<PlayerMovement>();
+    //        player.health -= grenadeDamage;
+    //        Debug.Log("Grenade hit Player");
+    //        if (player.health <= 0)
+    //        {
+    //            player.playerDeath();
+    //            Debug.Log("Grenade killed Player");
+    //        }
+    //    }
+    //    if (other.tag == "Zombie")
+    //    {
+    //        Zombie zombie = other.transform.root.gameObject.GetComponent<Zombie>();
+    //        hashsetZombiesHit.Add(zombie);
+    //        if (zombie != null )
+    //        {
+    //            // Initialize damage tracking for this zombie
+    //            zombie.tempGrenadeDamage = 0f;
+    //        }
             
-            if (zombie != null)
-            {
-                // Calculate damage for this specific limb hit
-                float limbDistance = Vector3.Distance(transform.position, other.transform.position);
-                float calculatedDamage = grenadeDamage * (1 - (limbDistance / grenadeExplosionRadius));
+    //        if (zombie != null)
+    //        {
+    //            // Calculate damage for this specific limb hit
+    //            float limbDistance = Vector3.Distance(transform.position, other.transform.position);
                 
-                // Keep only the highest damage for this zombie
-                if (calculatedDamage > zombie.tempGrenadeDamage)
-                {
-                    zombie.tempGrenadeDamage = calculatedDamage;
-                }
-            }
-        }
-    }
+    //            float calculatedDamage = grenadeDamage * (1 - (limbDistance / grenadeExplosionRadius));
+                
+    //            // Keep only the highest damage for this zombie
+    //            if (calculatedDamage > zombie.tempGrenadeDamage)
+    //            {
+    //                Debug.DrawLine(transform.position, other.transform.position, Color.red, 10f);
+    //                zombie.tempGrenadeDamage = calculatedDamage;
+    //            }
+    //        }
+    //    }
+    //}
     
-    void LateUpdate()
-    {
-        // Only apply damage once after explosion and if we have zombies to damage
-        if (hasExploded && hashsetZombiesHit.Count > 0)
-        {
-            // Apply the highest damage to each zombie
-            foreach (Zombie zombie in hashsetZombiesHit)
-            {
-                zombie.zombieHealth -= (int)zombie.tempGrenadeDamage;
+
+}    //void LateUpdate()
+    //{
+    //    // Only apply damage once after explosion and if we have zombies to damage
+    //    if (hasExploded && hashsetZombiesHit.Count > 0 && disabled == false)
+    //    {
+    //        // Apply the highest damage to each zombie
+    //        foreach (Zombie zombie in hashsetZombiesHit)
+    //        {
+    //            zombie.zombieHealth -= (int)zombie.tempGrenadeDamage;
                 
-                Debug.Log($"Grenade dealt {(int)zombie.tempGrenadeDamage} damage to Zombie (max from all limbs)");
+    //            Debug.Log($"Grenade dealt {(int)zombie.tempGrenadeDamage} damage to Zombie (max from all limbs)");
                 
-                zombie.TriggerRagdoll(grenadeKnockback, Vector3.back);
+    //            zombie.TriggerRagdoll(grenadeKnockback, Vector3.back);
                 
-                if (zombie.zombieHealth <= 0)
-                {
-                    Debug.Log("Grenade killed Zombie");
-                }
+    //            if (zombie.zombieHealth <= 0)
+    //            {
+    //                Debug.Log("Grenade killed Zombie");
+    //            }
                 
-                // Reset damage tracking
-                zombie.tempGrenadeDamage = 0f;
-            }
+    //            // Reset damage tracking
+    //            zombie.tempGrenadeDamage = 0f;
+    //        }
             
-            // Clear hit set and mark as processed
-            hashsetZombiesHit.Clear();
-            hasExploded = false;
-        }
-    }
-}
+    //        // Clear hit set and mark as processed
+    //        hashsetZombiesHit.Clear();
+    //        hasExploded = false;
+    //        disabled = true;
+    //    }
+    //}
