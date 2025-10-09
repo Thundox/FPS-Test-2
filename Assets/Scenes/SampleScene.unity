@@ -19614,7 +19614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 963194228}
   attackPoint: {fileID: 1980560479}
-  objectToThrow: {fileID: 155067294802094013, guid: 602f91baf96f49645a04ecd54168bac0, type: 3}
+  objectToThrow: {fileID: 7093071370644321064, guid: 8269e92a09ea2194b95ca4b762cb08ee, type: 3}
   totalThrows: 100
   throwCooldown: 0.1
   throwKey: 103
