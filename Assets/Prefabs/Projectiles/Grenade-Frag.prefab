@@ -99,6 +99,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e8f0e23fcbe545a4a8677b959b70d548, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3027288619632021476}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e8f0e23fcbe545a4a8677b959b70d548, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7021656158058854013}
     - targetCorrespondingSourceObject: {fileID: -6505494680676671688, guid: e8f0e23fcbe545a4a8677b959b70d548, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3051377656159582203}
@@ -135,6 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a742688c57a5b5043b873e19a3d8fe7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grenadeCreationTime: 0
+  grenadeDespawnTime: 10
 --- !u!54 &6789838971282660655
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -161,7 +166,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &4054884060231977362
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -292,6 +297,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-7021656158058854013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7093071370644321064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8162619f49d54ae4bbb37bfa947870cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actualTrajectoryLine: {fileID: 0}
+  actualTrajectoryMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  trajectoryColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &8353495733185516087 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2108629213487684686, guid: e8f0e23fcbe545a4a8677b959b70d548, type: 3}
@@ -309,6 +329,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a742688c57a5b5043b873e19a3d8fe7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grenadeCreationTime: 0
+  grenadeDespawnTime: 10
 --- !u!54 &1584164511675675542
 Rigidbody:
   m_ObjectHideFlags: 0
