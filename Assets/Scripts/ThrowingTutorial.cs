@@ -85,24 +85,27 @@ public class ThrowingTutorial : MonoBehaviour
     {
         readyToThrow = false;
 
-        // instantiate object to throw with neutral rotation
-        GameObject projectile = Instantiate(objectToThrow, attackPoint.position, Quaternion.identity);
-
-        // get rigidbody component
-        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
-
-        // calculate direction
-        Vector3 forceDirection = cam.transform.forward;
+        // calculate direction first
+        Vector3 forceDirection = cam.transform.forward.normalized;
 
         RaycastHit hit;
 
         if (Physics.Raycast(cam.position, cam.forward, out hit, 500f))
         {
-            forceDirection = (hit.point - attackPoint.position).normalized;
+            //forceDirection = (hit.point - attackPoint.position).normalized;
         }
 
         // add force
-        Vector3 forceToAdd = forceDirection * throwForce + Vector3.up * throwUpwardForce;
+        Vector3 forceToAdd = forceDirection * throwForce;// + Vector3.up * throwUpwardForce;
+
+        // Rotate grenade to face throw direction
+        Quaternion throwRotation = Quaternion.LookRotation(forceDirection, cam.transform.up);
+        //throwRotation = Quaternion.Inverse(throwRotation);
+        // instantiate object to throw with rotation facing throw direction
+        GameObject projectile = Instantiate(objectToThrow, attackPoint.position, Quaternion.identity);
+
+        // get rigidbody component
+        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
 
         // Debug logging
         if (showDebugInfo)

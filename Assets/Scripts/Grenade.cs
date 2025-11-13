@@ -20,7 +20,7 @@ public class Grenade : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log("Grenade rotation is: " + transform.rotation.eulerAngles);
     }
 
     void Awake()
