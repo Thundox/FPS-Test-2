@@ -25,8 +25,8 @@ public class ScoreDisplay : MonoBehaviour
         killScoreText.text = "Kills: " + scoreTracker.killScore;
         deathScoreText.text = "Deaths: " + scoreTracker.deathScore;
         timeScoreText.text = "time elapsed: " + scoreTracker.timeScore;
-        StartCoroutine(AnimateScore(scoreTracker.killScore,7,killScoreText, killScoreBar));
-        StartCoroutine(AnimateScore(scoreTracker.damageScore, 1400, damageScoreText, damageScoreBar));
+        StartCoroutine(AnimateScore(scoreTracker.killScore,scoreTracker.zombieCount,killScoreText, killScoreBar));
+        StartCoroutine(AnimateScore(scoreTracker.damageScore, scoreTracker.zombieCount * 200, damageScoreText, damageScoreBar));
     }
 
     // Update is called once per frame
@@ -35,23 +35,24 @@ public class ScoreDisplay : MonoBehaviour
         
     }
 
-    public IEnumerator AnimateScore()
-    {
-        float elapsedTime = 0f;
-        int currentScore = 0;
-        while (elapsedTime <= animationDuration)
-        {
-            elapsedTime += Time.deltaTime;
-            float progress = elapsedTime / animationDuration;
+    //[Deprecated]
+    //public IEnumerator AnimateScore()
+    //{
+    //    float elapsedTime = 0f;
+    //    int currentScore = 0;
+    //    while (elapsedTime <= animationDuration)
+    //    {
+    //        elapsedTime += Time.deltaTime;
+    //        float progress = elapsedTime / animationDuration;
 
-            currentScore = Mathf.FloorToInt(Mathf.Lerp(0, scoreTracker.damageScore, progress));
-            damageScoreBar.fillAmount = Mathf.Lerp(0,  1, progress);
-            damageScoreText.text = currentScore.ToString();
-            yield return null;
-        }
-        // Makes sure it displays the correct score at end of animation
-        damageScoreText.text = scoreTracker.damageScore.ToString();
-    }
+    //        currentScore = Mathf.FloorToInt(Mathf.Lerp(0, scoreTracker.damageScore, progress));
+    //        damageScoreBar.fillAmount = Mathf.Lerp(0,  1, progress);
+    //        damageScoreText.text = currentScore.ToString();
+    //        yield return null;
+    //    }
+    //    // Makes sure it displays the correct score at end of animation
+    //    damageScoreText.text = scoreTracker.damageScore.ToString();
+    //}
 
     public IEnumerator AnimateScore(int score,int maxBarScore,TextMeshProUGUI scoreText,Image scoreBar)
     {

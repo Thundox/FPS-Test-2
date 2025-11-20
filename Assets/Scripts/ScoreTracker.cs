@@ -11,6 +11,8 @@ public class ScoreTracker : MonoBehaviour
     public int killScore = 0;
     public int deathScore = 0;
     public int timeScore = 0;
+    public int zombieCount = 0;
+    public int totalZombieHealth = 0;
     // Start is called before the first frame update
     void Awake()
     {
@@ -23,6 +25,9 @@ public class ScoreTracker : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        Zombie[] zombieArray = FindObjectsOfType<Zombie>();
+        zombieCount = zombieArray.Length;
+        // [automatic zombie detection] make a Loop that goes through all zombies?
         instance.ResetScore();
     }
 
