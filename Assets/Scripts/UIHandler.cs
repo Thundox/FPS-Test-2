@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,7 +9,20 @@ public class UIHandler : MonoBehaviour
 {
     public Image deathImage;
     public float fadeDuration;
+    public TextMeshProUGUI playerAmmo;
+    public PlayerMovement myPlayerMovement;
+    public Shoot myShoot;
 
+
+    void Start()
+    {
+        playerAmmo.text = myShoot.playerAmmoInGun + "-" + myShoot.playerSpareAmmo;
+    }
+
+    void Update()
+    {
+        playerAmmo.text = myShoot.playerAmmoInGun + "-" + myShoot.playerSpareAmmo;
+    }
     IEnumerator fadeImage()
     {
         float timePassed = 0f;
