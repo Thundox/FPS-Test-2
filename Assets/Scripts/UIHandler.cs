@@ -12,17 +12,26 @@ public class UIHandler : MonoBehaviour
     public TextMeshProUGUI playerAmmo;
     public PlayerMovement myPlayerMovement;
     public Shoot myShoot;
-
+    public Image healthBarImage;
+    
 
     void Start()
     {
         playerAmmo.text = myShoot.playerAmmoInGun + "-" + myShoot.playerSpareAmmo;
     }
 
+    private void Awake()
+    {
+        
+        
+    }
+
     void Update()
     {
         playerAmmo.text = myShoot.playerAmmoInGun + "-" + myShoot.playerSpareAmmo;
+        healthBarImage.fillAmount = (float)myPlayerMovement.health / myPlayerMovement.maxHealth;
     }
+
     IEnumerator fadeImage()
     {
         float timePassed = 0f;

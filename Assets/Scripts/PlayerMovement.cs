@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     // test github push (forward movement bug??)
     public int health = 100;
+    public int maxHealth = 100;
     public bool playerAlive;
     [Header ("Movement")]
     private float MovementSpeed;
@@ -91,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         PlayerCamScript.AllowPlayerCamMovement = true;
+        health = maxHealth;
         playerAlive = true;
         myUIHandler = FindObjectOfType<UIHandler>();
         rb = GetComponent<Rigidbody>();
