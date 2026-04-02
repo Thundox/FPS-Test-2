@@ -24,6 +24,10 @@ public class ThrowingTutorial : MonoBehaviour
     public float trajectoryTimeStep = 0.1f;
     public Material trajectoryMaterial;
     
+    [Header("Landing Indicator")]
+    public GameObject landingIndicator;
+    public LayerMask landingLayerMask = Physics.AllLayers;
+    
     [Header("Debug")]
     public bool showDebugInfo = true;
 
@@ -52,6 +56,14 @@ public class ThrowingTutorial : MonoBehaviour
         
         if (trajectoryMaterial != null)
             trajectoryLine.material = trajectoryMaterial;
+
+        if (landingIndicator == null)
+        {
+            landingIndicator = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            landingIndicator.transform.localScale = Vector3.one * 0.3f;
+            Destroy(landingIndicator.GetComponent<Collider>());
+        }
+        landingIndicator.SetActive(false);
     }
 
     private void Update()
@@ -134,11 +146,13 @@ public class ThrowingTutorial : MonoBehaviour
     private void ShowTrajectory()
     {
         trajectoryLine.enabled = true;
+        landingIndicator.SetActive(true);
     }
 
     private void HideTrajectory()
     {
         trajectoryLine.enabled = false;
+        landingIndicator.SetActive(false);
     }
 
     private void UpdateTrajectory()
@@ -156,13 +170,14 @@ public class ThrowingTutorial : MonoBehaviour
             if (i > 0)
             {
                 Vector3 previousPoint = trajectoryLine.GetPosition(i - 1);
-                if (Physics.Linecast(previousPoint, point))
+                if (Physics.Linecast(previousPoint, point, out RaycastHit landingHit, landingLayerMask))
                 {
-                    // Set remaining points to the collision point
+                    landingIndicator.SetActive(true);
+                    landingIndicator.transform.position = landingHit.point;
+                    landingIndicator.transform.up = landingHit.normal;
+
                     for (int j = i; j < trajectoryPoints; j++)
-                    {
-                        trajectoryLine.SetPosition(j, point);
-                    }
+                        trajectoryLine.SetPosition(j, landingHit.point);
                     break;
                 }
             }
