@@ -27,6 +27,7 @@ public class Shoot : MonoBehaviour
     public AudioSource handgunShot;
     public ParticleSystem muzzleParticleSystem;
     public Light muzzleLight;
+    public bool chargingWeapon;
 
     public LayerMask shootableLayers;
 
@@ -80,7 +81,12 @@ public class Shoot : MonoBehaviour
                     float forcePercentage;
                     float forceMagnitude;  //Mathf.Lerp(1, _maximumForce, forcePercentage);
 
-                    if (mouseButtonDownDuration > MaxChargeTime)
+                    if ( chargingWeapon == false)
+                    {
+                        forcePercentage = 1;
+                    }
+
+                    else if (mouseButtonDownDuration > MaxChargeTime)
                     {
                         forcePercentage = 1;
                     }
