@@ -13,7 +13,10 @@ public class UIHandler : MonoBehaviour
     public PlayerMovement myPlayerMovement;
     public Shoot myShoot;
     public Image healthBarImage;
-    
+    public float barMaskWidth;
+    public RectTransform barMaskRectTransform;
+    public RawImage healthBarImageRaw;
+
 
     void Start()
     {
@@ -22,14 +25,24 @@ public class UIHandler : MonoBehaviour
 
     private void Awake()
     {
-        
+        barMaskWidth = barMaskRectTransform.sizeDelta.x;
         
     }
 
     void Update()
     {
         playerAmmo.text = myShoot.playerAmmoInGun + "-" + myShoot.playerSpareAmmo;
+        // [Placeholder]
         healthBarImage.fillAmount = (float)myPlayerMovement.health / myPlayerMovement.maxHealth;
+        // Health bar
+        Rect uvRect = healthBarImageRaw.uvRect;
+        uvRect.x -= 1f * Time.deltaTime;
+        healthBarImageRaw.uvRect = uvRect; 
+        
+        Vector2 barMaskSizeDelta = barMaskRectTransform.sizeDelta;
+        barMaskSizeDelta.x = (float)myPlayerMovement.health / myPlayerMovement.maxHealth * barMaskWidth;
+        barMaskRectTransform.sizeDelta = barMaskSizeDelta;
+
     }
 
     IEnumerator fadeImage()
