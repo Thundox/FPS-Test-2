@@ -16,6 +16,7 @@ public class UIHandler : MonoBehaviour
     public float barMaskWidth;
     public RectTransform barMaskRectTransform;
     public RawImage healthBarImageRaw;
+    public float healthBarImageRawScrollSpeed;
 
 
     void Start()
@@ -36,7 +37,7 @@ public class UIHandler : MonoBehaviour
         healthBarImage.fillAmount = (float)myPlayerMovement.health / myPlayerMovement.maxHealth;
         // Health bar
         Rect uvRect = healthBarImageRaw.uvRect;
-        uvRect.x -= 1f * Time.deltaTime;
+        uvRect.x -= healthBarImageRawScrollSpeed * Time.deltaTime;
         healthBarImageRaw.uvRect = uvRect; 
         
         Vector2 barMaskSizeDelta = barMaskRectTransform.sizeDelta;

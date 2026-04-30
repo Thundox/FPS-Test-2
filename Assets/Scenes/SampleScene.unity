@@ -12037,6 +12037,7 @@ MonoBehaviour:
   barMaskWidth: 700
   barMaskRectTransform: {fileID: 1591873927}
   healthBarImageRaw: {fileID: 1406597208}
+  healthBarImageRawScrollSpeed: 0.05
 --- !u!1 &566198799
 GameObject:
   m_ObjectHideFlags: 0
@@ -16388,7 +16389,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &800375574
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20405,7 +20406,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &945083374
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29172,7 +29173,7 @@ RectTransform:
   m_GameObject: {fileID: 1406597206}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1591873927}
@@ -29180,7 +29181,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 700, y: 40}
+  m_SizeDelta: {x: 1024, y: 128}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1406597208
 MonoBehaviour:
@@ -29202,7 +29203,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 1d46fba7b0ed2cd4a8543933371efb31, type: 3}
+  m_Texture: {fileID: 2800000, guid: 81854e626a2027648a14f23609f359b5, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
