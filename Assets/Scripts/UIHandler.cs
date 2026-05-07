@@ -17,6 +17,8 @@ public class UIHandler : MonoBehaviour
     public RectTransform barMaskRectTransform;
     public RawImage healthBarImageRaw;
     public float healthBarImageRawScrollSpeed;
+    public Image DamageImage;
+    public float DamageImageDuration;
 
 
     void Start()
@@ -46,7 +48,25 @@ public class UIHandler : MonoBehaviour
 
     }
 
-    IEnumerator fadeImage()
+    public void PlayerDamageEffect()
+    {
+        DamageImage.enabled = true;
+        StartCoroutine(DamageEffectDisplay());
+    }
+
+    IEnumerator DamageEffectDisplay()
+    {
+        float timePassed = 0f;
+        while (timePassed < DamageImageDuration)
+        {
+            
+            timePassed += Time.deltaTime;
+            yield return null; // Wait for next frame
+        }
+        DamageImage.enabled = false;
+    }
+
+    IEnumerator FadeImage()
     {
         float timePassed = 0f;
         Color currentColor = deathImage.color;
@@ -64,6 +84,6 @@ public class UIHandler : MonoBehaviour
 
     public void startFade()
     {
-        StartCoroutine(fadeImage());
+        StartCoroutine(FadeImage());
     }
 }

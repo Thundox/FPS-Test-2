@@ -102,6 +102,14 @@ public class PlayerMovement : MonoBehaviour
         StartYScale = transform.localScale.y;
     }
 
+    public void PlayerDamage(int damageReceived)
+    {
+        health -= damageReceived;
+        // [WIP] Player hurt sound
+        myUIHandler.PlayerDamageEffect();
+        
+    }
+
     public void playerDeath()
     {
         if (playerAlive == true)
@@ -118,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // Debug.Log(Input.GetAxis("Vertical"));
+       // Checks if Players dead and return ends update if Player is dead
         if (playerAlive == false)
         {
             return;

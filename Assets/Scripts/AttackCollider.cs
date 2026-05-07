@@ -21,7 +21,7 @@ public class AttackCollider : MonoBehaviour
         if (collision.transform.tag == "Player")
         {
             PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
-            player.health -= damage;
+            player.PlayerDamage(damage);
             canDamagePlayer = false;
             if (player.health <= 0)
             {
