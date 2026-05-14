@@ -21355,7 +21355,7 @@ MonoBehaviour:
   playerMagazineCapacity: 10
   playerSpareAmmo: 9999
   isReloading: 0
-  reloadTime: 2
+  reloadTime: 2.7
   shootDelay: 0.2
   isShooting: 0
   handgunAnimator: {fileID: 1601225950419963927}

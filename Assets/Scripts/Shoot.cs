@@ -41,7 +41,7 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && isReloading == false && playerSpareAmmo > 0 && playerAmmoInGun <= playerMagazineCapacity)
+        if (Input.GetKeyDown(KeyCode.R) && isReloading == false && playerSpareAmmo > 0 && playerAmmoInGun < playerMagazineCapacity)
         {
             isReloading = true;
             handgunAnimator.SetTrigger("Reload");

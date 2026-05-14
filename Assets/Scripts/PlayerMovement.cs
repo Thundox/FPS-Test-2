@@ -106,7 +106,10 @@ public class PlayerMovement : MonoBehaviour
     {
         health -= damageReceived;
         // [WIP] Player hurt sound
-        myUIHandler.PlayerDamageEffect();
+        if (health > 0)
+        {
+            myUIHandler.PlayerDamageEffect();
+        }
         
     }
 
