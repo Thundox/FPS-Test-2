@@ -6,6 +6,15 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject pauseMenuUI; // Reference to the Panel
     public static bool GameIsPaused = false;
 
+    private PlayerCam _playerCam;
+    private Shoot _shoot;
+
+    void Start()
+    {
+        _playerCam = FindObjectOfType<PlayerCam>();
+        _shoot = FindObjectOfType<Shoot>();
+    }
+
     void Update()
     {
         // Check for the Escape key to toggle pause
@@ -27,6 +36,13 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false); // Hide the menu
         Time.timeScale = 1f;          // Resume game time
         GameIsPaused = false;
+
+        // Re-enable player camera and shooting
+        if (_playerCam != null) _playerCam.AllowPlayerCamMovement = true;
+        if (_shoot != null) _shoot.enabled = true;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void Pause()
@@ -34,6 +50,13 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);  // Show the menu
         Time.timeScale = 0f;          // Freeze game time
         GameIsPaused = true;
+
+        // Disable player camera and shooting
+        if (_playerCam != null) _playerCam.AllowPlayerCamMovement = false;
+        if (_shoot != null) _shoot.enabled = false;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void LoadMenu()
