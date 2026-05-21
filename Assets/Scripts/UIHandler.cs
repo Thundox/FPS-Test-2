@@ -10,8 +10,10 @@ public class UIHandler : MonoBehaviour
     public Image deathImage;
     public float fadeDuration;
     public TextMeshProUGUI playerAmmo;
+    public TextMeshProUGUI grenadeAmmo;
     public PlayerMovement myPlayerMovement;
     public Shoot myShoot;
+    public ThrowingTutorial myThrowable;
     public Image healthBarImage;
     public float barMaskWidth;
     public RectTransform barMaskRectTransform;
@@ -24,6 +26,7 @@ public class UIHandler : MonoBehaviour
     void Start()
     {
         playerAmmo.text = myShoot.playerAmmoInGun + "-" + myShoot.playerSpareAmmo;
+        grenadeAmmo.text = "Grenades: " + myThrowable.totalThrows;
     }
 
     private void Awake()
@@ -35,6 +38,7 @@ public class UIHandler : MonoBehaviour
     void Update()
     {
         playerAmmo.text = myShoot.playerAmmoInGun + "-" + myShoot.playerSpareAmmo;
+        grenadeAmmo.text = "Grenades: " + myThrowable.totalThrows;
         // [Placeholder]
         healthBarImage.fillAmount = (float)myPlayerMovement.health / myPlayerMovement.maxHealth;
         // Health bar
