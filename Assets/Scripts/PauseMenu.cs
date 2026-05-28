@@ -62,7 +62,7 @@ public class PauseMenu : MonoBehaviour
     public void LoadMenu()
     {
         Time.timeScale = 1f; // Ensure time is running before loading new scene
-        SceneManager.LoadScene("Menu"); // Replace "Menu" with your main menu scene name
+        SceneManager.LoadScene("MainMenu"); // Replace "Menu" with your main menu scene name
     }
 
     public void QuitGame()
