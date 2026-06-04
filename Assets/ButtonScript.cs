@@ -11,4 +11,15 @@ public class ButtonScript : MonoBehaviour
     {
         SceneManager.LoadScene (levelToLoad);
     }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quitting Game..."); // Logs to console to confirm it works in Editor
+        Application.Quit();
+
+        // This line allows you to stop play mode in the Editor
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+    }
 }
