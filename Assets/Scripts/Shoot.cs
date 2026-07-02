@@ -28,7 +28,9 @@ public class Shoot : MonoBehaviour
     public ParticleSystem muzzleParticleSystem;
     public Light muzzleLight;
     public bool chargingWeapon;
-
+    public bool isProjectileGun;
+    public GameObject projectile;
+    public Transform rotatingBarrel;
     public LayerMask shootableLayers;
 
     // Start is called before the first frame update
@@ -59,7 +61,13 @@ public class Shoot : MonoBehaviour
             _timeMouseButtonDown = Time.time;
         }
 
-        if (Input.GetMouseButtonUp(0) && playerAmmoInGun > 0)
+        if (Input.GetMouseButtonUp(0) && playerAmmoInGun > 0 && isProjectileGun)
+        {
+
+        }
+
+        // Raycast Shoot function
+        if (Input.GetMouseButtonUp(0) && playerAmmoInGun > 0 && !isProjectileGun)
         {
             isShooting = true;
             handgunAnimator.SetTrigger("Shoot");

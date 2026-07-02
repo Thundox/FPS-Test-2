@@ -21663,6 +21663,9 @@ MonoBehaviour:
   muzzleParticleSystem: {fileID: 1875861742}
   muzzleLight: {fileID: 1772051246}
   chargingWeapon: 0
+  isProjectileGun: 0
+  projectile: {fileID: 0}
+  rotatingBarrel: {fileID: 0}
   shootableLayers:
     serializedVersion: 2
     m_Bits: 16385
@@ -54885,6 +54888,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 623052647307452298, guid: de54972a47208bc44b1899aa1ff61dec, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208882728864629409, guid: de54972a47208bc44b1899aa1ff61dec, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208882728864629409, guid: de54972a47208bc44b1899aa1ff61dec, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208882728864629409, guid: de54972a47208bc44b1899aa1ff61dec, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
