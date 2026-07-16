@@ -63,7 +63,10 @@ public class Shoot : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && playerAmmoInGun > 0 && isProjectileGun)
         {
-
+            if (rotatingBarrel != null) 
+            {
+                // spawn projectile and match rotation to barrel
+            }
         }
 
         // Raycast Shoot function
