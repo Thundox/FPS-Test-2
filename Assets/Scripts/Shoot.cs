@@ -66,6 +66,9 @@ public class Shoot : MonoBehaviour
             if (rotatingBarrel != null) 
             {
                 // spawn projectile and match rotation to barrel
+                Instantiate(projectile, rotatingBarrel.position, rotatingBarrel.rotation);
+                //projectile.transform.rotation = rotatingBarrel.rotation;
+                //projectile.transform.position = rotatingBarrel.position;
             }
         }
 
