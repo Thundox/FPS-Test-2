@@ -7,6 +7,7 @@ TagManager:
   - Ledge
   - Zombie
   - Wall
+  - Projectile
   layers:
   - Default
   - TransparentFX

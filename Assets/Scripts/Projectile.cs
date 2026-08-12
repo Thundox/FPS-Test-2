@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
     public float projectileSpeed;
     public float projectileLifetime;
     public float projectileTimer;
+    public int projectileDamage;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,12 +21,16 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // projectile Speed
         transform.position += transform.forward * projectileSpeed * Time.deltaTime;
+        // projectile Lifetime and timer
         projectileTimer += Time.deltaTime;
         if (projectileTimer >= projectileLifetime) 
         {
             Destroy(gameObject);
         }
+
+        // Projectile hit detection
 
     }
 }

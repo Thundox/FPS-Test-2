@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6587585892334154623}
+  - component: {fileID: 7352650924998074478}
   m_Layer: 0
   m_Name: Crescent Plasma Projectile V2
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 7635284503744290115}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 66.112, y: 2.7299364, z: -82.077}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -36,6 +37,22 @@ Transform:
   - {fileID: 6798307305494530351}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7352650924998074478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7635284503744290115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b84df534b9fcb2469ab195390b48fc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileSpeed: 5
+  projectileLifetime: 10
+  projectileTimer: 0
+  projectileDamage: 100
 --- !u!1001 &484325488189052963
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46,7 +63,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.439
+      value: 0.913
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -54,11 +71,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.516
+      value: -0.319
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.97629607
+      value: 0.46174863
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalRotation.x
@@ -66,7 +83,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.2164396
+      value: 0.8870109
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalRotation.z
@@ -78,7 +95,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 25
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -92,16 +109,49 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crescent Plasma Projectile V2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
+      propertyPath: m_TagString
+      value: Projectile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1018235985303186698}
   m_SourcePrefab: {fileID: 100100000, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
 --- !u!4 &86151178535075784 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
   m_PrefabInstance: {fileID: 484325488189052963}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &754848434055292274 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
+  m_PrefabInstance: {fileID: 484325488189052963}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1018235985303186698
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754848434055292274}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.003804227, y: 0.003618034, z: 0.0070000016}
+  m_Center: {x: 0, y: 0.000190983, z: 0}
 --- !u!1001 &1227369709094801469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -112,7 +162,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.819
+      value: -0.862
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -120,11 +170,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.037
+      value: -0.763
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9063079
+      value: -0.42261827
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalRotation.x
@@ -132,11 +182,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.42261827
+      value: 0.9063079
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -144,7 +194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 50
+      value: 230
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -158,16 +208,49 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crescent Plasma Projectile V2 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
+      propertyPath: m_TagString
+      value: Projectile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1553993384417589114}
   m_SourcePrefab: {fileID: 100100000, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
 --- !u!4 &1622077902626944982 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
   m_PrefabInstance: {fileID: 1227369709094801469}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2146273011519892844 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
+  m_PrefabInstance: {fileID: 1227369709094801469}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1553993384417589114
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146273011519892844}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0038042283, y: 0.003618034, z: 0.007000003}
+  m_Center: {x: 0, y: 0.000190983, z: 0}
 --- !u!1001 &6292184822098282557
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -186,11 +269,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.12337494
+      value: -0.112
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalRotation.x
@@ -198,7 +281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalRotation.z
@@ -210,7 +293,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -224,16 +307,49 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crescent Plasma Projectile V2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
+      propertyPath: m_TagString
+      value: Projectile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8638394658042407003}
   m_SourcePrefab: {fileID: 100100000, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
 --- !u!4 &5825667524225183702 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
   m_PrefabInstance: {fileID: 6292184822098282557}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6598685035040666988 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
+  m_PrefabInstance: {fileID: 6292184822098282557}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &8638394658042407003
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6598685035040666988}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.003804227, y: 0.003618034, z: 0.0070000016}
+  m_Center: {x: 0, y: 0.000190983, z: 0}
 --- !u!1001 &6472456636979785412
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -244,7 +360,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.831
+      value: 1.429
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -252,19 +368,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.287
+      value: -0.757
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9063079
+      value: -0.4226182
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.42261827
+      value: -0.9063078
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalRotation.z
@@ -276,7 +392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -50
+      value: -230
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -290,11 +406,44 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crescent Plasma Projectile V2 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
+      propertyPath: m_TagString
+      value: Projectile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5989261513991272090}
   m_SourcePrefab: {fileID: 100100000, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
+--- !u!1 &6130420355195573141 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
+  m_PrefabInstance: {fileID: 6472456636979785412}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &5989261513991272090
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6130420355195573141}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.003804226, y: 0.003618034, z: 0.0069999993}
+  m_Center: {x: 0, y: 0.000190983, z: 0}
 --- !u!4 &6798307305494530351 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
@@ -310,7 +459,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.446
+      value: -0.343
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -318,11 +467,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.764
+      value: -0.326
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.97629607
+      value: 0.46174863
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalRotation.x
@@ -330,7 +479,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.21643952
+      value: -0.8870109
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalRotation.z
@@ -342,7 +491,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -25
+      value: -125
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -356,13 +505,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crescent Plasma Projectile V2 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
+      propertyPath: m_TagString
+      value: Projectile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6007150135571811898}
   m_SourcePrefab: {fileID: 100100000, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
 --- !u!4 &7284032799795176421 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
   m_PrefabInstance: {fileID: 7105743704348460046}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7952729746631407967 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a51b4136e5ed7ba40a759ff3dd5a143b, type: 3}
+  m_PrefabInstance: {fileID: 7105743704348460046}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &6007150135571811898
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7952729746631407967}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.003804227, y: 0.003618034, z: 0.0070000016}
+  m_Center: {x: 0, y: 0.000190983, z: 0}

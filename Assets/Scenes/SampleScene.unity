@@ -10776,7 +10776,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7203677061410592289, guid: 30136c7aac5f6f24599c1c8bda0b12c7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 57.838
+      value: 61.743
       objectReference: {fileID: 0}
     - target: {fileID: 7203677061410592289, guid: 30136c7aac5f6f24599c1c8bda0b12c7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10784,7 +10784,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7203677061410592289, guid: 30136c7aac5f6f24599c1c8bda0b12c7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -88.386
+      value: -74.781
       objectReference: {fileID: 0}
     - target: {fileID: 7203677061410592289, guid: 30136c7aac5f6f24599c1c8bda0b12c7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -22326,7 +22326,7 @@ MonoBehaviour:
   muzzleLight: {fileID: 1772051246}
   chargingWeapon: 0
   isProjectileGun: 1
-  projectile: {fileID: 5793420415508727964, guid: 7ce5d4be6780d6c45b981508ea1352b4, type: 3}
+  projectile: {fileID: 7635284503744290115, guid: 3dca38a4408c660449eb8402105c32fd, type: 3}
   rotatingBarrel: {fileID: 265660560}
   shootableLayers:
     serializedVersion: 2
@@ -37600,8 +37600,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6208882728864629409, guid: de54972a47208bc44b1899aa1ff61dec, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208882728864629409, guid: de54972a47208bc44b1899aa1ff61dec, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6208882728864629409, guid: de54972a47208bc44b1899aa1ff61dec, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2550433260871270798, guid: de54972a47208bc44b1899aa1ff61dec, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de54972a47208bc44b1899aa1ff61dec, type: 3}
