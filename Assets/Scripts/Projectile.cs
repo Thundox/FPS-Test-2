@@ -30,7 +30,17 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
 
+        
+
         // Projectile hit detection
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Wall"))
+        {
+            Destroy(gameObject);   
+        }
     }
 }
