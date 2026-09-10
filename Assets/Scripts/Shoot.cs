@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -31,6 +32,7 @@ public class Shoot : MonoBehaviour
     public bool isProjectileGun;
     public GameObject projectile;
     public Transform rotatingBarrel;
+    public int rotatingBarrelSpeed;
     public LayerMask shootableLayers;
 
     // Start is called before the first frame update
@@ -139,6 +141,10 @@ public class Shoot : MonoBehaviour
 
             }
 
+        }
+        if (isReloading == false)
+        {
+            rotatingBarrel.transform.Rotate(0,0,-rotatingBarrelSpeed * Time.deltaTime);
         }
     }
 
