@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -8,6 +9,7 @@ public class Projectile : MonoBehaviour
     public float projectileLifetime;
     public float projectileTimer;
     public int projectileDamage;
+    public float projectileDamageCooldown;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +18,8 @@ public class Projectile : MonoBehaviour
 
     void Awake()
     {
-        projectileTimer = 0;  
+        projectileTimer = 0;
+        projectileDamageCooldown = 0;
     }
     // Update is called once per frame
     void Update()
@@ -30,6 +33,11 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
 
+        if (projectileDamageCooldown >= 0)
+        {
+            projectileDamageCooldown -= Time.deltaTime;
+        }
+
         
 
         // Projectile hit detection
@@ -41,6 +49,14 @@ public class Projectile : MonoBehaviour
         if (other.CompareTag("Wall"))
         {
             Destroy(gameObject);   
+        }
+
+        else if (other.CompareTag("Zombie"))
+        {
+            Zombie hitZombie = other.transform.root.GetComponent<Zombie>();
+            hitZombie.TriggerRagdoll(Vector3.zero, Vector3.zero);
+            hitZombie.zombieHealth =- projectileDamage;
+            Destroy(gameObject);
         }
     }
 }
