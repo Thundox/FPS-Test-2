@@ -54,8 +54,14 @@ public class Projectile : MonoBehaviour
         else if (other.CompareTag("Zombie"))
         {
             Zombie hitZombie = other.transform.root.GetComponent<Zombie>();
-            hitZombie.TriggerRagdoll(Vector3.zero, Vector3.zero);
-            hitZombie.zombieHealth =- projectileDamage;
+            if (hitZombie.zombiePlasmaDamageCooldown == false)
+            {
+                hitZombie.TriggerRagdoll(Vector3.zero, Vector3.zero);
+                hitZombie.HitByPlasma(projectileDamage);
+                hitZombie.zombiePlasmaDamageCooldown = true;
+                
+            }
+            
             Destroy(gameObject);
         }
     }

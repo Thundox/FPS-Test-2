@@ -30,6 +30,7 @@ public class Zombie : MonoBehaviour
 
     //Zombie Stats
     public int zombieHealth;
+    public bool zombiePlasmaDamageCooldown;
     
     // Temporary field for grenade damage tracking
     [System.NonSerialized]
@@ -219,6 +220,18 @@ public class Zombie : MonoBehaviour
                 break;
 
         }
+    }
+
+    public void SetPlasmaCooldownFalse()
+    {
+        zombiePlasmaDamageCooldown = false;
+    }
+
+    public void HitByPlasma(int damage)
+    {
+        zombieHealth -= damage;
+        Invoke("SetPlasmaCooldownFalse", .5f);
+
     }
 
     private void IdleBehaviour()
