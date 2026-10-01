@@ -59,10 +59,9 @@ public class Projectile : MonoBehaviour
                 hitZombie.TriggerRagdoll(Vector3.zero, Vector3.zero);
                 hitZombie.HitByPlasma(projectileDamage);
                 hitZombie.zombiePlasmaDamageCooldown = true;
-                
+                Destroy(gameObject);
             }
             
-            Destroy(gameObject);
         }
     }
 }
