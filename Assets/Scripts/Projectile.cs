@@ -53,10 +53,21 @@ public class Projectile : MonoBehaviour
 
         else if (other.CompareTag("Zombie"))
         {
+            ScoreTracker myScoreTracker = FindObjectOfType<ScoreTracker>();
             Zombie hitZombie = other.transform.root.GetComponent<Zombie>();
             if (hitZombie.zombiePlasmaDamageCooldown == false)
             {
                 hitZombie.TriggerRagdoll(Vector3.zero, Vector3.zero);
+                if (hitZombie.zombieHealth > projectileDamage)
+                {
+                    myScoreTracker.damageScore += projectileDamage;
+                }
+                else if (hitZombie.zombieHealth > 0)
+                {
+                    myScoreTracker.damageScore += hitZombie.zombieHealth;
+                    myScoreTracker.killScore += 1;
+
+                }
                 hitZombie.HitByPlasma(projectileDamage);
                 hitZombie.zombiePlasmaDamageCooldown = true;
                 Destroy(gameObject);

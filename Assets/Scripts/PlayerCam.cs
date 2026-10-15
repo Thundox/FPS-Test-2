@@ -19,6 +19,8 @@ public class PlayerCam : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        RotationX = 0;
+        RotationY = 90;
     }
 
     // Update is called once per frame
