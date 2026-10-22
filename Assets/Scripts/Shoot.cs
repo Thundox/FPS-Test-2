@@ -52,6 +52,11 @@ public class Shoot : MonoBehaviour
             Invoke("ReloadGun", reloadTime);
         }
 
+        if (isReloading == false)
+        {
+            rotatingBarrel.transform.Rotate(0, 0, -rotatingBarrelSpeed * Time.deltaTime);
+        }
+
         // If reloading can't shoot
         if (isReloading == true || isShooting == true)
         {
@@ -69,6 +74,9 @@ public class Shoot : MonoBehaviour
             {
                 // spawn projectile and match rotation to barrel
                 Instantiate(projectile, rotatingBarrel.position, rotatingBarrel.rotation);
+                playerAmmoInGun = playerAmmoInGun - 1;
+                isShooting = true;
+                Invoke("SetIsShootingToFalse", shootDelay);
                 //projectile.transform.rotation = rotatingBarrel.rotation;
                 //projectile.transform.position = rotatingBarrel.position;
             }
@@ -142,10 +150,7 @@ public class Shoot : MonoBehaviour
             }
 
         }
-        if (isReloading == false)
-        {
-            rotatingBarrel.transform.Rotate(0,0,-rotatingBarrelSpeed * Time.deltaTime);
-        }
+        
     }
 
     public IEnumerator DisableLightAfterDelay(float delay)
