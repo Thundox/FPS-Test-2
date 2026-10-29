@@ -90,16 +90,16 @@ public class Climbing : MonoBehaviour
 
     private void WallCheck()
     {
-        wallFront = Physics.SphereCast(transform.position, sphereCastRadius, orientation.forward, out frontWallHit, detectionLength, whatIsWall);
-        wallLookAngle = Vector3.Angle(orientation.forward, -frontWallHit.normal);
+        //wallFront = Physics.SphereCast(transform.position, sphereCastRadius, orientation.forward, out frontWallHit, detectionLength, whatIsWall);
+        //wallLookAngle = Vector3.Angle(orientation.forward, -frontWallHit.normal);
 
-        bool newWall = frontWallHit.transform != lastWall || Mathf.Abs(Vector3.Angle(lastWallNormal, frontWallHit.normal)) > minWallNormalAngleChange;
+        //bool newWall = frontWallHit.transform != lastWall || Mathf.Abs(Vector3.Angle(lastWallNormal, frontWallHit.normal)) > minWallNormalAngleChange;
 
-        if ((wallFront && newWall) || pm.grounded)
-        {
-            climbTimer = maxClimbTime;
-            climbJumpsLeft = climbJumps;
-        }
+        //if ((wallFront && newWall) || pm.grounded)
+        //{
+        //    climbTimer = maxClimbTime;
+        //    climbJumpsLeft = climbJumps;
+        //}
     }
 
     private void StartClimbing()
