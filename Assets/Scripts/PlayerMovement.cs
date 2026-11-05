@@ -100,6 +100,9 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
         ReadyToJump = true;
         StartYScale = transform.localScale.y;
+
+        // Collison fix??
+        rb.maxDepenetrationVelocity = 0;
     }
 
     public void PlayerDamage(int damageReceived)
