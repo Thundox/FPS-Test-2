@@ -10714,7 +10714,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7203677061410592289, guid: 30136c7aac5f6f24599c1c8bda0b12c7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 53.1
+      value: 172.392
       objectReference: {fileID: 0}
     - target: {fileID: 7203677061410592289, guid: 30136c7aac5f6f24599c1c8bda0b12c7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10722,7 +10722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7203677061410592289, guid: 30136c7aac5f6f24599c1c8bda0b12c7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -53.18
+      value: -74.996
       objectReference: {fileID: 0}
     - target: {fileID: 7203677061410592289, guid: 30136c7aac5f6f24599c1c8bda0b12c7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -21398,17 +21398,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 945083373}
   m_CullTransparentMesh: 1
---- !u!114 &945305144 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5282315805271164185, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
-  m_PrefabInstance: {fileID: 1429162239}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d36f79d72cd5b244a86bee24f5f40780, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &954158586
 GameObject:
   m_ObjectHideFlags: 0
@@ -31070,18 +31059,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1820410053, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
-      propertyPath: myZombie
-      value: 
-      objectReference: {fileID: 945305144}
-    - target: {fileID: 1858737341, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
-      propertyPath: m_Size.z
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1858737341, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1858737341, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
       propertyPath: m_Center.z
       value: 1
@@ -31201,10 +31178,6 @@ PrefabInstance:
     - target: {fileID: 717619266133550692, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
       propertyPath: m_Speed
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 717619266133550692, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1112530820232670587, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
       propertyPath: m_TagString
@@ -31982,25 +31955,9 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.52620476
       objectReference: {fileID: 0}
-    - target: {fileID: 5282315804698920610, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
-      propertyPath: m_Mass
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 5282315805271164185, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
-      propertyPath: canAttack
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5282315805271164185, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
-      propertyPath: zombieHealth
-      value: 200
-      objectReference: {fileID: 0}
     - target: {fileID: 5282315805271164185, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
       propertyPath: _currentState
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5282315805271164185, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
-      propertyPath: _HitWallStateName
-      value: Zombie wall hit reaction
       objectReference: {fileID: 0}
     - target: {fileID: 5282315805271164185, guid: 23517c34b6e80cd42be7726522422c16, type: 3}
       propertyPath: obstacleLayerMask.m_Bits
